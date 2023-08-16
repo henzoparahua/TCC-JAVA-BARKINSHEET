@@ -1,0 +1,52 @@
+*{
+    -fx-padding: 0;
+}
+#background{
+    /* TAMANHO DA TELA */
+    -fx-min-width: 1152px;
+    -fx-max-width: 1152px;
+    -fx-pref-width: 1152px;
+    -fx-min-height: 680px;
+    -fx-max-height: 680px;
+    -fx-pref-height: 680px;
+
+    -fx-background-color: #222;
+
+    /* BORDA DA JANELA */
+    -fx-border-insets: 1px;
+    -fx-border-width: 1px;
+    -fx-border-color: rgba(0, 0, 0, 0.3);
+}
+
+#ToolBar{
+        -fx-max-width: 130px;
+        -fx-min-width: 130px;
+        -fx-pref-width: 130px;
+
+        -fx-max-height: 30px;
+        -fx-min-height: 30px;
+        -fx-pref-height: 30px;
+}
+.btToolBar{
+    /* TAMANHO DO BOTÃO */
+    -fx-max-width: 30px;
+    -fx-min-width: 30px;
+    -fx-pref-width: 30px;
+
+    -fx-max-height: 30px;
+    -fx-min-height: 30px;
+    -fx-pref-height: 30px;
+
+    -fx-orientation: horizontal right;
+
+    /* APENAS IMAGENS */
+    -fx-background-color: transparent;
+    -fx-content-display: graphic-only;
+}
+
+#exitButton{
+    -fx-graphic: url(../img/exitImg.png);
+}
+#minimizeButton{
+    -fx-graphic: url(../img/minImg.png);
+}
