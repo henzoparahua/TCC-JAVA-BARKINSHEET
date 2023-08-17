@@ -6,13 +6,35 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class reusableViewController {
+public class ReusableViewController {
+
+    @FXML
+    private Button btHelp;
+
+    @FXML
+    private Button btConf;
 
     @FXML
     private Button btMin;
 
     @FXML
     private Button btExit;
+
+    public Button getBtHelp() {
+        return btHelp;
+    }
+
+    public Button getBtConf() {
+        return btConf;
+    }
+
+    public Button getBtMin() {
+        return btMin;
+    }
+
+    public Button getBtExit() {
+        return btExit;
+    }
 
     @FXML
     void Minimize(ActionEvent event) {

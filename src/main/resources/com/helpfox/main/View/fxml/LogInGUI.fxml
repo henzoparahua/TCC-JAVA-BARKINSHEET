@@ -17,9 +17,6 @@
            fx:controller="com.helpfox.main.Controller.viewControllers.LogInController">
    <children>
 
-      <fx:include source="reusableResources/buttonsBar.fxml"
-                  StackPane.alignment="TOP_RIGHT" />
-
       <fx:include fx:id="includeMainGUI"
                   source="LogInResources/SignInResources.fxml"
                   StackPane.alignment="TOP_LEFT"/>
