@@ -1,5 +1,7 @@
 *{
     -fx-padding: 0;
+    -fx-font-family: 'Ebrima', sans-serif;
+
 }
 #background{
     /* TAMANHO DA TELA */
@@ -19,13 +21,14 @@
 }
 
 #ToolBar{
-        -fx-max-width: 130px;
-        -fx-min-width: 130px;
-        -fx-pref-width: 130px;
+        -fx-max-width: 120px;
+        -fx-min-width: 120px;
+        -fx-pref-width: 120px;
 
         -fx-max-height: 30px;
         -fx-min-height: 30px;
         -fx-pref-height: 30px;
+        -fx-background-color: transparent;
 }
 .btToolBar{
     /* TAMANHO DO BOTÃO */
@@ -37,8 +40,6 @@
     -fx-min-height: 30px;
     -fx-pref-height: 30px;
 
-    -fx-orientation: horizontal right;
-
     /* APENAS IMAGENS */
     -fx-background-color: transparent;
     -fx-content-display: graphic-only;
@@ -49,4 +50,10 @@
 }
 #minimizeButton{
     -fx-graphic: url(../img/minImg.png);
+}
+#helpButton{
+    -fx-graphic: url(../img/helpImg.png);
+}
+#confButton{
+    -fx-graphic: url(../img/confImg.png);
 }

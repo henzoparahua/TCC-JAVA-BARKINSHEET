@@ -1,0 +1,54 @@
+#mainContainer{
+        /* TAMANHO DA GUIA */
+        -fx-min-width: 448px;
+        -fx-max-width: 448px;
+        -fx-pref-width: 448px;
+        -fx-min-height: 675px;
+        -fx-max-height: 675px;
+        -fx-pref-height: 675px;
+
+        /* COR DA TELA */
+        -fx-background-color: #fff;
+}
+
+#imgIconApp{
+    -fx-image: url(../img/barkinsheetlogo.png);
+}
+
+.txtField{
+    -fx-min-width: 318px;
+    -fx-max-width: 318px;
+    -fx-pref-width: 318px;
+    -fx-min-height: 35px;
+    -fx-max-height: 35px;
+    -fx-pref-height: 35px;
+    -fx-padding: 5px;
+}
+
+#loginButton {
+    -fx-min-width: 118px;
+    -fx-max-width: 118px;
+    -fx-pref-width: 118px;
+    -fx-min-height: 35px;
+    -fx-max-height: 35px;
+    -fx-pref-height: 35px;
+
+    -fx-graphic: url(../img/entrarImg.png);
+    -fx-content-display: graphic-only;
+
+    -fx-background-color: transparent;
+}
+
+#footerHelper{
+    -fx-font-size: 13px;
+    -fx-opacity: 0.9;
+    -fx-text-fill: #000;
+}
+#footerHelper Button {
+    -fx-background-color: transparent;
+}
+
+#footerLabelOne:hover, #footerLabelTwo:hover {
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 10, 0);
+}

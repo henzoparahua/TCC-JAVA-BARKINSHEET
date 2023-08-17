@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
@@ -8,14 +10,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
 
-
-<StackPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/reusableViewStylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane id="background" fx:id="fatherStackPane"
+           maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+           stylesheets="@../css/reusableViewStylesheet.css"
+           xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.helpfox.main.Controller.viewControllers.LogInController">
    <children>
-      <HBox id="ToolBar" alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" StackPane.alignment="TOP_RIGHT">
-         <children>
-            <Button alignment="CENTER" mnemonicParsing="false" styleClass="btToolBar" text="Minimizar" />
-            <Button id="exitButton" alignment="CENTER" mnemonicParsing="false" styleClass="btToolBar" text="Sair" />
-         </children>
-      </HBox>
+
+      <fx:include source="reusableResources/buttonsBar.fxml"
+                  StackPane.alignment="TOP_RIGHT" />
+
+      <fx:include fx:id="includeMainGUI"
+                  source="LogInResources/SignInResources.fxml"
+                  StackPane.alignment="TOP_LEFT"/>
    </children>
 </StackPane>

@@ -1,6 +1,7 @@
 package com.helpfox.main.Controller.viewControllers;
 
-public class LogInController {
+public class SignInController {
+
 
 
 }

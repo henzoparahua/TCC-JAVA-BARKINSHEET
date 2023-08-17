@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox id="mainContainer" alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" stylesheets="@../../css/signinViewStylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <ImageView id="imgIconApp" fitHeight="175.0" fitWidth="285.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets bottom="50.0" top="10.0" />
+               </VBox.margin>
+            </ImageView>
+            <TextField promptText="Usuario" styleClass="txtField">
+               <VBox.margin>
+                  <Insets bottom="20.0" top="30.0" />
+               </VBox.margin>
+            </TextField>
+            <PasswordField promptText="Senha" styleClass="txtField" />
+         </children>
+         <VBox.margin>
+            <Insets bottom="40.0" top="10.0" />
+         </VBox.margin>
+      </VBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button id="loginButton" mnemonicParsing="false" styleClass="btToolBar" text="Button">
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets bottom="40.0" />
+         </VBox.margin>
+      </HBox>
+      <VBox id="footerHelper" alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="100.0" StackPane.alignment="BOTTOM_CENTER">
+         <children>
+            <Label text="Não consegue entrar?">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Label>
+            <Button mnemonicParsing="false">
+               <graphic>
+                  <Label id="footerLabelOne" text="Crie sua conta!" />
+               </graphic>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false">
+               <graphic>
+                  <Label id="footerLabelTwo" text="Esqueceu sua senha?" />
+               </graphic>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </VBox>
+   </children>
+</VBox>
