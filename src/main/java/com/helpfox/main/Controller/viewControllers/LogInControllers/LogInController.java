@@ -1,5 +1,6 @@
-package com.helpfox.main.Controller.viewControllers;
+package com.helpfox.main.Controller.viewControllers.LogInControllers;
 
+import com.helpfox.main.Controller.viewControllers.ReusableViewController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

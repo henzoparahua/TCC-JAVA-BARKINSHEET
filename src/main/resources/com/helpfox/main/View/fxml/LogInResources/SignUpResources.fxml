@@ -17,46 +17,39 @@
                   <Insets bottom="50.0" top="10.0" />
                </VBox.margin>
             </ImageView>
-            <TextField promptText="Usuario" styleClass="txtField">
+            <TextField promptText="Nome" styleClass="txtField">
                <VBox.margin>
                   <Insets bottom="20.0" top="30.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField promptText="Email" styleClass="txtField">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
                </VBox.margin>
             </TextField>
             <PasswordField promptText="Senha" styleClass="txtField" />
          </children>
          <VBox.margin>
-            <Insets bottom="40.0" top="10.0" />
+            <Insets bottom="40.0" top="30.0" />
          </VBox.margin>
       </VBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button id="confirmButton" mnemonicParsing="false" styleClass="loginButton" text="Button" />
+            <Button id="SignUpButton" mnemonicParsing="false" text="VOLTAR">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets right="25.0" />
+               </HBox.margin>
+            </Button>
+            <Button id="SignUpButton" alignment="BASELINE_CENTER" mnemonicParsing="false" text="CRIAR CONTA" />
          </children>
          <VBox.margin>
             <Insets bottom="40.0" />
          </VBox.margin>
       </HBox>
       <VBox id="footerHelper" alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="100.0" StackPane.alignment="BOTTOM_CENTER">
-         <children>
-            <Label text="Não consegue entrar?">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-            </Label>
-            <Button mnemonicParsing="false">
-               <graphic>
-                  <Label id="footerLabelOne" text="Crie sua conta!" />
-               </graphic>
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </Button>
-            <Button mnemonicParsing="false">
-               <graphic>
-                  <Label id="footerLabelTwo" text="Esqueceu sua senha?" />
-               </graphic>
-            </Button>
-         </children>
          <VBox.margin>
             <Insets bottom="10.0" />
          </VBox.margin>

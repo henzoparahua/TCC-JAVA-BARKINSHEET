@@ -25,7 +25,7 @@
     -fx-padding: 5px;
 }
 
-#loginButton {
+.loginButton {
     -fx-min-width: 118px;
     -fx-max-width: 118px;
     -fx-pref-width: 118px;
@@ -33,11 +33,26 @@
     -fx-max-height: 35px;
     -fx-pref-height: 35px;
 
-    -fx-graphic: url(../img/entrarImg.png);
     -fx-content-display: graphic-only;
 
     -fx-background-color: transparent;
 }
+
+#confirmButton{
+    -fx-graphic: url(../img/entrarImg.png);
+}
+#returnButton{
+    -fx-graphic: url(../img/returnImg.png);
+    -fx-opacity: 0.8;
+    -fx-min-width: 75px;
+    -fx-max-width: 75px;
+    -fx-pref-width: 75px;
+    -fx-min-height: 75px;
+    -fx-max-height: 75px;
+    -fx-pref-height: 75px;
+
+}
+
 
 #footerHelper{
     -fx-font-size: 13px;
@@ -49,6 +64,33 @@
 }
 
 #footerLabelOne:hover, #footerLabelTwo:hover {
+    /* QUANDO O MOUSE PASSA POR CIMA, A LABEL SE DESTACA */
     -fx-font-weight: bold;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 10, 0);
 }
+
+#SignUpButton{
+    /* TAMANHO DO BOTÃO */
+
+    -fx-min-width: 165px;
+    -fx-max-width: 165px;
+    -fx-pref-width: 165px;
+
+    -fx-min-height: 35px;
+    -fx-max-height: 35px;
+    -fx-pref-height: 35px;
+
+    -fx-padding: 0;
+
+    /* FORMATO E COR */
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+    -fx-background-color: linear-gradient(to right, #271C3F, #327E7E);
+    -fx-border-color: #222;
+    -fx-opacity: 1;
+
+    /* FONTE DO BOTÃO */
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+    -fx-text-fill: #fff;
+    }
