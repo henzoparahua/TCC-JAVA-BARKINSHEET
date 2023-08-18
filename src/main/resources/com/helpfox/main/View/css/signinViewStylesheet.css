@@ -94,3 +94,9 @@
     -fx-font-weight: bold;
     -fx-text-fill: #fff;
     }
+
+    #Header {
+    -fx-font-size: 24;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111;
+    }

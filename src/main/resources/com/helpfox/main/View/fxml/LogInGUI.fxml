@@ -14,14 +14,9 @@
            maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
            stylesheets="@../css/reusableViewStylesheet.css"
            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+           alignment="TOP_LEFT"
            fx:controller="com.helpfox.main.Controller.viewControllers.LogInControllers.LogInController">
    <children>
-
-      <fx:include fx:id="includeMainGUI"
-                  source="LogInResources/SignUpResources.fxml"
-                  StackPane.alignment="TOP_LEFT"/>
-
-      <fx:include source="LogInResources/SignInResources.fxml"
-                  StackPane.alignment="TOP_RIGHT"/>
+      <VBox fx:id="SignInLoaderFXML" prefHeight="200.0" prefWidth="100.0" stylesheets="@../css/signinViewStylesheet.css" StackPane.alignment="TOP_LEFT" />
    </children>
 </StackPane>

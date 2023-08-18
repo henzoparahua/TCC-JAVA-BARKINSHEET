@@ -17,6 +17,7 @@
                   <Insets bottom="50.0" top="10.0" />
                </VBox.margin>
             </ImageView>
+            <Label id="Header" text="CRIAR CONTA" />
             <TextField promptText="Nome" styleClass="txtField">
                <VBox.margin>
                   <Insets bottom="20.0" top="30.0" />
@@ -35,7 +36,7 @@
       </VBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button id="SignUpButton" mnemonicParsing="false" text="VOLTAR">
+            <Button id="SignUpButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="VOLTAR">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -43,7 +44,7 @@
                   <Insets right="25.0" />
                </HBox.margin>
             </Button>
-            <Button id="SignUpButton" alignment="BASELINE_CENTER" mnemonicParsing="false" text="CRIAR CONTA" />
+            <Button id="SignUpButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="PROSSEGUIR" />
          </children>
          <VBox.margin>
             <Insets bottom="40.0" />

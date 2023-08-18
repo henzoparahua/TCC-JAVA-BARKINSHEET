@@ -18,15 +18,23 @@ public class LogInController implements Initializable {
 
     @FXML
     private StackPane fatherStackPane;
+    @FXML
+    private VBox SignInLoaderFXML;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        setSignInLoaderFXML();
+        buttonBarFXMLLoader();
+
+    }
+
+    final void buttonBarFXMLLoader(){
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/helpfox/main/View/fxml/reusableResources/buttonsBar.fxml"));
-            HBox child = loader.load();
+            FXMLLoader buttonsBarLoader = new FXMLLoader(getClass().getResource("/com/helpfox/main/View/fxml/reusableResources/buttonsBar.fxml"));
+            HBox child = buttonsBarLoader.load();
             fatherStackPane.getChildren().add(child);
-            ReusableViewController reusableViewController = loader.getController();
+            ReusableViewController reusableViewController = buttonsBarLoader.getController();
             Button btConf = reusableViewController.getBtConf();
             Button btHelp = reusableViewController.getBtHelp();
 
@@ -38,6 +46,18 @@ public class LogInController implements Initializable {
         } catch(Exception e){
             e.printStackTrace();
         }
+    }
+    final void setSignInLoaderFXML(){
+        try {
+            FXMLLoader SignInLoader = new FXMLLoader(getClass()
+                    .getResource("/com/helpfox/main/View/fxml/LogInResources/SignInResources.fxml"));
+            SignInLoaderFXML = SignInLoader.load();
+            fatherStackPane.getChildren().add(SignInLoaderFXML);
+            SignInController signInController = SignInLoader.getController();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }
 
