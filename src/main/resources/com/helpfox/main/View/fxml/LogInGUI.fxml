@@ -10,13 +10,75 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
 
-<StackPane id="background" fx:id="fatherStackPane"
-           maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-           stylesheets="@../css/reusableViewStylesheet.css"
-           xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-           alignment="TOP_LEFT"
-           fx:controller="com.helpfox.main.Controller.viewControllers.LogInControllers.LogInController">
+<StackPane id="background" fx:id="fatherStackPane" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../css/reusableViewStylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.helpfox.main.Controller.viewControllers.LogInControllers.LogInController">
    <children>
-      <VBox fx:id="SignInLoaderFXML" prefHeight="200.0" prefWidth="100.0" stylesheets="@../css/signinViewStylesheet.css" StackPane.alignment="TOP_LEFT" />
+      <VBox id="mainContainer" alignment="TOP_CENTER" maxHeight="200.0" prefHeight="200.0" prefWidth="100.0" stylesheets="@../css/signinViewStylesheet.css">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <ImageView id="imgIconApp" fitHeight="175.0" fitWidth="285.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="30.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox fx:id="loginContainer" alignment="TOP_CENTER" maxHeight="300.0" minHeight="300.0" prefHeight="300.0" prefWidth="100.0">
+               <children>
+                  <VBox fx:id="loginContext" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <HBox alignment="BOTTOM_CENTER" maxHeight="50.0" minHeight="50.0" prefHeight="50.0">
+                     <children>
+                        <Button id="SignUpButton" fx:id="btReturn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#returnOnClick" text="VOLTAR">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <HBox.margin>
+                              <Insets right="25.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button id="SignUpButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="PROSSEGUIR" />
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox id="footerHelper" fx:id="footerArea" alignment="BOTTOM_CENTER" maxHeight="100.0" minHeight="100.0" prefHeight="100.0" prefWidth="100.0" StackPane.alignment="BOTTOM_CENTER">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="24.0" />
+               </VBox.margin>
+               <children>
+                  <Label text="Precisando de ajuda?">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Button id="footerHelper" fx:id="footerSwitch" mnemonicParsing="false" onAction="#switchToSignUp">
+                     <graphic>
+                        <Label id="footerLabelOne" text="Criar sua conta!" />
+                     </graphic>
+                  </Button>
+                  <Button id="footerHelper" mnemonicParsing="false">
+                     <graphic>
+                        <Label id="footerLabelTwo" text="Esqueceu sua senha?" />
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </VBox>
    </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
 </StackPane>

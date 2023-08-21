@@ -61,20 +61,29 @@
 }
 #footerHelper Button {
     -fx-background-color: transparent;
+    -fx-padding: 4px;
+
+}
+
+#footerLabelOne, #footerLabelTwo{
+    -fx-padding: 2px;
 }
 
 #footerLabelOne:hover, #footerLabelTwo:hover {
     /* QUANDO O MOUSE PASSA POR CIMA, A LABEL SE DESTACA */
     -fx-font-weight: bold;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 10, 0);
+    -fx-font-size: 13px;
+    -fx-padding: 4px;
+    -fx-opacity: 1;
+
 }
 
 #SignUpButton{
     /* TAMANHO DO BOTÃO */
 
-    -fx-min-width: 165px;
-    -fx-max-width: 165px;
-    -fx-pref-width: 165px;
+    -fx-min-width: 145px;
+    -fx-max-width: 145px;
+    -fx-pref-width: 145px;
 
     -fx-min-height: 35px;
     -fx-max-height: 35px;

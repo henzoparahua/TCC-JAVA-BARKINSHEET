@@ -1,9 +1,11 @@
 package com.helpfox.main.Controller.viewControllers.LogInControllers;
 
 import com.helpfox.main.Controller.viewControllers.ReusableViewController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -19,13 +21,24 @@ public class LogInController implements Initializable {
     @FXML
     private StackPane fatherStackPane;
     @FXML
-    private VBox SignInLoaderFXML;
-
+    private VBox loginContainer;
+    @FXML
+    private VBox loginContext;
+    @FXML
+    private Button btReturn;
+    @FXML
+    private VBox footerArea;
+    @FXML
+    private Button footerSwitch;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        setSignInLoaderFXML();
         buttonBarFXMLLoader();
+        try {
+            signIn();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
@@ -47,17 +60,60 @@ public class LogInController implements Initializable {
             e.printStackTrace();
         }
     }
-    final void setSignInLoaderFXML(){
-        try {
-            FXMLLoader SignInLoader = new FXMLLoader(getClass()
-                    .getResource("/com/helpfox/main/View/fxml/LogInResources/SignInResources.fxml"));
-            SignInLoaderFXML = SignInLoader.load();
-            fatherStackPane.getChildren().add(SignInLoaderFXML);
-            SignInController signInController = SignInLoader.getController();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
 
+    final void signUp() throws IOException {
+        FXMLLoader SignUpContextLoader = new FXMLLoader(getClass()
+                .getResource("/com/helpfox/main/View/fxml/LogInResources/SignUpResources.fxml"));
+        loginContext = SignUpContextLoader.load();
+
+        // Verifica a existencia do node.
+        if (loginContainer.getChildren().contains(loginContext)) {
+            int indexOfChild = loginContainer.getChildren().indexOf(loginContext);
+            loginContainer.getChildren().set(indexOfChild, loginContext);
+        } else {
+            // Adiciona a children caso não exista.
+            loginContainer.getChildren().add(1, loginContext);
+        }
+        footerSwitch.setVisible(false);
+        footerSwitch.setDisable(true);
+        btReturn.setVisible(true);
+        btReturn.setDisable(false);
+
+            // Controller
+        SignUpResources signUpResources = SignUpContextLoader.getController();
+    }
+    final void signIn() throws IOException {
+        FXMLLoader SignUpContextLoader = new FXMLLoader(getClass()
+                .getResource("/com/helpfox/main/View/fxml/LogInResources/SignInResources.fxml"));
+        loginContext = SignUpContextLoader.load();
+
+        // Verifica a existencia do node.
+        if (loginContainer.getChildren().contains(loginContext)) {
+            loginContainer.getChildren().remove(loginContext);
+            int indexOfChild = loginContainer.getChildren().indexOf(loginContext);
+            loginContainer.getChildren().set(indexOfChild, loginContext);
+
+        } else {
+            // Adiciona a children caso não exista.
+            loginContainer.getChildren().add(1, loginContext);
+        }
+        // Controller
+        SignUpResources signUpResources = SignUpContextLoader.getController();
+        footerSwitch.setVisible(true);
+        footerSwitch.setDisable(false);
+        btReturn.setDisable(true);
+        btReturn.setVisible(false);
+    }
+    @FXML
+    void returnOnClick(ActionEvent event) throws IOException {
+        loginContainer.getChildren().remove(loginContext);
+        signIn();
+    }
+
+    @FXML
+    void switchToSignUp(ActionEvent event) throws IOException {
+        loginContainer.getChildren().remove(loginContext);
+        signUp();
     }
 }
 
