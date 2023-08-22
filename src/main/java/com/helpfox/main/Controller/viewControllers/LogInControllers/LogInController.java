@@ -30,6 +30,12 @@ public class LogInController implements Initializable {
     private VBox footerArea;
     @FXML
     private Button footerSwitch;
+    @FXML
+    private HBox signInButtons;
+    @FXML
+    private HBox signUpButtons;
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -76,9 +82,14 @@ public class LogInController implements Initializable {
         }
         footerSwitch.setVisible(false);
         footerSwitch.setDisable(true);
-        btReturn.setVisible(true);
-        btReturn.setDisable(false);
 
+        try {
+            loginContainer.getChildren().remove(signInButtons);
+            if (loginContainer.getChildren().contains(signUpButtons)){
+            }else{
+                loginContainer.getChildren().add(signUpButtons);
+            }
+        } catch (Exception e){}
             // Controller
         SignUpResources signUpResources = SignUpContextLoader.getController();
     }
@@ -101,8 +112,14 @@ public class LogInController implements Initializable {
         SignUpResources signUpResources = SignUpContextLoader.getController();
         footerSwitch.setVisible(true);
         footerSwitch.setDisable(false);
-        btReturn.setDisable(true);
-        btReturn.setVisible(false);
+
+        try {
+            loginContainer.getChildren().remove(signUpButtons);
+            if (loginContainer.getChildren().contains(signInButtons)){
+            }else{
+                loginContainer.getChildren().add(signInButtons);
+            }
+        } catch (Exception e){}
     }
     @FXML
     void returnOnClick(ActionEvent event) throws IOException {

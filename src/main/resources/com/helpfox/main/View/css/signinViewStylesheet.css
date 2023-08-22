@@ -1,14 +1,14 @@
 #mainContainer{
         /* TAMANHO DA GUIA */
-        -fx-min-width: 448px;
-        -fx-max-width: 448px;
-        -fx-pref-width: 448px;
-        -fx-min-height: 675px;
-        -fx-max-height: 675px;
-        -fx-pref-height: 675px;
+        -fx-min-width: 488px;
+        -fx-max-width: 488px;
+        -fx-pref-width: 488px;
+        -fx-min-height: 680px;
+        -fx-max-height: 680px;
+        -fx-pref-height: 680px;
 
         /* COR DA TELA */
-        -fx-background-color: #fff;
+        -fx-background-color: #bbb;
 }
 
 #imgIconApp{
@@ -53,29 +53,31 @@
 
 }
 
-
-#footerHelper{
-    -fx-font-size: 13px;
-    -fx-opacity: 0.9;
-    -fx-text-fill: #000;
-}
 #footerHelper Button {
     -fx-background-color: transparent;
     -fx-padding: 4px;
 
 }
 
-#footerLabelOne, #footerLabelTwo{
-    -fx-padding: 2px;
+.footerHelper{
+    -fx-font-size: 14px;
+    -fx-text-fill: #000;
+
+    -fx-pref-width: 200px;
+    -fx-max-width: 200px;
+    -fx-min-width: 200px;
+
+    -fx-pref-height: 25px;
+    -fx-max-height: 25px;
+    -fx-min-height: 25px;
+
+    -fx-opacity: 0.8;
+
 }
-
-#footerLabelOne:hover, #footerLabelTwo:hover {
-    /* QUANDO O MOUSE PASSA POR CIMA, A LABEL SE DESTACA */
+#EsqueceuSenha:hover, #criarConta:hover {
+    -fx-text-fill: #000;
     -fx-font-weight: bold;
-    -fx-font-size: 13px;
-    -fx-padding: 4px;
     -fx-opacity: 1;
-
 }
 
 #SignUpButton{
@@ -109,3 +111,26 @@
     -fx-font-weight: bold;
     -fx-text-fill: #111;
     }
+
+    .loginField{
+        -fx-background-radius: 10;
+        -fx-pref-width: 330px;
+        -fx-min-width: 330px;
+        -fx-max-width: 330px;
+        -fx-min-height: 40px;
+        -fx-max-height: 40px;
+        -fx-pref-height: 40px;
+        -fx-prompt-text-fill: rgba(1, 1, 1, 0.8);
+        -fx-font-size: 14px;
+        -fx-padding: 12;
+    }
+    .loginField:focused{
+        -fx-background-color: rgba(255, 255, 255, 0.8);
+        -fx-border-radius: 10;
+        -fx-border-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .LogHeaderLabel{
+         -fx-font-size: 16px;
+         -fx-text-fill: #000;
+     }
