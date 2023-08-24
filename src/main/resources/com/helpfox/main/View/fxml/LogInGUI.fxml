@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
@@ -26,6 +27,18 @@
       </Pane>
       <VBox id="mainContainer" alignment="TOP_CENTER" maxHeight="200.0" prefHeight="200.0" prefWidth="100.0" stylesheets="@../css/signinViewStylesheet.css">
          <children>
+            <Pane maxWidth="488.0" minWidth="488.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="680.0" prefWidth="488.0">
+               <children>
+                  <ImageView fitHeight="680.0" fitWidth="488.0" opacity="0.3" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/line-two.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D height="680.0" width="488.0" />
+                     </viewport>
+                  </ImageView>
+               </children>
+            </Pane>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
                   <ImageView id="imgIconApp" fitHeight="175.0" fitWidth="285.0" pickOnBounds="true" preserveRatio="true" />
