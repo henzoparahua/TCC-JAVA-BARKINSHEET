@@ -1,7 +1,9 @@
 package com.helpfox.main.Model;
 
+import java.sql.SQLException;
+
 public interface DAO {
-    public void setup() throws Exception;
-    public void connect() throws Exception;
-    public void close() throws Exception;
+    public void setup() throws SQLException;
+    public void connect() throws SQLException;
+    public void close() throws SQLException;
 }

@@ -11,11 +11,14 @@ public class Office {
     public Office(UserDAO userDAO) {
         this.userDAO = userDAO;
     }
-    public void addNewUser(String name, String email, String password) {
+    public void addNewUser(String name, String email, String password, Boolean isAdmin) {
         User user = new User();
         user.setName(name);
         user.setEmail(email);
         user.setPassword(password);
+        user.setAdmin(isAdmin);
+
+        userDAO.insertUser(user);
     }
     public void addRole(long uid) {
         List<User> users = userDAO.findByProp(UserSearchType.UID, uid);

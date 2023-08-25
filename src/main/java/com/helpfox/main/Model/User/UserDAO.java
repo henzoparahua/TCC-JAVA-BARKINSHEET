@@ -6,10 +6,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface UserDAO extends DAO {
-    public long insertUser(User user) throws Exception;
-    public boolean updateUser(User user) throws Exception;
-    public boolean deleteUser(User user) throws Exception;
+    public long insertUser(User user);
+    public boolean updateUser(User user);
+    public boolean deleteUser(User user);
 
-    public List<User> findByProp(UserSearchType searchType, Object value) throws Exception;
-    public  List<User> findAll() throws Exception;
+    public List<User> findByProp(UserSearchType searchType, Object value);
+    public  List<User> findAll();
 }
