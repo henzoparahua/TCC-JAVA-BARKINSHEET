@@ -127,9 +127,18 @@ public class SqliteUserDAO implements UserDAO {
         try {
             connect();
             PreparedStatement stm = connection.prepareStatement("SELECT * FROM Users WHERE" + whereClause + ";");
+            stm.setString(1, valueClause);
             ResultSet rs = stm.executeQuery();
             if(rs.next()) {
-                // return object
+                User user = new User();
+                user.setUid(rs.getLong(1));
+                user.setName(rs.getString(2));
+                user.setEmail(rs.getString(3));
+                user.setPassword(rs.getString(4));
+                user.setAdmin(rs.getBoolean(5));
+
+                result.add(user);
+                return result;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -141,12 +150,23 @@ public class SqliteUserDAO implements UserDAO {
 
     @Override
     public List<User> findAll() throws Exception {
+        ArrayList<User> users = new ArrayList<>();
+
         try {
             connect();
             PreparedStatement stm = connection.prepareStatement("SELECT * FROM Users;");
             ResultSet rs = stm.executeQuery();
-            if(rs.next()) {
-                // return all objects
+
+            while(rs.next()) {
+                User user = new User();
+                user.setUid(rs.getLong(1));
+                user.setName(rs.getString(2));
+                user.setEmail(rs.getString(3));
+                user.setPassword(rs.getString(4));
+                user.setAdmin(rs.getBoolean(5));
+
+                users.add(user);
+                return users;
             }
         } catch (Exception e) {
             e.printStackTrace();
