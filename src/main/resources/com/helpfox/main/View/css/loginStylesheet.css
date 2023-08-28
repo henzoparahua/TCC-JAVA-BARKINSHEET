@@ -53,12 +53,12 @@
 }
 
 #imgFooter{
-    -fx-min-width: 328px;
-    -fx-max-width: 328px;
-    -fx-pref-width: 328px;
-    -fx-min-height: 150px;
-    -fx-max-height: 150px;
-    -fx-pref-height: 150px;
+    -fx-min-width: 228px;
+    -fx-max-width: 228px;
+    -fx-pref-width: 228px;
+    -fx-min-height: 100px;
+    -fx-max-height: 100px;
+    -fx-pref-height: 100px;
 }
 
 #footerHelper{

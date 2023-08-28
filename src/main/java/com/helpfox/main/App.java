@@ -22,7 +22,7 @@ public class App extends Application {
     Image appIcon = new Image(getClass().getResourceAsStream("View/img/barkinsheetlogo-min.png"));
     @Override
     public void start(Stage stage) throws IOException {
-        Scene scene = new Scene(loadFXML("LoginGUI"),1152, 680);
+        scene = new Scene(loadFXML("LoginGUI"),1152, 680);
 
 
         stage.getIcons().add(appIcon);

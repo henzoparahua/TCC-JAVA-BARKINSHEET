@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="mainBackground" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../css/reusableViewStylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.helpfox.main.Controller.GUI.Menu.isAdmin">
+   <children>
+      <TabPane id="menuTab" maxHeight="680.0" maxWidth="1152.0" minHeight="680.0" minWidth="1152.0" prefHeight="680.0" prefWidth="1152.0" stylesheets="@../../css/menufatherTabStylesheet.css" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab id="homeTab" closable="false" text="Untitled Tab 1">
+               <content>
+                  <TabPane id="bottommenuTab" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../css/menuchildTabStylesheet.css" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="REGISTRAR ENTRADA">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        </content>
+                      </Tab>
+                      <Tab text="REGISTRAR SAIDA">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        </content>
+                      </Tab>
+                    </tabs>
+                  </TabPane>
+               </content>
+          </Tab>
+          <Tab id="searchTab" closable="false" text="Untitled Tab 2">
+               <content>
+                  <TabPane id="bottommenuTab" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../css/menuchildTabStylesheet.css" tabClosingPolicy="UNAVAILABLE">
+                     <tabs>
+                        <Tab text="MOTORISTAS">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                           </content>
+                        </Tab>
+                        <Tab text="HISTORICO">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+               </content>
+          </Tab>
+            <Tab id="secTab" closable="false" text="Untitled Tab 2">
+               <content>
+                  <TabPane id="bottommenuTab" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../css/menuchildTabStylesheet.css" tabClosingPolicy="UNAVAILABLE">
+                     <tabs>
+                        <Tab text="USUARIOS">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+       <fx:include source="../topbarGUI.fxml" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0"/>
+   </children>
+</AnchorPane>

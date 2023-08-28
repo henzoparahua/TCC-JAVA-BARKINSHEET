@@ -4,6 +4,7 @@ module com.helpfox.main {
     requires java.sql;
 
     opens com.helpfox.main to javafx.fxml;
+    exports com.helpfox.main.Controller.GUI.Menu to javafx.fxml;
     exports com.helpfox.main;
     exports com.helpfox.main.Controller.GUI;
     opens com.helpfox.main.Controller.GUI to javafx.fxml;

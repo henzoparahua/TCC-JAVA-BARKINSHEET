@@ -30,7 +30,7 @@
                   </Label>
                   <TextField promptText="Usuario" styleClass="loginField" />
                   <PasswordField promptText="Senha" styleClass="loginField" />
-                  <Button id="SignUpButton" mnemonicParsing="false" text="PROSSEGUIR">
+                  <Button id="SignUpButton" mnemonicParsing="false" onAction="#switchToMenu" text="PROSSEGUIR">
                      <VBox.margin>
                         <Insets top="12.0" />
                      </VBox.margin>
@@ -51,7 +51,7 @@
             </VBox>
          </children>
       </StackPane>
-      <HBox id="imgFooter" alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="24.0" stylesheets="@../css/loginStylesheet.css" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0">
+      <HBox id="imgFooter" alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="24.0" stylesheets="@../css/loginStylesheet.css" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
          <children>
             <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0">
                <image>
@@ -64,7 +64,7 @@
                   <Image url="@../img/etecialogo-min.png" />
                </image>
                <HBox.margin>
-                  <Insets right="20.0" />
+                  <Insets />
                </HBox.margin></ImageView>
          </children>
          <opaqueInsets>
