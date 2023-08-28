@@ -3,7 +3,7 @@
     -fx-font-family: 'Ebrima', sans-serif;
 
 }
-#background{
+#mainBackground{
     /* TAMANHO DA TELA */
     -fx-min-width: 1152px;
     -fx-max-width: 1152px;
@@ -13,6 +13,7 @@
     -fx-pref-height: 680px;
 
     -fx-background-color: #111;
+    -fx-background-image: url(../img/line.png);
 
 }
 

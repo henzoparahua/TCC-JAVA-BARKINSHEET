@@ -1,14 +1,22 @@
 #mainContainer{
         /* TAMANHO DA GUIA */
-        -fx-min-width: 488px;
-        -fx-max-width: 488px;
-        -fx-pref-width: 488px;
+        -fx-min-width: 485px;
+        -fx-max-width: 485px;
+        -fx-pref-width: 485px;
         -fx-min-height: 680px;
         -fx-max-height: 680px;
         -fx-pref-height: 680px;
-
-        /* COR DA TELA */
         -fx-background-color: #bbb;
+}
+#bgContainer{
+        -fx-min-width: 485px;
+        -fx-max-width: 485px;
+        -fx-pref-width: 485px;
+        -fx-min-height: 680px;
+        -fx-max-height: 680px;
+        -fx-pref-height: 680px;
+        -fx-background-image: url(../img/line-two.png);
+        -fx-opacity: 0.3;
 }
 
 #imgIconApp{
@@ -38,28 +46,22 @@
     -fx-background-color: transparent;
 }
 
-#confirmButton{
-    -fx-graphic: url(../img/entrarImg.png);
-}
-#returnButton{
-    -fx-graphic: url(../img/returnImg.png);
-    -fx-opacity: 0.8;
-    -fx-min-width: 75px;
-    -fx-max-width: 75px;
-    -fx-pref-width: 75px;
-    -fx-min-height: 75px;
-    -fx-max-height: 75px;
-    -fx-pref-height: 75px;
-
-}
-
 #footerHelper Button {
     -fx-background-color: transparent;
     -fx-padding: 4px;
 
 }
 
-.footerHelper{
+#imgFooter{
+    -fx-min-width: 328px;
+    -fx-max-width: 328px;
+    -fx-pref-width: 328px;
+    -fx-min-height: 150px;
+    -fx-max-height: 150px;
+    -fx-pref-height: 150px;
+}
+
+#footerHelper{
     -fx-font-size: 14px;
     -fx-text-fill: #000;
 
@@ -74,7 +76,7 @@
     -fx-opacity: 0.8;
 
 }
-#EsqueceuSenha:hover, #criarConta:hover {
+#EsqueceuSenha:hover {
     -fx-text-fill: #000;
     -fx-font-weight: bold;
     -fx-opacity: 1;
@@ -129,8 +131,3 @@
         -fx-border-radius: 10;
         -fx-border-color: rgba(0, 0, 0, 0.8);
     }
-
-    .LogHeaderLabel{
-         -fx-font-size: 16px;
-         -fx-text-fill: #000;
-     }

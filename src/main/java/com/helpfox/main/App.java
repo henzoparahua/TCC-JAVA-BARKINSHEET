@@ -1,11 +1,15 @@
 
 package com.helpfox.main;
 
+import com.helpfox.main.Controller.GUI.topBar;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.IOException;
@@ -19,12 +23,13 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Scene scene = new Scene(loadFXML("LoginGUI"),1152, 680);
+
+
         stage.getIcons().add(appIcon);
         stage.setTitle("BarkinSheet");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.initStyle(StageStyle.UNDECORATED);
-
         stage.show();
 
     }
@@ -33,6 +38,7 @@ public class App extends Application {
     public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
+
     public static Parent loadFXML(String fxml) throws  IOException{
         FXMLLoader fxmlLoader= new FXMLLoader(App.class.getResource("View/fxml/"+fxml+".fxml"));
         return fxmlLoader.load();
