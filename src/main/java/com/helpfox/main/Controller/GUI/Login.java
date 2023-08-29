@@ -10,7 +10,7 @@ public class Login {
 
     @FXML
     void switchToMenu(ActionEvent event) throws IOException {
-        App.setRoot("isADMIN/admMenuGUI");
+        setRoot("Menu/admMenuGUI");
     }
 
 }
