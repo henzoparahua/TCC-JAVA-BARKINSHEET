@@ -3,10 +3,20 @@ package com.helpfox.main.Model.Vehicle;
 import java.util.Objects;
 
 public class Vehicle {
+
+    private long uid;
     private String brand;
     private String color;
     private String plate;
     private String observation;
+
+    public long getUid() {
+        return uid;
+    }
+
+    public void setUid(long uid) {
+        this.uid = uid;
+    }
 
     public String getBrand() {
         return brand;
@@ -43,7 +53,8 @@ public class Vehicle {
     @Override
     public String toString() {
         return "Vehicle{" +
-                "brand='" + brand + '\'' +
+                "uid=" + uid +
+                ", brand='" + brand + '\'' +
                 ", color='" + color + '\'' +
                 ", plate='" + plate + '\'' +
                 ", observation='" + observation + '\'' +

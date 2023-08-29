@@ -5,7 +5,7 @@ import com.helpfox.main.Model.DAO;
 import java.util.List;
 
 public interface VehicleDAO extends DAO {
-    public String insertVehicle(Vehicle vehicle);
+    public long insertVehicle(Vehicle vehicle);
     public boolean updateVehicle(Vehicle vehicle);
     public boolean deleteVehicle(Vehicle vehicle);
 
