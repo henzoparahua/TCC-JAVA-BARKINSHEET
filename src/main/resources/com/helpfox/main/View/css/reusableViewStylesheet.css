@@ -1,7 +1,7 @@
 *{
     -fx-padding: 0;
     -fx-font-family: 'Ebrima', sans-serif;
-
+    -fx-margin: 0;
 }
 #mainBackground{
     /* TAMANHO DA TELA */

@@ -6,6 +6,7 @@ import com.helpfox.main.Model.User.UserDAO;
 import com.helpfox.main.Model.User.UserSearchType;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -24,11 +25,12 @@ public class App extends Application {
         return new Office(buildDAO());
     }
 
+    public static Scene scene;
+
     Image appIcon = new Image(getClass().getResourceAsStream("View/img/barkinsheetlogo-min.png"));
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("View/fxml/LogInGUI.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1152, 680);
+        scene = new Scene(loadFXML("LoginGUI"),1152, 680);
         stage.getIcons().add(appIcon);
         stage.setTitle("BarkinSheet");
         stage.setScene(scene);
@@ -38,6 +40,14 @@ public class App extends Application {
         stage.show();
     }
 
+
+    public static void setRoot(String fxml) throws IOException {
+        scene.setRoot(loadFXML(fxml));
+    }
+    public static Parent loadFXML(String fxml) throws  IOException{
+        FXMLLoader fxmlLoader= new FXMLLoader(App.class.getResource("View/fxml/"+fxml+".fxml"));
+        return fxmlLoader.load();
+    }
     public static void main(String[] args) throws SQLException {
         launch(args);
 
