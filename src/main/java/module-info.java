@@ -15,4 +15,6 @@ module com.helpfox.main {
     opens com.helpfox.main.Model to javafx.fxml;
     exports com.helpfox.main.Model.SQLite;
     opens com.helpfox.main.Model.SQLite to javafx.fxml;
+    exports com.helpfox.main.Model.Office;
+    opens com.helpfox.main.Model.Office to javafx.fxml;
 }

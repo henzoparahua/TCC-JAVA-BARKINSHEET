@@ -1,8 +1,8 @@
 package com.helpfox.main;
 
+import com.helpfox.main.Model.Office.Office;
 import com.helpfox.main.Model.SQLite.SqliteUserDAO;
 import com.helpfox.main.Model.User.UserDAO;
-import com.helpfox.main.Model.User.UserSearchType;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
