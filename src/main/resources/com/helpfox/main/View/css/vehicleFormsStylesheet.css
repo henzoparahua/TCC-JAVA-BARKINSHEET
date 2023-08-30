@@ -24,7 +24,6 @@
     -fx-background-opacity: 0.8;
 }
 
-
 #vboxContainer{
 
     -fx-min-width: 380px;
@@ -42,9 +41,9 @@
     -fx-pref-width: 380px;
     -fx-max-width: 380px;
 
-    -fx-min-height: 35px;
-    -fx-pref-height: 35px;
-    -fx-max-height: 35px;
+    -fx-min-height: 48px;
+    -fx-pref-height: 48px;
+    -fx-max-height: 48px;
 
 }
 #headerSeparator, #headerSeparator .line{

@@ -16,8 +16,9 @@
                     <tabs>
                       <Tab text="REGISTRAR ENTRADA">
                         <content>
-                            <HBox alignment="CENTER">
+                            <HBox alignment="CENTER" spacing="32">
                                 <fx:include source="HouseTab/nestedFXML/vehicleForms.fxml"/>
+                                <fx:include source="HouseTab/nestedFXML/vehicleList.fxml" />
                             </HBox>
                         </content>
                       </Tab>
