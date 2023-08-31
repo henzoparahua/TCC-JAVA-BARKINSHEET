@@ -1,17 +1,11 @@
 package com.helpfox.main;
 
+import com.helpfox.main.Model.Model;
 import com.helpfox.main.Model.Office.Office;
 import com.helpfox.main.Model.SQLite.SqliteUserDAO;
 import com.helpfox.main.Model.User.UserDAO;
-import com.helpfox.main.Model.User.UserSearchType;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -24,29 +18,10 @@ public class App extends Application {
     private Office buildModel() {
         return new Office(buildDAO());
     }
-
-    public static Scene scene;
-
-    Image appIcon = new Image(getClass().getResourceAsStream("View/img/barkinsheetlogo-min.png"));
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("LoginGUI"),1152, 680);
-        stage.getIcons().add(appIcon);
-        stage.setTitle("BarkinSheet");
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.initStyle(StageStyle.UNDECORATED);
+        Model.getInstance().getViewFactory().showLoginWindow();
 
-        stage.show();
-    }
-
-
-    public static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
-    }
-    public static Parent loadFXML(String fxml) throws  IOException{
-        FXMLLoader fxmlLoader= new FXMLLoader(App.class.getResource("View/fxml/"+fxml+".fxml"));
-        return fxmlLoader.load();
     }
     public static void main(String[] args) throws SQLException {
         launch(args);

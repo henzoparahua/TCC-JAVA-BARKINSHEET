@@ -1,0 +1,46 @@
+*{
+     -fx-padding: 0;
+     -fx-font-family: 'Ebrima', sans-serif;
+     -fx-margin: 0;
+}
+#maindashContainer{
+    -fx-background-color: rgba(0, 0, 0, 0.2);
+    -fx-border-color: rgba(0, 0, 0, 0.3);
+    -fx-border-width: 1;
+    -fx-border-height: 1;
+    -fx-border-style: solid;
+}
+#hbarContainer{
+    -fx-pref-width: 1152;
+    -fx-max-width: 1152;
+    -fx-min-width: 1152;
+
+    -fx-min-height: 62;
+    -fx-pref-height: 62;
+    -fx-max-height: 62;
+
+    -fx-padding: 12 12 12 12;
+}
+
+#hbarContainer TextField {
+        -fx-min-width: 418px;
+        -fx-max-width: 418px;
+        -fx-pref-width: 418px;
+        -fx-min-height: 32px;
+        -fx-max-height: 32px;
+        -fx-pref-height: 32px;
+        -fx-background-color: #222;
+        -fx-padding: 0 12;
+        -fx-border-radius: 6;
+        -fx-background-radius: 6;
+}
+#hbarContainer TextField:focused{
+        -fx-background-color: #292929;
+        -fx-border-color: rgba(0, 0, 0, 0.8);
+        -fx-border-radius: 6;
+        -fx-background-radius: 6;
+        -fx-text-fill: #fff;
+}
+#hbarContainer .Separator{
+    -fx-border-color: #111;
+}

@@ -2,13 +2,18 @@ module com.helpfox.main {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires org.xerial.sqlitejdbc;
+
 
     opens com.helpfox.main to javafx.fxml;
+    opens com.helpfox.main.Controller to javafx.fxml;
     exports com.helpfox.main;
-    exports com.helpfox.main.Controller.GUI;
-    opens com.helpfox.main.Controller.GUI to javafx.fxml;
-    exports com.helpfox.main.Controller.GUI.Menu;
-    opens com.helpfox.main.Controller.GUI.Menu to javafx.fxml;
+    exports com.helpfox.main.Controller;
+    exports com.helpfox.main.Controller.Admin;
+    exports com.helpfox.main.Controller.User;
+    exports com.helpfox.main.View;
+
+    /* Model Related Exports */
     exports com.helpfox.main.Model.User;
     opens com.helpfox.main.Model.User to javafx.fxml;
     exports com.helpfox.main.Model;
