@@ -20,7 +20,7 @@ public class ViewFactory {
     public AnchorPane getDashboardView(){
         if (dashboardView == null){
             try {
-                dashboardView = (AnchorPane) loadFXML("isUser/Dashboard");
+                dashboardView = (AnchorPane) loadFXML("isUser/enterDashboard");
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -31,6 +31,12 @@ public class ViewFactory {
     public void showLoginWindow() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/helpfox/main/FXMLs/LoginGUI.fxml"));
         createStage(loader);
+    }
+
+    public void showAddDriverPopUp() throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/helpfox/main/FXMLs/isUser/driverFormsPopUp.fxml"));
+        createStage(loader);
+
     }
 
     public void showClientWindow() throws IOException {

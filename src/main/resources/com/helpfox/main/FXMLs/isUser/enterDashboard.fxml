@@ -7,15 +7,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="maindashContainer" prefHeight="607.0" prefWidth="1152.0" stylesheets="@../../Styles/dashboard.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.helpfox.main.Controller.User.UserDashboard">
+<AnchorPane id="maindashContainer" prefHeight="607.0" prefWidth="1152.0" stylesheets="@../../Styles/dashboard.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.helpfox.main.Controller.User.UserEnterDashboard">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox id="hbarContainer" prefHeight="200.0" prefWidth="100.0">
+            <VBox id="hbarContainer" alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <TextField fx:id="searchInput" promptText="Digite o que deseja procurar" />
+                        <HBox alignment="CENTER_RIGHT" maxHeight="30.0" maxWidth="1.7976931348623157E308" minHeight="30.0" prefHeight="30.0" prefWidth="500.0">
+                           <children>
+                              <Button id="btAddDriver" fx:id="btAddDriver" alignment="CENTER" mnemonicParsing="false" text="Button" />
+                           </children>
+                        </HBox>
                      </children>
                   </HBox>
                   <Separator prefWidth="200.0">

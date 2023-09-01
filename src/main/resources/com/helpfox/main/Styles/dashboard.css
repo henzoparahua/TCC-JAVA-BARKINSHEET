@@ -14,6 +14,7 @@
     -fx-pref-width: 1152;
     -fx-max-width: 1152;
     -fx-min-width: 1152;
+    -fx-background-color: rgba(0, 0, 0, 0.3);
 
     -fx-min-height: 62;
     -fx-pref-height: 62;
@@ -23,13 +24,14 @@
 }
 
 #hbarContainer TextField {
-        -fx-min-width: 418px;
-        -fx-max-width: 418px;
-        -fx-pref-width: 418px;
-        -fx-min-height: 32px;
-        -fx-max-height: 32px;
-        -fx-pref-height: 32px;
+        -fx-min-width: 518px;
+        -fx-max-width: 518px;
+        -fx-pref-width: 518px;
+        -fx-min-height: 40px;
+        -fx-max-height: 40px;
+        -fx-pref-height: 40px;
         -fx-background-color: #222;
+        -fx-font-size: 14px;
         -fx-padding: 0 12;
         -fx-border-radius: 6;
         -fx-background-radius: 6;
@@ -43,4 +45,26 @@
 }
 #hbarContainer .Separator{
     -fx-border-color: #111;
+}
+#btAddDriver{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-graphic: url(../Images/addDriverImg.png);
+    -fx-content-display: graphic-only;
+    -fx-border-radius: 2px;
+    -fx-background-radius: 2px;
+
+    -fx-pref-width: 50px;
+    -fx-min-width: 50px;
+    -fx-max-width: 50px;
+    -fx-pref-height: 40px;
+    -fx-min-height: 40px;
+    -fx-max-height: 40px;
+}
+#btAddDriver:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-border-color: rgba(255, 255, 255, 0);
+    -fx-border-width: 1;
+    -fx-border-height: 1;
+
 }
