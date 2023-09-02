@@ -2,6 +2,8 @@
     -fx-padding: 0;
     -fx-font-family: 'Ebrima', sans-serif;
     -fx-margin: 0;
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
 }
 
 #mainContainer{
@@ -13,28 +15,12 @@
     -fx-pref-height: 390px;
     -fx-max-height: 390px;
 
-    -fx-border-insets: 0px;
-    -fx-background-insets: 0px;
     -fx-border-width: 1px;
     -fx-border-height: 1px;
-    -fx-border-radius: 12px;
     -fx-border-color: #000;
-    -fx-background-radius: 12px;
+
+    -fx-background-insets: 0;
     -fx-background-color: #222;
-    -fx-background-opacity: 0.8;
-}
-
-#vboxContainer{
-
-    -fx-min-width: 380px;
-    -fx-pref-width: 380px;
-    -fx-max-width: 380px;
-
-    -fx-min-height: 390px;
-    -fx-pref-height: 390px;
-    -fx-max-height: 390px;
-
-    -fx-background-color: transparent;
 }
 #headerVbox{
     -fx-min-width: 380px;
@@ -136,7 +122,7 @@
     -fx-font-size: 16;
     -fx-font-weight: bold;
     -fx-text-fill: #fff;
-       -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 10, 0, 0, 0);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 10, 0, 0, 0);
 
     }
 

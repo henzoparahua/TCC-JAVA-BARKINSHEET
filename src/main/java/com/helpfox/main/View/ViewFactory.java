@@ -6,8 +6,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.Window;
 
 import java.io.IOException;
 
@@ -33,10 +36,10 @@ public class ViewFactory {
         createStage(loader);
     }
 
-    public void showAddDriverPopUp() throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/helpfox/main/FXMLs/isUser/driverFormsPopUp.fxml"));
-        createStage(loader);
-
+    public void showAddDriverPopUp(AnchorPane parent) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass()
+                .getResource("/com/helpfox/main/FXMLs/isUser/driverFormsPopUp.fxml"));
+        popUp(loader);
     }
 
     public void showClientWindow() throws IOException {
@@ -50,7 +53,6 @@ public class ViewFactory {
         return fxmlLoader.load();
     }
     private void createStage(FXMLLoader loader){
-
         Scene scene = null;
         try {
             scene = new Scene(loader.load());
@@ -63,6 +65,21 @@ public class ViewFactory {
         stage.setResizable(false);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
+    }
+    private void popUp(FXMLLoader loader) throws IOException {
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("BarkinSheet");
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
 
     public void closeStage(Stage stage){
