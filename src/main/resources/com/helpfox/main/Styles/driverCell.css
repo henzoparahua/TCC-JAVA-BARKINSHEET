@@ -1,0 +1,21 @@
+#mainContainer{
+    -fx-min-width: 980px;
+    -fx-pref-width: 980px;
+    -fx-max-width: 980px;
+
+    -fx-min-height: 80px;
+    -fx-pref-height: 80px;
+    -fx-max-height: 80px;
+
+    -fx-background-color: #222;
+
+    -fx-border-color: #545454;
+    -fx-border-width: 1px;
+    -fx-border-height: 1px;
+
+}
+
+#mainContainer Label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #fff;
+}
