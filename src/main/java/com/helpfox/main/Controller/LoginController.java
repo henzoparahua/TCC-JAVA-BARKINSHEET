@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,17 +17,19 @@ import java.util.ResourceBundle;
 
 
 public class LoginController implements Initializable {
-    public TextField txtUsu;
-    public PasswordField txtPswrd;
-    public Button btLogin;
-    public Button btForgot;
-
     @FXML
-    void switchToMenu(ActionEvent event) throws IOException {
-
-    }
+    public TextField txtUsu;
+    @FXML
+    public PasswordField txtPswrd;
+    @FXML
+    public Button btLogin;
+    @FXML
+    public Button btForgot;
+    @FXML
+    public AnchorPane rootLogin;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         btLogin.setOnAction(event -> {
             try {
                 onLogin();
@@ -41,4 +44,6 @@ public class LoginController implements Initializable {
         Model.getInstance().getViewFactory().closeStage(stage);
         Model.getInstance().getViewFactory().showClientWindow();
     }
+
+
 }

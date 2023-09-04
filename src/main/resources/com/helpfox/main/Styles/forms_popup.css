@@ -7,13 +7,6 @@
 }
 
 #mainContainer{
-    -fx-min-width: 380px;
-    -fx-pref-width: 380px;
-    -fx-max-width: 380px;
-
-    -fx-min-height: 390px;
-    -fx-pref-height: 390px;
-    -fx-max-height: 390px;
 
     -fx-border-width: 1px;
     -fx-border-height: 1px;

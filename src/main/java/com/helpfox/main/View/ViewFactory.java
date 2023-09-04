@@ -1,17 +1,18 @@
 package com.helpfox.main.View;
 
 import com.helpfox.main.App;
+import com.helpfox.main.Controller.TopbarController;
 import com.helpfox.main.Controller.User.UserController;
+import com.helpfox.main.Controller.User.UserVehicleForms;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.Window;
-
 import java.io.IOException;
 
 public class ViewFactory {
@@ -27,9 +28,7 @@ public class ViewFactory {
             }catch (Exception e){
                 e.printStackTrace();
             }
-
-        }
-        return dashboardView;
+        }return dashboardView;
     }
     public void showLoginWindow() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/helpfox/main/FXMLs/LoginGUI.fxml"));
@@ -39,6 +38,11 @@ public class ViewFactory {
     public void showAddDriverPopUp(AnchorPane parent) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass()
                 .getResource("/com/helpfox/main/FXMLs/isUser/driverFormsPopUp.fxml"));
+        popUp(loader);
+    }
+    public void showAddVehiclePopUp(VBox parent) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass()
+                .getResource("/com/helpfox/main/FXMLs/isUser/vehicleFormsPopUp.fxml"));
         popUp(loader);
     }
 
@@ -75,6 +79,7 @@ public class ViewFactory {
         }
         Stage stage = new Stage();
         stage.setScene(scene);
+        stage.toFront();
         stage.setTitle("BarkinSheet");
         stage.setResizable(false);
         stage.initStyle(StageStyle.UNDECORATED);
@@ -85,4 +90,14 @@ public class ViewFactory {
     public void closeStage(Stage stage){
         stage.close();
     }
+    public void minimizeStage (Stage stage) {stage.setIconified(true);}
+
+    public void createTopbar(Stage stage) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass()
+                .getResource("/com/helpfox/main/FXMLs/LoginGUI.fxml"));
+        TopbarController topbarController = new TopbarController();
+        loader.setController(topbarController);
+
+    }
+
 }
