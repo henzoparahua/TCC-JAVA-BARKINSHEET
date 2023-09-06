@@ -1,9 +1,8 @@
 package com.helpfox.main.View;
 
 import com.helpfox.main.App;
-import com.helpfox.main.Controller.TopbarController;
 import com.helpfox.main.Controller.User.UserController;
-import com.helpfox.main.Controller.User.UserVehicleForms;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -40,6 +39,7 @@ public class ViewFactory {
                 .getResource("/com/helpfox/main/FXMLs/isUser/driverFormsPopUp.fxml"));
         popUp(loader);
     }
+
     public void showAddVehiclePopUp(VBox parent) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass()
                 .getResource("/com/helpfox/main/FXMLs/isUser/vehicleFormsPopUp.fxml"));
@@ -56,11 +56,11 @@ public class ViewFactory {
         FXMLLoader fxmlLoader= new FXMLLoader(App.class.getResource("FXMLs/"+fxml+".fxml"));
         return fxmlLoader.load();
     }
-    private void createStage(FXMLLoader loader){
+    private void createStage(FXMLLoader loader) throws IOException {
         Scene scene = null;
         try {
             scene = new Scene(loader.load());
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         Stage stage = new Stage();
@@ -92,12 +92,20 @@ public class ViewFactory {
     }
     public void minimizeStage (Stage stage) {stage.setIconified(true);}
 
-    public void createTopbar(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass()
-                .getResource("/com/helpfox/main/FXMLs/LoginGUI.fxml"));
-        TopbarController topbarController = new TopbarController();
-        loader.setController(topbarController);
-
+    public void createTopbar (AnchorPane parent) throws IOException {
+        HBox topbar = (HBox) loadFXML("Topbar");
+        AnchorPane.setRightAnchor(topbar, 0.0);
+        AnchorPane.setTopAnchor(topbar, 0.0);
+        parent.getChildren().add(topbar);
     }
 
+
+    public void createTopbarforLogin (AnchorPane parent) throws IOException {
+        HBox topbar = (HBox) loadFXML("Topbar");
+        AnchorPane.setRightAnchor(topbar, 0.0);
+        AnchorPane.setTopAnchor(topbar, 0.0);
+        parent.getChildren().add(topbar);
+        topbar.getChildren().remove(1);
+        topbar.getChildren().remove(0);
+    }
 }
