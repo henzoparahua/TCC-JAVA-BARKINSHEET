@@ -1,0 +1,91 @@
+#loginContainer{
+    -fx-min-width: 485px;
+    -fx-max-width: 485px;
+    -fx-pref-width: 485px;
+
+    -fx-min-height: 680px;
+    -fx-pref-height: 680px;
+    -fx-max-height: 680px;
+
+    -fx-background-color: #bbb;
+    -fx-background-image: url(../Images/line-two.png);
+
+}
+
+#loginVBoxContainer{
+    -fx-min-width: 485px;
+    -fx-max-width: 485px;
+    -fx-pref-width: 485px;
+
+    -fx-min-height: 680px;
+    -fx-pref-height: 680px;
+    -fx-max-height: 680px;
+
+    -fx-background-color: transparent;
+    -fx-padding: 90 80 80 80;
+}
+
+#loginVBoxContainer TextField,
+#loginVBoxContainer PasswordField {
+        -fx-min-width: 318px;
+        -fx-max-width: 318px;
+        -fx-pref-width: 318px;
+        -fx-min-height: 35px;
+        -fx-max-height: 35px;
+        -fx-pref-height: 35px;
+        -fx-padding: 5px;
+        -fx-border-radius: 10;
+        -fx-background-radius: 10;
+}
+#loginVBoxContainer TextField:focused,
+#loginVBoxContainer PasswordField:focused{
+        -fx-background-color: rgba(255, 255, 255, 0.8);
+        -fx-border-color: rgba(0, 0, 0, 0.8);
+        -fx-border-radius: 10;
+        -fx-background-radius: 10;
+        -fx-text-fill: #000;
+}
+
+#loginVBoxContainer Label {
+    -fx-font-size: 24;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111;
+}
+
+#loginVBoxContainer Button {
+        /* TAMANHO DO BOTÃO */
+
+        -fx-min-width: 156px;
+        -fx-max-width: 156px;
+        -fx-pref-width: 156px;
+
+        -fx-min-height: 38px;
+        -fx-max-height: 38px;
+        -fx-pref-height: 38px;
+
+        -fx-padding: 0;
+
+        /* FORMATO E COR */
+        -fx-border-radius: 14;
+        -fx-background-radius: 14;
+        -fx-background-color: linear-gradient(to right, #271C3F, #327E7E);
+        -fx-border-color: #222;
+        -fx-opacity: 1;
+
+        /* FONTE DO BOTÃO */
+        -fx-font-size: 16;
+        -fx-font-weight: bold;
+        -fx-text-fill: #fff;
+        }
+
+#forgotPswrd{
+    -fx-text-fill: #000;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-opacity: 0.8;
+    -fx-font-size: 14px;
+    }
+#forgotPswrd:hover{
+    -fx-opacity: 1;
+    -fx-font-weight: bold;
+}
