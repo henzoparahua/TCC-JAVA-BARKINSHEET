@@ -1,4 +1,4 @@
-package com.helpfox.main;
+package com.helpfox.main.Model;
 
 import com.helpfox.main.Model.Driver.Driver;
 import com.helpfox.main.Model.Driver.DriverDAO;
@@ -46,5 +46,9 @@ public class SecurityGuard {
             drivers.get(0).setPermanence(true);
             driverDAO.updateDriver(drivers.get(0));
         }
+    }
+
+    public List<Driver> findAllDrivers() {
+        return driverDAO.findAll();
     }
 }
