@@ -1,0 +1,17 @@
+*{
+     -fx-padding: 0;
+     -fx-font-family: 'Ebrima', sans-serif;
+     -fx-margin: 0;
+}
+#mainContainer{
+    -fx-min-height: 680px;
+    -fx-pref-height: 680px;
+    -fx-max-height: 680px;
+
+    -fx-min-width: 1152px;
+    -fx-pref-width: 1152px;
+    -fx-max-width: 1152px;
+
+    -fx-background-image: url(../Images/line.png);
+    -fx-background-color: #111;
+}
