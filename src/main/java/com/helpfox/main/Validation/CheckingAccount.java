@@ -1,4 +1,4 @@
-package com.helpfox.main.Validation.CheckingAccount;
+package com.helpfox.main.Validation;
 
 import com.helpfox.main.Model.User.User;
 import com.helpfox.main.Model.User.UserDAO;

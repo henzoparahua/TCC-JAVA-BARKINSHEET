@@ -25,6 +25,4 @@ module com.helpfox.main {
     opens com.helpfox.main.Model.SecurityGuard to javafx.fxml;
     exports com.helpfox.main.Validation;
     opens com.helpfox.main.Validation to javafx.fxml;
-    exports com.helpfox.main.Validation.CheckingAccount;
-    opens com.helpfox.main.Validation.CheckingAccount to javafx.fxml;
 }
