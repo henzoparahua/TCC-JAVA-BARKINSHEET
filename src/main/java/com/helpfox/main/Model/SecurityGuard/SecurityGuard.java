@@ -9,8 +9,8 @@ import com.helpfox.main.Model.Vehicle.VehicleDAO;
 import java.util.List;
 
 public class SecurityGuard {
-    private DriverDAO driverDAO;
-    private VehicleDAO vehicleDAO;
+    private final DriverDAO driverDAO;
+    private final VehicleDAO vehicleDAO;
     public SecurityGuard(DriverDAO driverDAO, VehicleDAO vehicleDAO) {
         this.driverDAO = driverDAO;
         this.vehicleDAO = vehicleDAO;

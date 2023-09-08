@@ -7,7 +7,7 @@ import com.helpfox.main.Model.User.UserSearchType;
 import java.util.List;
 
 public class Office {
-    private UserDAO userDAO;
+    private final UserDAO userDAO;
     public Office(UserDAO userDAO) {
         this.userDAO = userDAO;
     }
