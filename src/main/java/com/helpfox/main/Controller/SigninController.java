@@ -4,6 +4,7 @@ import com.helpfox.main.Model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -22,12 +23,12 @@ public class SigninController implements Initializable {
     private Button btnSignin;
     @FXML
     private Button btnLogin;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        btnSignin.setOnAction(event -> {
+        btnLogin.setOnAction(event -> {
+            Scene scene = btnSignin.getScene();
             try {
-                onSignin();
+                Model.getInstance().getViewFactory().setRoot(scene, "LoginGUI");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
