@@ -39,3 +39,5 @@ build/
 
 ### Local Database ###
 /users.db
+/drivers.db
+/vehicles.db
