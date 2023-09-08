@@ -14,8 +14,6 @@ public class CheckingAccount {
     public Boolean verifyUser(String email) {
         List<User> user = userDAO.findByProp(UserSearchType.EMAIL, email);
 
-        if(!user.isEmpty()) {
-            return true;
-        } else { return false; }
+        return !user.isEmpty();
     }
 }
