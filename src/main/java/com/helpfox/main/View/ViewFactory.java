@@ -2,7 +2,6 @@ package com.helpfox.main.View;
 
 import com.helpfox.main.App;
 import com.helpfox.main.Controller.User.UserController;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,6 +14,7 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 public class ViewFactory {
+
     // Client View
     private AnchorPane dashboardView;
 
