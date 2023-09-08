@@ -24,12 +24,12 @@ public class Office {
         List<User> users = userDAO.findByProp(UserSearchType.UID, uid);
         switch (setAdmin) {
             case TRUE -> {
-                if(users.size() > 0) {
+                if(!users.isEmpty()) {
                     users.get(0).setAdmin(true);
                 }
             }
             case FALSE -> {
-                if(users.size() > 0) {
+                if(!users.isEmpty()) {
                     users.get(0).setAdmin(false);
                 }
             }

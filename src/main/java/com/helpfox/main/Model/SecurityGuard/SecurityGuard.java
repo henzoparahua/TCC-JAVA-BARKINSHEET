@@ -1,4 +1,4 @@
-package com.helpfox.main;
+package com.helpfox.main.Model.SecurityGuard;
 
 import com.helpfox.main.Model.Driver.Driver;
 import com.helpfox.main.Model.Driver.DriverDAO;
@@ -33,18 +33,26 @@ public class SecurityGuard {
 
         vehicleDAO.insertVehicle(vehicle);
     }
-    public void checkoutPermanence(long uid) {
+    public void checkPermanence(long uid, SetCheckType setCheckType) {
         List<Driver> drivers = driverDAO.findByProp(DriverSearchType.UID, uid);
-        if(drivers.size() > 0) {
-            drivers.get(0).setPermanence(false);
-            driverDAO.updateDriver(drivers.get(0));
+
+        switch (setCheckType) {
+            case INPUT -> {
+                if (!drivers.isEmpty()) {
+                    drivers.get(0).setPermanence(true);
+                    driverDAO.updateDriver(drivers.get(0));
+                }
+            }
+            case OUTPUT -> {
+                if(!drivers.isEmpty()) {
+                    drivers.get(0).setPermanence(false);
+                    driverDAO.updateDriver(drivers.get(0));
+                }
+            }
         }
     }
-    public void checkinPermanence(long uid) {
-        List<Driver> drivers = driverDAO.findByProp(DriverSearchType.UID, uid);
-        if(drivers.size() > 0) {
-            drivers.get(0).setPermanence(true);
-            driverDAO.updateDriver(drivers.get(0));
-        }
+
+    public List<Driver> findAllDrivers() {
+        return driverDAO.findAll();
     }
 }
