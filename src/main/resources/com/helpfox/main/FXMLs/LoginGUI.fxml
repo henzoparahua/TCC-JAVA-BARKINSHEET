@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="rootLogin" id="mainContainer" maxHeight="680.0" maxWidth="1152.0" minHeight="680.0" minWidth="1152.0" prefHeight="680.0" prefWidth="1152.0" stylesheets="@../Styles/scene.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.helpfox.main.Controller.LoginController">
+<AnchorPane id="mainContainer" fx:id="rootLogin" maxHeight="680.0" maxWidth="1152.0" minHeight="680.0" minWidth="1152.0" prefHeight="680.0" prefWidth="1152.0" stylesheets="@../Styles/scene.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.helpfox.main.Controller.LoginController">
    <children>
       <StackPane id="loginContainer" prefHeight="150.0" prefWidth="200.0" stylesheets="@../Styles/login.css">
          <children>
@@ -36,6 +36,11 @@
                <StackPane.margin>
                   <Insets bottom="10.0" />
                </StackPane.margin></Button>
+            <Button id="forgotPswrd" fx:id="btSignin" alignment="CENTER" mnemonicParsing="false" text="Cadastrar" StackPane.alignment="BOTTOM_CENTER">
+               <StackPane.margin>
+                  <Insets bottom="42.0" />
+               </StackPane.margin>
+            </Button>
          </children>
       </StackPane>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="250.0" spacing="24.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">

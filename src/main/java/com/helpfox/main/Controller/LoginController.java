@@ -30,8 +30,20 @@ public class LoginController implements Initializable {
     public Button btForgot;
     @FXML
     public AnchorPane rootLogin;
+
+    @FXML
+    private Button btSignin;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        btSignin.setOnAction(event -> {
+            try {
+                Scene scene = btSignin.getScene();
+                Model.getInstance().getViewFactory().setRoot(scene, "SigninGUI");
+            } catch (Exception e){
+
+            }
+        });
 
         try {
             Model.getInstance().getViewFactory().createTopbarforLogin(rootLogin);
@@ -46,6 +58,7 @@ public class LoginController implements Initializable {
                 throw new RuntimeException(e);
             }
         });
+
     }
 
     private void onLogin() throws IOException {

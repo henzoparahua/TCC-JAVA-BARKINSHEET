@@ -33,6 +33,9 @@ public class ViewFactory {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/helpfox/main/FXMLs/LoginGUI.fxml"));
         createStage(loader);
     }
+    public void setRoot(Scene scene, String fxml) throws  IOException{
+        scene.setRoot(loadFXML(fxml));
+    }
 
     public void showAddDriverPopUp(AnchorPane parent) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass()
