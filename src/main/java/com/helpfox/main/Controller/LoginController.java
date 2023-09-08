@@ -39,7 +39,7 @@ public class LoginController implements Initializable {
         btSignin.setOnAction(event -> {
             try {
                 Scene scene = btSignin.getScene();
-                Model.getInstance().getViewFactory().showSignIn(scene);
+                Model.getInstance().getViewFactory().setRoot(scene, "SigninGUI");
             } catch (Exception e){
 
             }
