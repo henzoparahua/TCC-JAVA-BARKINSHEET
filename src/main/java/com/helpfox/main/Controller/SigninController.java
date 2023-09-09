@@ -1,13 +1,14 @@
 package com.helpfox.main.Controller;
 
 import com.helpfox.main.Model.Model;
-import com.helpfox.main.Validation.CheckingAccount.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,6 +19,8 @@ import static com.helpfox.main.Validation.CheckingAccount.isValidEmail;
 import static com.helpfox.main.Validation.CheckingAccount.isValidPassword;
 
 public class SigninController implements Initializable {
+    @FXML
+    private AnchorPane rootSigin;
     @FXML
     private TextField txtEmail;
     @FXML
@@ -56,6 +59,21 @@ public class SigninController implements Initializable {
                 throw new RuntimeException(e);
             }
         });
+
+        btnLogin.setOnAction(event -> {
+            try {
+                Scene scene = btnLogin.getScene();
+                Model.getInstance().getViewFactory().setRoot(scene, "LoginGUI");
+            } catch (Exception e){
+
+            }
+        });
+
+        try {
+            Model.getInstance().getViewFactory().createTopbarforLogin(rootSigin);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void onSignin() throws IOException {

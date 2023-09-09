@@ -5,7 +5,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="mainContainer" maxHeight="680.0" maxWidth="1152.0" minHeight="680.0" minWidth="1152.0" prefHeight="680.0" prefWidth="1152.0" stylesheets="@../Styles/scene.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.helpfox.main.Controller.SigninController">
+<AnchorPane fx:id="rootSigin" id="mainContainer" maxHeight="680.0" maxWidth="1152.0" minHeight="680.0" minWidth="1152.0" prefHeight="680.0" prefWidth="1152.0" stylesheets="@../Styles/scene.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.helpfox.main.Controller.SigninController">
    <children>
       <StackPane id="loginContainer" minHeight="605.0" prefHeight="150.0" prefWidth="200.0" stylesheets="@../Styles/login.css">
          <children>
