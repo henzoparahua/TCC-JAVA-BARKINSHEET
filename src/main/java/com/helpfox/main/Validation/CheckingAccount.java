@@ -14,7 +14,7 @@ import java.util.List;
 public class CheckingAccount {
     private final UserDAO userDAO;
     private static final String NAME_REGEX =
-            "^[a-zA-Z\\u00C0-\\u00FF\\u0192\\u201A\\u201E\\u2026\\u2020\\u2021\\u2022\\u2026\\u2030\\u2039\\u203A\\u00C3\\u00C5\\u00C6\\u00C7\\u00C8\\u00C9\\u00D1\\u00D2\\u00D3\\u00D4\\u00D5\\u00D6\\u00D8\\u00D9\\u00DA\\u00DB\\u00DC\\u00E0\\u00E1\\u00E2\\u00E3\\u00E4\\u00E5\\u00E6\\u00E7\\u00E8\\u00E9\\u00EA\\u00EB\\u00EC\\u00ED\\u00EE\\u00EF\\u00F0\\u00F1\\u00F2\\u00F3\\u00F4\\u00F5\\u00F6\\u00F8\\u00F9\\u00FA\\u00FB\\u00FC\\u00FD\\u00FE\\u00FF]+$\n";
+            "^[a-zA-Z\\u00C0-\\u00FF\\u0192\\u201A\\u201E\\u2026\\u2020\\u2021\\u2022\\u2026\\u2030\\u2039\\u203A\\u00C3\\u00C5\\u00C6\\u00C7\\u00C8\\u00C9\\u00D1\\u00D2\\u00D3\\u00D4\\u00D5\\u00D6\\u00D8\\u00D9\\u00DA\\u00DB\\u00DC\\u00E0\\u00E1\\u00E2\\u00E3\\u00E4\\u00E5\\u00E6\\u00E7\\u00E8\\u00E9\\u00EA\\u00EB\\u00EC\\u00ED\\u00EE\\u00EF\\u00F0\\u00F1\\u00F2\\u00F3\\u00F4\\u00F5\\u00F6\\u00F8\\u00F9\\u00FA\\u00FB\\u00FC\\u00FD\\u00FE\\u00FF]+$";
     private static final String EMAIL_REGEX =
             "^(?=\\S)([a-zA-Z0-9+._%-]+)(@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})$";
     private static final String PASSWORD_REGEX =
@@ -88,6 +88,9 @@ public class CheckingAccount {
                 }
                 case INVALIDPASSWORD -> {
                     alert("Por favor, coloque uma senha com números, letras maiúsculas e minúsculas.");
+                }
+                case LOGINERROR -> {
+                    alert("");
                 }
             }
 
