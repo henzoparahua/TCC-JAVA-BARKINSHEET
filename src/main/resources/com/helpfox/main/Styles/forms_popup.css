@@ -14,6 +14,7 @@
 
     -fx-background-insets: 0;
     -fx-background-color: #222;
+    -fx-padding: 12px;
 }
 #headerVbox{
     -fx-min-width: 380px;
