@@ -48,8 +48,6 @@ public class SigninController implements Initializable {
         choiceBox.getSelectionModel().selectFirst();
 
         btnSignin.setOnAction(event -> {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-
             if (!txtName.getText().isEmpty() && !txtEmail.getText().isEmpty() && !txtPswd.getText().isEmpty()) {
                 if (isValidName(txtName.getText()) && isValidEmail(txtEmail.getText()) && isValidPassword(txtPswd.getText())) {
                     try {
@@ -58,7 +56,7 @@ public class SigninController implements Initializable {
                         model.addNewUser(txtName.getText(), txtEmail.getText(), txtPswd.getText(), model.createRoleForNewUser(selectedValue));
                         onSignin();
                     } catch (IOException e) {
-                        alert.setContentText("Ops! Algo deu errado no cadastro.");
+                        addAlert(SetMsgError.LOGINERROR);
                         throw new RuntimeException(e);
                     }
                 } else {
