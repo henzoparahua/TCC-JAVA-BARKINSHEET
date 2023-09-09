@@ -18,7 +18,7 @@ We are using:
 
 ## How to run
 
-It's simple step. Just run 'app' or press shift+F10, if you are using Intellij.
+It's a simple step. Just run 'app' or press shift+F10, if you are using Intellij.
 
 ## Under construction
 
