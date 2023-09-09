@@ -32,6 +32,7 @@ public class App extends Application {
             System.out.println("This DAO instances: " + dao.getClass().getName());
         }
 
+
 //      The code below start a local database test, if there is any error, comment start function and/or launch(args)
 
 //        UserDAO userDAO = new SqliteUserDAO();
