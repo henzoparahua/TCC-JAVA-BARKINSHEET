@@ -3,6 +3,7 @@ package com.helpfox.main.Controller;
 import com.helpfox.main.Model.Model;
 import com.helpfox.main.Model.Office.Office;
 import com.helpfox.main.Model.Office.SetAdminType;
+import com.helpfox.main.Validation.SetMsgError;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -17,8 +18,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import static com.helpfox.main.Utils.DAOFinder.buildDAO;
-import static com.helpfox.main.Validation.CheckingAccount.isValidEmail;
-import static com.helpfox.main.Validation.CheckingAccount.isValidPassword;
+import static com.helpfox.main.Validation.CheckingAccount.*;
 
 public class SigninController implements Initializable {
     @FXML
@@ -26,7 +26,7 @@ public class SigninController implements Initializable {
     @FXML
     private ChoiceBox<SetAdminType> choiceBox;
     @FXML
-    private TextField txtNome;
+    private TextField txtName;
     @FXML
     private TextField txtEmail;
     @FXML
@@ -35,9 +35,6 @@ public class SigninController implements Initializable {
     private Button btnSignin;
     @FXML
     private Button btnLogin;
-
-    String invalidEmailMsg = "Por favor, coloque um email válido.";
-    String invalidPasswordMsg = "Por favor, coloque uma senha com números, letras maiúsculas e minúsculas.";
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -50,36 +47,45 @@ public class SigninController implements Initializable {
         choiceBox.getItems().setAll(SetAdminType.values());
         choiceBox.getSelectionModel().selectFirst();
 
-
         btnSignin.setOnAction(event -> {
-            try {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                if(txtEmail.getText().trim().isEmpty()) {
-                    alert.setContentText("Por favor, preencha o email.");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+
+            if (!txtName.getText().isEmpty() && !txtEmail.getText().isEmpty() && !txtPswd.getText().isEmpty()) {
+                if (isValidName(txtName.getText()) && isValidEmail(txtEmail.getText()) && isValidPassword(txtPswd.getText())) {
+                    try {
+                        SetAdminType selectedValue = choiceBox.getValue();
+
+                        model.addNewUser(txtName.getText(), txtEmail.getText(), txtPswd.getText(), model.createRoleForNewUser(selectedValue));
+                        onSignin();
+                    } catch (IOException e) {
+                        alert.setContentText("Ops! Algo deu errado no cadastro.");
+                        throw new RuntimeException(e);
+                    }
+                } else {
+                    if (!isValidName(txtName.getText())) {
+                        addAlert(SetMsgError.INVALIDNAME);
+                    }
+
+                    if (!isValidEmail(txtEmail.getText())) {
+                        addAlert(SetMsgError.INVALIDEMAIL);
+                    }
+
+                    if (!isValidPassword(txtPswd.getText())) {
+                        addAlert(SetMsgError.INVALIDPASSWORD);
+                    }
+                }
+            } else {
+                if (txtName.getText().isEmpty()) {
+                    addAlert(SetMsgError.EMPTYNAME);
                 }
 
-                if(txtPswd.getText().trim().isEmpty()) {
-                    alert.setContentText("Por favor, preencha a senha.");
+                if (txtEmail.getText().isEmpty()) {
+                    addAlert(SetMsgError.EMPTYEMAIL);
                 }
 
-                if(!isValidEmail(txtEmail.getText())) {
-                    alert.setContentText(invalidEmailMsg);
-                    alert.showAndWait();
+                if (txtPswd.getText().isEmpty()) {
+                    addAlert(SetMsgError.EMPTYPASSWORD);
                 }
-                if(!isValidPassword(txtPswd.getText())) {
-                    alert.setContentText(invalidPasswordMsg);
-                    alert.showAndWait();
-                }
-
-                try {
-                    model.addNewUser(txtNome.getText(), txtEmail.getText(), txtPswd.getText(), false);
-                } catch (Exception e) {
-                    alert.setContentText("Ops! Algo deu errado no cadastro.");
-                }
-
-                onSignin();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
             }
         });
 
@@ -87,8 +93,8 @@ public class SigninController implements Initializable {
             try {
                 Scene scene = btnLogin.getScene();
                 Model.getInstance().getViewFactory().setRoot(scene, "LoginGUI");
-            } catch (Exception e){
-
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
 

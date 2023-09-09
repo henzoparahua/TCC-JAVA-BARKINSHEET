@@ -24,6 +24,20 @@ public class Office {
         userDAO.insertUser(user);
     }
 
+    public boolean createRoleForNewUser(SetAdminType setAdmin) {
+        switch (setAdmin) {
+            case TRUE -> {
+                return true;
+            }
+            case FALSE -> {
+                return false;
+            }
+            default -> {
+                return false;
+            }
+        }
+    }
+
     public void manageRole(long uid, SetAdminType setAdmin) {
         List<User> users = userDAO.findByProp(UserSearchType.UID, uid);
         switch (setAdmin) {
