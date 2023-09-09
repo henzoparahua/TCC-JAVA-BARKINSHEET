@@ -28,7 +28,7 @@ public class SigninController implements Initializable {
     private Button btnLogin;
 
     String invalidEmailMsg = "Por favor, coloque um email válido.";
-    String invalidPasswordMsg = "Por favor, coloque uma senha com números e letras maiúsculas e minúsculas.";
+    String invalidPasswordMsg = "Por favor, coloque uma senha com números, letras maiúsculas e minúsculas.";
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
