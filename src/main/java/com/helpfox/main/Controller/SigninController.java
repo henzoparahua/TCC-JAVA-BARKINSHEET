@@ -1,26 +1,32 @@
 package com.helpfox.main.Controller;
 
 import com.helpfox.main.Model.Model;
+import com.helpfox.main.Model.Office.Office;
+import com.helpfox.main.Model.Office.SetAdminType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import static com.helpfox.main.Utils.DAOFinder.buildDAO;
 import static com.helpfox.main.Validation.CheckingAccount.isValidEmail;
 import static com.helpfox.main.Validation.CheckingAccount.isValidPassword;
 
 public class SigninController implements Initializable {
     @FXML
     private AnchorPane rootSigin;
+    @FXML
+    private ChoiceBox<SetAdminType> choiceBox;
+    @FXML
+    private TextField txtNome;
     @FXML
     private TextField txtEmail;
     @FXML
@@ -35,6 +41,16 @@ public class SigninController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        List<String> daoClassNamesToBuild = new ArrayList<>();
+
+        daoClassNamesToBuild.add("SQLiteUserDAO");
+
+        Office model = new Office(buildDAO(daoClassNamesToBuild));
+
+        choiceBox.getItems().setAll(SetAdminType.values());
+        choiceBox.getSelectionModel().selectFirst();
+
+
         btnSignin.setOnAction(event -> {
             try {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -54,6 +70,13 @@ public class SigninController implements Initializable {
                     alert.setContentText(invalidPasswordMsg);
                     alert.showAndWait();
                 }
+
+                try {
+                    model.addNewUser(txtNome.getText(), txtEmail.getText(), txtPswd.getText(), false);
+                } catch (Exception e) {
+                    alert.setContentText("Ops! Algo deu errado no cadastro.");
+                }
+
                 onSignin();
             } catch (IOException e) {
                 throw new RuntimeException(e);

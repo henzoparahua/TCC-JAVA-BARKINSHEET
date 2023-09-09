@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SqliteUserDAO implements UserDAO {
+public class SQLiteUserDAO implements UserDAO {
     private Connection connection;
     private static final List<User> EMPTY = new ArrayList<>();
     private static final ArrayList<User> users = new ArrayList<>();

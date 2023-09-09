@@ -15,7 +15,7 @@ public class DAOFinder {
 
             for (String daoClassName : daoClassNames) {
                 try {
-                    Class<?> clazz = Class.forName(pkg + "." + daoClassName);
+                    Class<?> clazz = Class.forName(pkgName + "." + daoClassName);
                     Constructor<?> constructor = clazz.getDeclaredConstructor();
                     Object daoInstance = constructor.newInstance();
                     daoInstances.add(daoInstance);
