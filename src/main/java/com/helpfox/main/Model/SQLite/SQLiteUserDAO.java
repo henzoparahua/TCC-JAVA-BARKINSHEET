@@ -22,7 +22,7 @@ public class SQLiteUserDAO implements UserDAO {
                     "name VARCHAR(60) NOT NULL," +
                     "email VARCHAR(60) NOT NULL," +
                     "password VARCHAR(30) NOT NULL," +
-                    "isAdmin BOOLEAN);");
+                    "isAdmin BOOLEAN)");
             stm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -158,7 +158,7 @@ public class SQLiteUserDAO implements UserDAO {
     public List<User> findAll() {
         try {
             connect();
-            PreparedStatement stm = connection.prepareStatement("SELECT * FROM Users ORDER BY uid ASC;");
+            PreparedStatement stm = connection.prepareStatement("SELECT * FROM Users ORDER BY uid ASC");
             ResultSet rs = stm.executeQuery();
 
             while(rs.next()) {

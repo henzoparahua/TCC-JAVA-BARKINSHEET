@@ -22,7 +22,7 @@ public class SQLiteVehicleDAO implements VehicleDAO {
                     "brand VARCHAR(60)," +
                     "color VARCHAR(60)," +
                     "plate VARCHAR(30) NOT NULL," +
-                    "observation TEXT;");
+                    "observation TEXT)");
             stm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

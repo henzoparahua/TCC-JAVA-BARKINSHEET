@@ -21,7 +21,7 @@ public class SQLiteDriverDAO implements DriverDAO {
                     "uid INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "nameDriver VARCHAR(60) NOT NULL," +
                     "rg VARCHAR(13) NOT NULL," +
-                    "phone VARCHAR(30);");
+                    "phone VARCHAR(30))");
             stm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -31,7 +31,7 @@ public class SQLiteDriverDAO implements DriverDAO {
     @Override
     public void connect() throws SQLException {
         try {
-            if(connection == null) {
+            if (connection == null) {
                 connection = DriverManager.getConnection("jdbc:sqlite:drivers.db");
             }
         } catch (SQLException e) {
@@ -42,7 +42,7 @@ public class SQLiteDriverDAO implements DriverDAO {
     @Override
     public void close() throws SQLException {
         try {
-            if(connection != null) {
+            if (connection != null) {
                 connection.close();
             }
         } catch (SQLException e) {
@@ -130,7 +130,7 @@ public class SQLiteDriverDAO implements DriverDAO {
             PreparedStatement stm = connection.prepareStatement("SELECT * FROM Drivers WHERE " + whereClause);
             stm.setString(1, valueClause);
             ResultSet rs = stm.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 Driver driver = new Driver();
                 driver.setUid(rs.getLong(1));
                 driver.setNameDriver(rs.getString(2));
@@ -149,10 +149,10 @@ public class SQLiteDriverDAO implements DriverDAO {
     public List<Driver> findAll() {
         try {
             connect();
-            PreparedStatement stm = connection.prepareStatement("SELECT * FROM Drivers ORDER BY uid ASC;");
+            PreparedStatement stm = connection.prepareStatement("SELECT * FROM Drivers ORDER BY uid ASC");
             ResultSet rs = stm.executeQuery();
 
-            while(rs.next()) {
+            while (rs.next()) {
                 Driver driver = new Driver();
                 driver.setUid(rs.getLong(1));
                 driver.setNameDriver(rs.getString(2));
