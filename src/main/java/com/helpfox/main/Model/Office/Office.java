@@ -6,6 +6,7 @@ import com.helpfox.main.Model.User.UserDAO;
 import com.helpfox.main.Model.User.UserSearchType;
 import com.helpfox.main.Model.Vehicle.VehicleDAO;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +27,13 @@ public class Office {
         user.setPassword(password);
         user.setAdmin(isAdmin);
 
-        userDAO.insertUser(user);
+        try {
+            userDAO.connect();
+            userDAO.insertUser(user);
+            userDAO.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean createRoleForNewUser(SetAdminType setAdmin) {
