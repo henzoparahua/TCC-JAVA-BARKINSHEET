@@ -13,7 +13,6 @@ public class DriverCell implements Initializable {
     public Label txtFirstPlate;
     public Label idNum;
     public Label txtNome;
-
     private final Vehicle vehicle;
 
     public DriverCell (Vehicle vehicle){

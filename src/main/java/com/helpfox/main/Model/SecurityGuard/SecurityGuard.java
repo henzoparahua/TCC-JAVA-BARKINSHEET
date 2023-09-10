@@ -55,4 +55,7 @@ public class SecurityGuard {
     public List<Driver> findAllDrivers() {
         return driverDAO.findAll();
     }
+    public List<Vehicle> findAllVehicles(){
+        return vehicleDAO.findAll();
+    }
 }

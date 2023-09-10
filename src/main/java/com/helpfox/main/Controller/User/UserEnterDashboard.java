@@ -4,6 +4,7 @@ import com.helpfox.main.Model.Model;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
@@ -19,10 +20,17 @@ public class UserEnterDashboard implements Initializable {
     @FXML
     private TextField searchInput;
 
+
+    @FXML
+    private ListView<?> listvEnterVehicles;
+
     @FXML
     private Button btAddDriver;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
+
         btAddDriver.setOnAction(event -> {
             try {
                 onNewDriver();
@@ -30,6 +38,8 @@ public class UserEnterDashboard implements Initializable {
                 throw new RuntimeException(e);
             }
         });
+
+
     }
     private void onNewDriver () throws IOException {
         Model.getInstance().getViewFactory().showAddDriverPopUp(mainContainer);

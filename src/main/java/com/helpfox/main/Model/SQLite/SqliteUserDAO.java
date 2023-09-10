@@ -3,7 +3,6 @@ package com.helpfox.main.Model.SQLite;
 import com.helpfox.main.Model.User.User;
 import com.helpfox.main.Model.User.UserDAO;
 import com.helpfox.main.Model.User.UserSearchType;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

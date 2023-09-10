@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,6 +24,10 @@ public class SigninController implements Initializable {
     private Button btnSignin;
     @FXML
     private Button btnLogin;
+    @FXML
+    private AnchorPane rootSignin;
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         btnLogin.setOnAction(event -> {
@@ -33,6 +38,13 @@ public class SigninController implements Initializable {
                 throw new RuntimeException(e);
             }
         });
+
+        try {
+            Model.getInstance().getViewFactory().createTopbarforLogin(rootSignin);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     private void onSignin() throws IOException {

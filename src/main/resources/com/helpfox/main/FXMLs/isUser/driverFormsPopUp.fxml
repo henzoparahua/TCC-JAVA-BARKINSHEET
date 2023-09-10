@@ -8,66 +8,38 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<VBox fx:id="popupContainer"
-      id="mainContainer"
-      alignment="TOP_CENTER"
-      stylesheets="@../../Styles/forms_popup.css"
-      xmlns="http://javafx.com/javafx/8"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.helpfox.main.Controller.User.UserDriverForms">
+<VBox id="mainContainer" fx:id="popupContainer" alignment="TOP_CENTER" stylesheets="@../../Styles/forms_popup.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.helpfox.main.Controller.User.UserDriverForms">
     <children>
         <VBox id="headerVbox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
             <children>
                 <Label id="headerLabel" alignment="CENTER_RIGHT" text="CADASTRAR MOTORISTAS">
                     <VBox.margin>
-                        <Insets bottom="5.0" top="10.0"/>
+                        <Insets bottom="5.0" />
                     </VBox.margin>
                 </Label>
                 <Separator id="headerSeparator" prefWidth="200.0">
                     <VBox.margin>
-                        <Insets top="5.0"/>
+                        <Insets top="5.0" />
                     </VBox.margin>
                 </Separator>
             </children>
             <VBox.margin>
-                <Insets bottom="12.0" left="12.0" right="12.0" top="12.0"/>
+                <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
             </VBox.margin>
         </VBox>
         <VBox alignment="TOP_CENTER" spacing="18.0">
             <children>
-                <TextField promptText="Nome"
-                           styleClass="txtField"/>
-                <TextField promptText="RG"
-                           styleClass="txtField"/>
-                <TextField promptText="Telefone"
-                           styleClass="txtField"/>
-                <TextArea id="obstxtField"
-                          nodeOrientation="LEFT_TO_RIGHT"
-                          prefHeight="200.0"
-                          prefWidth="200.0"
-                          promptText="Observação"
-                          styleClass="txtField"
-                          wrapText="true"/>
+                <TextField promptText="Nome" styleClass="txtField" />
+                <TextField promptText="RG" styleClass="txtField" />
+                <TextField promptText="Telefone" styleClass="txtField" />
+                <TextArea id="obstxtField" nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="200.0" promptText="Observação" styleClass="txtField" wrapText="true" />
                 <HBox alignment="TOP_CENTER" spacing="32.0">
                     <children>
-                        <Button id="Button"
-                                fx:id="btConfirm"
-                                alignment="CENTER"
-                                contentDisplay="CENTER"
-                                mnemonicParsing="false"
-                                style="-fx-border-insets: 0; -fx-opaque-insets: 0;"
-                                text="CONFIRMAR"
-                                textAlignment="CENTER"/>
-                        <Button id="Button"
-                                fx:id="btCancel"
-                                alignment="CENTER"
-                                contentDisplay="CENTER"
-                                mnemonicParsing="false"
-                                text="CANCELAR"
-                                textAlignment="CENTER"/>
+                        <Button id="Button" fx:id="btConfirm" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-border-insets: 0; -fx-opaque-insets: 0;" text="CONFIRMAR" textAlignment="CENTER" />
+                        <Button id="Button" fx:id="btCancel" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="CANCELAR" textAlignment="CENTER" />
                     </children>
                     <VBox.margin>
-                        <Insets bottom="38.0" top="8.0"/>
+                        <Insets bottom="38.0" top="8.0" />
                     </VBox.margin>
                 </HBox>
             </children>
