@@ -3,6 +3,8 @@ package com.helpfox.main.Controller;
 import com.helpfox.main.Model.Model;
 import com.helpfox.main.Model.Office.Office;
 import com.helpfox.main.Model.Office.SetAdminType;
+import com.helpfox.main.Model.SQLite.SQLiteUserDAO;
+import com.helpfox.main.Model.User.UserDAO;
 import com.helpfox.main.Validation.SetMsgError;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,11 +15,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
-import static com.helpfox.main.Utils.DAOFinder.buildDAO;
 import static com.helpfox.main.Validation.CheckingAccount.*;
 
 public class SigninController implements Initializable {
@@ -38,11 +37,9 @@ public class SigninController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        List<String> daoClassNamesToBuild = new ArrayList<>();
+        UserDAO userDAO = new SQLiteUserDAO();
 
-        daoClassNamesToBuild.add("SQLiteUserDAO");
-
-        Office model = new Office(buildDAO(daoClassNamesToBuild));
+        Office model = new Office(userDAO);
 
         choiceBox.getItems().setAll(SetAdminType.values());
         choiceBox.getSelectionModel().selectFirst();
@@ -54,6 +51,7 @@ public class SigninController implements Initializable {
                         SetAdminType selectedValue = choiceBox.getValue();
 
                         model.addNewUser(txtName.getText(), txtEmail.getText(), txtPswd.getText(), model.createRoleForNewUser(selectedValue));
+
                         onSignin();
                     } catch (IOException e) {
                         addAlert(SetMsgError.LOGINERROR);
