@@ -41,7 +41,7 @@ public class LoginController implements Initializable {
                 Scene scene = btSignin.getScene();
                 Model.getInstance().getViewFactory().setRoot(scene, "SigninGUI");
             } catch (Exception e){
-
+                e.printStackTrace();
             }
         });
 
