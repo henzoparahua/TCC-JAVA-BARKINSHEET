@@ -1,17 +1,22 @@
 package com.helpfox.main.Model.Office;
 
+import com.helpfox.main.Model.Driver.DriverDAO;
 import com.helpfox.main.Model.User.User;
 import com.helpfox.main.Model.User.UserDAO;
 import com.helpfox.main.Model.User.UserSearchType;
+import com.helpfox.main.Model.Vehicle.VehicleDAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Office {
-    private UserDAO userDAO;
-    List<Object> models;
+    private final UserDAO userDAO;
+    private DriverDAO driverDAO;
+    private VehicleDAO vehicleDAO;
+    List<Object> daoInstances = new ArrayList<>();
 
-    public Office(List<Object> models) {
-        this.models = models;
+    public Office(UserDAO userDAO) {
+        this.userDAO = userDAO;
     }
 
     public void addNewUser(String name, String email, String password, Boolean isAdmin) {
@@ -25,6 +30,7 @@ public class Office {
     }
 
     public boolean createRoleForNewUser(SetAdminType setAdmin) {
+        boolean f = false;
         switch (setAdmin) {
             case TRUE -> {
                 return true;
@@ -32,10 +38,8 @@ public class Office {
             case FALSE -> {
                 return false;
             }
-            default -> {
-                return false;
-            }
         }
+        return f;
     }
 
     public void manageRole(long uid, SetAdminType setAdmin) {
