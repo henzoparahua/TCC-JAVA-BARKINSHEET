@@ -41,3 +41,6 @@ build/
 /users.db
 /drivers.db
 /vehicles.db
+
+### Project Config ###
+/config.properties
