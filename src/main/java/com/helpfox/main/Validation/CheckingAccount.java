@@ -25,14 +25,6 @@ public class CheckingAccount {
         this.userDAO = userDAO;
     }
 
-    public List<User> findByEmail(String email) {
-        return userDAO.findByProp(UserSearchType.EMAIL, email);
-    }
-
-    public static Boolean userExists(List<User> userList) {
-        return !userList.isEmpty();
-    }
-
     public static boolean isValidName(String name) {
         Pattern pattern = Pattern.compile(NAME_REGEX);
         Matcher matcher = pattern.matcher(name);
@@ -49,24 +41,6 @@ public class CheckingAccount {
         Pattern pattern = Pattern.compile(PASSWORD_REGEX);
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();
-    }
-
-    public boolean isValidUser(String email, String password) {
-        User user = new User();
-        user.setEmail(email);
-        user.setPassword(password);
-
-        userList.add(user);
-        // Check if the username exists in the user database
-        if (userExists(userList)) {
-            // Retrieve the stored password for the username
-            String storedPassword = findByEmail(email).get(0).getPassword();
-
-            // Compare the entered password with the stored password
-            return storedPassword.equals(password);
-        }
-
-        return false; // Username doesn't exist in the database
     }
 
     public static void addAlert(SetMsgError setMsgError) {
@@ -91,6 +65,9 @@ public class CheckingAccount {
                 }
                 case LOGINERROR -> {
                     alert("Ops! Aconteceu algo inesperado.");
+                }
+                case INVALIDLOGIN -> {
+                    alert("Seu email e senha estam incorretos, por favor revise seus dados.");
                 }
             }
     }
