@@ -10,8 +10,8 @@ import java.util.List;
 
 public class SQLiteVehicleDAO implements VehicleDAO {
     private Connection connection;
-    private static final List<Vehicle> EMPTY = new ArrayList<>();
-    private static final ArrayList<Vehicle> vehicles = new ArrayList<>();
+    private final List<Vehicle> EMPTY = new ArrayList<>();
+    private final ArrayList<Vehicle> vehicles = new ArrayList<>();
 
     @Override
     public void setup() throws SQLException {

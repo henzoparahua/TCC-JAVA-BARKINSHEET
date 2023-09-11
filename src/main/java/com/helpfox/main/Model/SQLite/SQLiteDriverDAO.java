@@ -10,8 +10,8 @@ import java.util.List;
 
 public class SQLiteDriverDAO implements DriverDAO {
     private Connection connection;
-    private static final List<Driver> EMPTY = new ArrayList<>();
-    private static final ArrayList<Driver> drivers = new ArrayList<>();
+    private final List<Driver> EMPTY = new ArrayList<>();
+    private final ArrayList<Driver> drivers = new ArrayList<>();
 
     @Override
     public void setup() throws SQLException {

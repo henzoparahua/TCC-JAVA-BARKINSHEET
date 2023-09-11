@@ -10,8 +10,8 @@ import java.util.List;
 
 public class SQLiteUserDAO implements UserDAO {
     private Connection connection;
-    private static final List<User> EMPTY = new ArrayList<>();
-    private static final ArrayList<User> users = new ArrayList<>();
+    private final List<User> EMPTY = new ArrayList<>();
+    private final ArrayList<User> users = new ArrayList<>();
 
     @Override
     public void setup() throws SQLException {
