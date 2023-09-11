@@ -90,7 +90,7 @@ public class CheckingAccount {
                     alert("Por favor, coloque uma senha com números, letras maiúsculas e minúsculas.");
                 }
                 case LOGINERROR -> {
-                    alert("");
+                    alert("Ops! Aconteceu algo inesperado.");
                 }
             }
 
