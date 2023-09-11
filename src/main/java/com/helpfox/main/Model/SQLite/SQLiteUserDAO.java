@@ -7,10 +7,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SqliteUserDAO implements UserDAO {
+public class SQLiteUserDAO implements UserDAO {
     private Connection connection;
-    private static final List<User> EMPTY = new ArrayList<>();
-    private static final ArrayList<User> users = new ArrayList<>();
+    private final List<User> EMPTY = new ArrayList<>();
+    private final ArrayList<User> users = new ArrayList<>();
 
     @Override
     public void setup() throws SQLException {
@@ -21,7 +21,7 @@ public class SqliteUserDAO implements UserDAO {
                     "name VARCHAR(60) NOT NULL," +
                     "email VARCHAR(60) NOT NULL," +
                     "password VARCHAR(30) NOT NULL," +
-                    "isAdmin BOOLEAN);");
+                    "isAdmin BOOLEAN)");
             stm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -53,7 +53,6 @@ public class SqliteUserDAO implements UserDAO {
     @Override
     public long insertUser(User user) {
         try {
-            connect();
             PreparedStatement stm = connection.prepareStatement("INSERT INTO Users VALUES (?,?,?,?,?)");
             stm.setString(2, user.getName());
             stm.setString(3, user.getEmail());
@@ -75,7 +74,6 @@ public class SqliteUserDAO implements UserDAO {
     @Override
     public boolean updateUser(User user) {
         try {
-            connect();
             PreparedStatement stm = connection.prepareStatement("UPDATE Users SET name=?, email=?, password=?, isAdmin=? WHERE uid=?");
             stm.setString(1, user.getName());
             stm.setString(2, user.getEmail());
@@ -93,7 +91,6 @@ public class SqliteUserDAO implements UserDAO {
     @Override
     public boolean deleteUser(User user) {
         try {
-            connect();
             PreparedStatement stm = connection.prepareStatement("DELETE FROM Users WHERE uid=?");
             stm.setLong(1, user.getUid());
             stm.executeUpdate();
@@ -132,7 +129,6 @@ public class SqliteUserDAO implements UserDAO {
             default -> System.out.println("Unknown search type");
         }
         try {
-            connect();
             PreparedStatement stm = connection.prepareStatement("SELECT * FROM Users WHERE " + whereClause);
             stm.setString(1, valueClause);
             ResultSet rs = stm.executeQuery();
@@ -156,8 +152,7 @@ public class SqliteUserDAO implements UserDAO {
     @Override
     public List<User> findAll() {
         try {
-            connect();
-            PreparedStatement stm = connection.prepareStatement("SELECT * FROM Users ORDER BY uid ASC;");
+            PreparedStatement stm = connection.prepareStatement("SELECT * FROM Users ORDER BY uid ASC");
             ResultSet rs = stm.executeQuery();
 
             while(rs.next()) {
