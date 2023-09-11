@@ -23,9 +23,9 @@ Button:hover{
 }
 
 #loginBack {
--fx-text-fill: #000;
+    -fx-text-fill: #000;
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-opacity: 0.8;
     -fx-font-size: 14px;
-    }
+}
