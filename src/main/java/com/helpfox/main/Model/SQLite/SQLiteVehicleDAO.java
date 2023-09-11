@@ -54,7 +54,6 @@ public class SQLiteVehicleDAO implements VehicleDAO {
     @Override
     public long insertVehicle(Vehicle vehicle) {
         try {
-            connect();
             PreparedStatement stm = connection.prepareStatement("INSERT INTO Vehicles VALUES (?,?,?,?,?)");
             stm.setString(2, vehicle.getBrand());
             stm.setString(3, vehicle.getColor());
@@ -76,7 +75,6 @@ public class SQLiteVehicleDAO implements VehicleDAO {
     @Override
     public boolean updateVehicle(Vehicle vehicle) {
         try {
-            connect();
             PreparedStatement stm = connection.prepareStatement("UPDATE Vehicles SET brand=?, color=?, plate=?, observation=? WHERE uid=?");
             stm.setString(1, vehicle.getBrand());
             stm.setString(2, vehicle.getColor());
@@ -94,7 +92,6 @@ public class SQLiteVehicleDAO implements VehicleDAO {
     @Override
     public boolean deleteVehicle(Vehicle vehicle) {
         try {
-            connect();
             PreparedStatement stm = connection.prepareStatement("DELETE FROM Vehicles WHERE uid=?");
             stm.setLong(1, vehicle.getUid());
             stm.executeUpdate();
@@ -133,7 +130,6 @@ public class SQLiteVehicleDAO implements VehicleDAO {
             default -> System.out.println("Unknown search type");
         }
         try {
-            connect();
             PreparedStatement stm = connection.prepareStatement("SELECT * FROM Vehicles WHERE " + whereClause);
             stm.setString(1, valueClause);
             ResultSet rs = stm.executeQuery();
@@ -157,7 +153,6 @@ public class SQLiteVehicleDAO implements VehicleDAO {
     @Override
     public List<Vehicle> findAll() {
         try {
-            connect();
             PreparedStatement stm = connection.prepareStatement("SELECT * FROM Vehicles ORDER BY uid ASC;");
             ResultSet rs = stm.executeQuery();
 

@@ -53,7 +53,6 @@ public class SQLiteDriverDAO implements DriverDAO {
     @Override
     public long insertDriver(Driver driver) {
         try {
-            connect();
             PreparedStatement stm = connection.prepareStatement("INSERT INTO Drivers VALUES (?,?,?,?)");
             stm.setString(2, driver.getNameDriver());
             stm.setString(3, driver.getRg());
@@ -74,7 +73,6 @@ public class SQLiteDriverDAO implements DriverDAO {
     @Override
     public boolean updateDriver(Driver driver) {
         try {
-            connect();
             PreparedStatement stm = connection.prepareStatement("UPDATE Drivers SET nameDriver=?, rg=?, phone=? WHERE uid=?");
             stm.setString(1, driver.getNameDriver());
             stm.setString(2, driver.getRg());
@@ -91,7 +89,6 @@ public class SQLiteDriverDAO implements DriverDAO {
     @Override
     public boolean deleteDriver(Driver driver) {
         try {
-            connect();
             PreparedStatement stm = connection.prepareStatement("DELETE FROM Drivers WHERE uid=?");
             stm.setLong(1, driver.getUid());
             stm.executeUpdate();
@@ -126,7 +123,6 @@ public class SQLiteDriverDAO implements DriverDAO {
             default -> System.out.println("Unknown search type");
         }
         try {
-            connect();
             PreparedStatement stm = connection.prepareStatement("SELECT * FROM Drivers WHERE " + whereClause);
             stm.setString(1, valueClause);
             ResultSet rs = stm.executeQuery();
@@ -148,7 +144,6 @@ public class SQLiteDriverDAO implements DriverDAO {
     @Override
     public List<Driver> findAll() {
         try {
-            connect();
             PreparedStatement stm = connection.prepareStatement("SELECT * FROM Drivers ORDER BY uid ASC");
             ResultSet rs = stm.executeQuery();
 
