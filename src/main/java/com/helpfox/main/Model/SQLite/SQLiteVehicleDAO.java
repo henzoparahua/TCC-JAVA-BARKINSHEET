@@ -10,19 +10,23 @@ import java.util.List;
 
 public class SQLiteVehicleDAO implements VehicleDAO {
     private Connection connection;
-    private final List<Vehicle> EMPTY = new ArrayList<>();
-    private final ArrayList<Vehicle> vehicles = new ArrayList<>();
+    private static final List<Vehicle> EMPTY = new ArrayList<>();
+    private static final ArrayList<Vehicle> vehicles = new ArrayList<>();
 
     @Override
     public void setup() throws SQLException {
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:vehicles.db");
             PreparedStatement stm = connection.prepareStatement("CREATE TABLE Vehicles (" +
-                    "uid INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "uid INTEGER AUTOINCREMENT," +
+                    "uidDriver INTEGER "+
                     "brand VARCHAR(60)," +
                     "color VARCHAR(60)," +
                     "plate VARCHAR(30) NOT NULL," +
-                    "observation TEXT)");
+                    "observation VARCHAR(60)" +
+                    "CONSTRAINT PK_Vehiles PRIMARY KEY (uid, uidDriver)," +
+                    "CONSTRAINT FK_Vehicles_Drivers FOREIGN KEY (uidDriver) REFERENCES Vehicles (uid)"+
+                    ");");
             stm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -54,6 +58,7 @@ public class SQLiteVehicleDAO implements VehicleDAO {
     @Override
     public long insertVehicle(Vehicle vehicle) {
         try {
+            connect();
             PreparedStatement stm = connection.prepareStatement("INSERT INTO Vehicles VALUES (?,?,?,?,?)");
             stm.setString(2, vehicle.getBrand());
             stm.setString(3, vehicle.getColor());
@@ -75,6 +80,7 @@ public class SQLiteVehicleDAO implements VehicleDAO {
     @Override
     public boolean updateVehicle(Vehicle vehicle) {
         try {
+            connect();
             PreparedStatement stm = connection.prepareStatement("UPDATE Vehicles SET brand=?, color=?, plate=?, observation=? WHERE uid=?");
             stm.setString(1, vehicle.getBrand());
             stm.setString(2, vehicle.getColor());
@@ -92,6 +98,7 @@ public class SQLiteVehicleDAO implements VehicleDAO {
     @Override
     public boolean deleteVehicle(Vehicle vehicle) {
         try {
+            connect();
             PreparedStatement stm = connection.prepareStatement("DELETE FROM Vehicles WHERE uid=?");
             stm.setLong(1, vehicle.getUid());
             stm.executeUpdate();
@@ -130,6 +137,7 @@ public class SQLiteVehicleDAO implements VehicleDAO {
             default -> System.out.println("Unknown search type");
         }
         try {
+            connect();
             PreparedStatement stm = connection.prepareStatement("SELECT * FROM Vehicles WHERE " + whereClause);
             stm.setString(1, valueClause);
             ResultSet rs = stm.executeQuery();
@@ -153,6 +161,7 @@ public class SQLiteVehicleDAO implements VehicleDAO {
     @Override
     public List<Vehicle> findAll() {
         try {
+            connect();
             PreparedStatement stm = connection.prepareStatement("SELECT * FROM Vehicles ORDER BY uid ASC;");
             ResultSet rs = stm.executeQuery();
 
