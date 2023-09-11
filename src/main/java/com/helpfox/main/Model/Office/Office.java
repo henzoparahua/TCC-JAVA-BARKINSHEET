@@ -12,9 +12,6 @@ import java.util.List;
 
 public class Office {
     private final UserDAO userDAO;
-    private DriverDAO driverDAO;
-    private VehicleDAO vehicleDAO;
-    List<Object> daoInstances = new ArrayList<>();
 
     public Office(UserDAO userDAO) {
         this.userDAO = userDAO;
