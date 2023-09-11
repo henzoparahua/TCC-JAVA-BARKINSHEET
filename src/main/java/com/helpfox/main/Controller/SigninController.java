@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -85,15 +86,6 @@ public class SigninController implements Initializable {
             }
         });
 
-        btnLogin.setOnAction(event -> {
-            try {
-                Scene scene = btnLogin.getScene();
-                Model.getInstance().getViewFactory().setRoot(scene, "LoginGUI");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-
         try {
             Model.getInstance().getViewFactory().createTopbarforLogin(rootSigin);
         } catch (IOException e) {
@@ -105,5 +97,14 @@ public class SigninController implements Initializable {
         Stage stage = (Stage) btnSignin.getScene().getWindow();
         Model.getInstance().getViewFactory().closeStage(stage);
         Model.getInstance().getViewFactory().showClientWindow();
+    }
+
+    public void onLoginGUI(MouseEvent mouseEvent) {
+        try {
+            Scene scene = btnLogin.getScene();
+            Model.getInstance().getViewFactory().setRoot(scene, "LoginGUI");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

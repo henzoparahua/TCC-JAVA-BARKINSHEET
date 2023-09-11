@@ -27,7 +27,7 @@
             <VBox id="cadastrarVbox" alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="79.0" prefWidth="485.0" spacing="16.0" StackPane.alignment="BOTTOM_CENTER">
                <children>
                   <Label text="Já tem uma conta?" />
-                  <Button id="forgotPswrd" fx:id="btnLogin" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Entrar" />
+                  <Button id="loginBack" fx:id="btnLogin" mnemonicParsing="false" onMouseClicked="#onLoginGUI" prefHeight="25.0" prefWidth="80.0" text="Entrar" textAlignment="CENTER" />
                </children>
                <opaqueInsets>
                   <Insets />
