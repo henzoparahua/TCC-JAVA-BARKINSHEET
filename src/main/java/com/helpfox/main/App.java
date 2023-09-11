@@ -20,7 +20,7 @@ public class App extends Application {
                 // Create the configuration file first
                 createConfigFile();
 
-                List<String> databaseFileNames = List.of("users.db", "drivers.db", "vehicles.db");
+                List<String> databaseFileNames = List.of("barkin.db");
 
                 if (!allDatabaseExists(databaseFileNames)) {
                     setSetupCompleted(false);

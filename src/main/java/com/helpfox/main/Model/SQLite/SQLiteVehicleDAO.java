@@ -16,7 +16,7 @@ public class SQLiteVehicleDAO implements VehicleDAO {
     @Override
     public void setup() throws SQLException {
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:vehicles.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:barkin.db");
             PreparedStatement stm = connection.prepareStatement("CREATE TABLE Vehicles (" +
                     "uid INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "brand VARCHAR(60)," +
@@ -33,7 +33,7 @@ public class SQLiteVehicleDAO implements VehicleDAO {
     public void connect() throws SQLException {
         try {
             if(connection == null) {
-                connection = DriverManager.getConnection("jdbc:sqlite:vehicles.db");
+                connection = DriverManager.getConnection("jdbc:sqlite:barkin.db");
             }
         } catch (SQLException e) {
             e.printStackTrace();

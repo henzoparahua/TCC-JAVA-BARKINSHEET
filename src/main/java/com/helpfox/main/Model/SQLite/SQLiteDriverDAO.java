@@ -16,7 +16,7 @@ public class SQLiteDriverDAO implements DriverDAO {
     @Override
     public void setup() throws SQLException {
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:drivers.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:barkin.db");
             PreparedStatement stm = connection.prepareStatement("CREATE TABLE Drivers (" +
                     "uid INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "nameDriver VARCHAR(60) NOT NULL," +
@@ -32,7 +32,7 @@ public class SQLiteDriverDAO implements DriverDAO {
     public void connect() throws SQLException {
         try {
             if (connection == null) {
-                connection = DriverManager.getConnection("jdbc:sqlite:drivers.db");
+                connection = DriverManager.getConnection("jdbc:sqlite:barkin.db");
             }
         } catch (SQLException e) {
             e.printStackTrace();
