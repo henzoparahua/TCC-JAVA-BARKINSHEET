@@ -1,13 +1,9 @@
 package com.helpfox.main.Model.Office;
 
-import com.helpfox.main.Model.Driver.DriverDAO;
 import com.helpfox.main.Model.User.User;
 import com.helpfox.main.Model.User.UserDAO;
 import com.helpfox.main.Model.User.UserSearchType;
-import com.helpfox.main.Model.Vehicle.VehicleDAO;
-
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Office {
@@ -47,7 +43,10 @@ public class Office {
     }
 
     public void manageRole(long uid, SetAdminType setAdmin) {
+        try {
+            userDAO.connect();
         List<User> users = userDAO.findByProp(UserSearchType.UID, uid);
+
         switch (setAdmin) {
             case TRUE -> {
                 if (!users.isEmpty()) {
@@ -59,6 +58,10 @@ public class Office {
                     users.get(0).setAdmin(false);
                 }
             }
+        }
+        userDAO.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }
