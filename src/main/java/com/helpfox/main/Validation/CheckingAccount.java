@@ -69,7 +69,7 @@ public class CheckingAccount {
         return false; // Username doesn't exist in the database
     }
 
-    public static Alert addAlert(SetMsgError setMsgError) {
+    public static void addAlert(SetMsgError setMsgError) {
             switch (setMsgError) {
                 case EMPTYNAME -> {
                     alert("Por favor, preencha o nome.");
@@ -93,8 +93,6 @@ public class CheckingAccount {
                     alert("Ops! Aconteceu algo inesperado.");
                 }
             }
-
-        return new Alert(Alert.AlertType.ERROR);
     }
 
     static Alert alert(String message) {
