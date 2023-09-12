@@ -36,6 +36,9 @@ public class ViewFactory {
     public void setRoot(Scene scene, String fxml) throws  IOException{
         scene.setRoot(loadFXML(fxml));
     }
+    public AnchorPane listDriverItem () throws  IOException{
+        return (AnchorPane) loadFXML("isUser/driverCell");
+    }
 
     public void showAddDriverPopUp(AnchorPane parent) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass()
@@ -59,6 +62,7 @@ public class ViewFactory {
         FXMLLoader fxmlLoader= new FXMLLoader(App.class.getResource("FXMLs/"+fxml+".fxml"));
         return fxmlLoader.load();
     }
+
     private void createStage(FXMLLoader loader) throws IOException {
         Scene scene = null;
         try {
@@ -73,6 +77,7 @@ public class ViewFactory {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
     }
+
     private void popUp(FXMLLoader loader) throws IOException {
         Scene scene = null;
         try {
@@ -101,7 +106,6 @@ public class ViewFactory {
         AnchorPane.setTopAnchor(topbar, 0.0);
         parent.getChildren().add(topbar);
     }
-
 
     public void createTopbarforLogin (AnchorPane parent) throws IOException {
         HBox topbar = (HBox) loadFXML("Topbar");

@@ -1,6 +1,9 @@
 package com.helpfox.main.Controller.User;
 
+import com.helpfox.main.Model.Driver.DriverDAO;
 import com.helpfox.main.Model.Model;
+import com.helpfox.main.Model.SQLite.SQLiteDriverDAO;
+import com.helpfox.main.Model.SecurityGuard.SecurityGuard;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -13,18 +16,24 @@ import java.util.ResourceBundle;
 
 public class UserVehicleForms implements Initializable {
 
-    @FXML public Button btConfirm;
-    @FXML public Button btCancel;
+    @FXML public Button btConfirmVehicles;
+    @FXML public Button btCancelVehicles;
     @FXML public VBox popupContainer;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        btCancel.setOnAction(event -> {
-            Stage stage = (Stage) btCancel.getScene().getWindow();
+
+        DriverDAO driverDAO = new SQLiteDriverDAO();
+        SecurityGuard guard = new SecurityGuard(driverDAO);
+
+        btCancelVehicles.setOnAction(event -> {
+            Stage stage = (Stage) btCancelVehicles.getScene().getWindow();
             Model.getInstance().getViewFactory().closeStage(stage);
         });
-        btConfirm.setOnAction(event -> {
-            Stage stage = (Stage) btCancel.getScene().getWindow();
+        btConfirmVehicles.setOnAction(event -> {
+            Stage stage = (Stage) btCancelVehicles.getScene().getWindow();
             Model.getInstance().getViewFactory().closeStage(stage);
+            System.out.println(guard.findLast());
+
         });
 
     }

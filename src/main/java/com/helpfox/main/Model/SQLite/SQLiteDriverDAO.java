@@ -3,6 +3,7 @@ package com.helpfox.main.Model.SQLite;
 import com.helpfox.main.Model.Driver.Driver;
 import com.helpfox.main.Model.Driver.DriverDAO;
 import com.helpfox.main.Model.Driver.DriverSearchType;
+import com.helpfox.main.Model.User.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -21,7 +22,8 @@ public class SQLiteDriverDAO implements DriverDAO {
                     "uid INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "nameDriver VARCHAR(60) NOT NULL," +
                     "rg VARCHAR(13) NOT NULL," +
-                    "phone VARCHAR(30))");
+                    "phone VARCHAR(30)" +
+                    ");");
             stm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -143,11 +145,12 @@ public class SQLiteDriverDAO implements DriverDAO {
 
     @Override
     public List<Driver> findAll() {
+        List<Driver> drivers = new ArrayList<>();
         try {
             PreparedStatement stm = connection.prepareStatement("SELECT * FROM Drivers ORDER BY uid ASC");
             ResultSet rs = stm.executeQuery();
 
-            while (rs.next()) {
+            while(rs.next()) {
                 Driver driver = new Driver();
                 driver.setUid(rs.getLong(1));
                 driver.setNameDriver(rs.getString(2));
@@ -162,4 +165,24 @@ public class SQLiteDriverDAO implements DriverDAO {
         }
         return EMPTY;
     }
-}
+    public List<Driver> findLast() {
+        List<Driver> drivers = new ArrayList<>();
+        try {
+            PreparedStatement stm = connection.prepareStatement("SELECT * FROM Drivers ORDER BY uid DESC LIMIT 1");
+            ResultSet rs = stm.executeQuery();
+
+            if(rs.next()) {
+                Driver driver = new Driver();
+                driver.setUid(rs.getLong(1));
+                driver.setNameDriver(rs.getString(2));
+
+                drivers.add(driver);
+            }
+            return drivers;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return EMPTY;
+    }
+    }
+

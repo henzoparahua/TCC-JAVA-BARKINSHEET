@@ -11,11 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SecurityGuard {
-    private final DriverDAO driverDAO;
-    private final VehicleDAO vehicleDAO;
+    private  DriverDAO driverDAO;
+    private  VehicleDAO vehicleDAO;
 
     public SecurityGuard(DriverDAO driverDAO, VehicleDAO vehicleDAO) {
         this.driverDAO = driverDAO;
+        this.vehicleDAO = vehicleDAO;
+    }
+    public SecurityGuard(DriverDAO driverDAO) {
+        this.driverDAO = driverDAO;
+    }
+    public SecurityGuard(VehicleDAO vehicleDAO) {
         this.vehicleDAO = vehicleDAO;
     }
 
@@ -81,6 +87,17 @@ public class SecurityGuard {
         try {
             driverDAO.connect();
             drivers = driverDAO.findAll();
+            driverDAO.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return drivers;
+    }
+    public List<Driver> findLast() {
+        List<Driver> drivers = new ArrayList<>();
+        try {
+            driverDAO.connect();
+            drivers = driverDAO.findLast();
             driverDAO.close();
         } catch (SQLException e) {
             e.printStackTrace();

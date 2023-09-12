@@ -39,8 +39,8 @@
                 </HBox>
                 <HBox alignment="TOP_CENTER" spacing="32.0">
                     <children>
-                        <Button id="Button" fx:id="btConfirm" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-border-insets: 0; -fx-opaque-insets: 0;" text="CONFIRMAR" textAlignment="CENTER" />
-                        <Button id="Button" fx:id="btCancel" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="CANCELAR" textAlignment="CENTER" />
+                        <Button id="Button" fx:id="btConfirmVehicles" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-border-insets: 0; -fx-opaque-insets: 0;" text="CONFIRMAR" textAlignment="CENTER" />
+                        <Button id="Button" fx:id="btCancelVehicles" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="CANCELAR" textAlignment="CENTER" />
                     </children>
                     <VBox.margin>
                         <Insets bottom="38.0" top="8.0" />

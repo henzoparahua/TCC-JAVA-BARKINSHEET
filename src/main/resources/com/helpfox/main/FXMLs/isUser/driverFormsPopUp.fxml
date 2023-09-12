@@ -29,10 +29,10 @@
         </VBox>
         <VBox alignment="TOP_CENTER" spacing="18.0">
             <children>
-                <TextField promptText="Nome" styleClass="txtField" />
-                <TextField promptText="RG" styleClass="txtField" />
-                <TextField promptText="Telefone" styleClass="txtField" />
-                <TextArea id="obstxtField" nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="200.0" promptText="Observação" styleClass="txtField" wrapText="true" />
+                <TextField fx:id="setNome" promptText="Nome" styleClass="txtField" />
+                <TextField fx:id="setRG" promptText="RG" styleClass="txtField" />
+                <TextField fx:id="setTel" promptText="Telefone" styleClass="txtField" />
+                <TextArea fx:id="setObs" id="obstxtField" nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="200.0" promptText="Observação" styleClass="txtField" wrapText="true" />
                 <HBox alignment="TOP_CENTER" spacing="32.0">
                     <children>
                         <Button id="Button" fx:id="btConfirm" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-border-insets: 0; -fx-opaque-insets: 0;" text="CONFIRMAR" textAlignment="CENTER" />

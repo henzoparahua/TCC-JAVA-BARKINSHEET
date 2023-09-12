@@ -1,5 +1,6 @@
 package com.helpfox.main.Controller.User;
 
+import com.helpfox.main.Model.Driver.Driver;
 import com.helpfox.main.Model.Vehicle.Vehicle;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -15,7 +16,7 @@ public class DriverCell implements Initializable {
     public Label txtNome;
     private final Vehicle vehicle;
 
-    public DriverCell (Vehicle vehicle){
+    public DriverCell (Vehicle vehicle ){
         this.vehicle = vehicle;
     }
     @Override
