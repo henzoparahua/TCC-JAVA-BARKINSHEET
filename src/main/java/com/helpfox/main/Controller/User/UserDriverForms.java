@@ -36,14 +36,11 @@ public class UserDriverForms implements Initializable {
     private Button btConfirm;
     @FXML
     private Button btCancel;
+    DriverDAO driverDAO = new SQLiteDriverDAO();
+    SecurityGuard guard = new SecurityGuard(driverDAO);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
-        DriverDAO driverDAO = new SQLiteDriverDAO();
-        SecurityGuard guard = new SecurityGuard(driverDAO);
-
 
         btCancel.setOnAction(event -> {
             Stage stage = (Stage) btCancel.getScene().getWindow();

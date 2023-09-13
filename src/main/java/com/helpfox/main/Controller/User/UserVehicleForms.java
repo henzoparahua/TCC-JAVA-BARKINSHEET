@@ -7,10 +7,8 @@ import com.helpfox.main.Model.SecurityGuard.SecurityGuard;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -19,11 +17,13 @@ public class UserVehicleForms implements Initializable {
     @FXML public Button btConfirmVehicles;
     @FXML public Button btCancelVehicles;
     @FXML public VBox popupContainer;
+
+    DriverDAO driverDAO = new SQLiteDriverDAO();
+    SecurityGuard guard = new SecurityGuard(driverDAO);
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        DriverDAO driverDAO = new SQLiteDriverDAO();
-        SecurityGuard guard = new SecurityGuard(driverDAO);
 
         btCancelVehicles.setOnAction(event -> {
             Stage stage = (Stage) btCancelVehicles.getScene().getWindow();
@@ -36,5 +36,9 @@ public class UserVehicleForms implements Initializable {
 
         });
 
+    }
+
+    private void findLastName(){
+        System.out.println(guard.findLast());
     }
 }
