@@ -18,11 +18,15 @@ public class SQLiteVehicleDAO implements VehicleDAO {
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:vehicles.db");
             PreparedStatement stm = connection.prepareStatement("CREATE TABLE Vehicles (" +
-                    "uid INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "uid INTEGER AUTOINCREMENT," +
+                    "uidDriver INTEGER "+
                     "brand VARCHAR(60)," +
                     "color VARCHAR(60)," +
                     "plate VARCHAR(30) NOT NULL," +
-                    "observation TEXT;");
+                    "observation VARCHAR(60)" +
+                    "CONSTRAINT PK_Vehiles PRIMARY KEY (uid, uidDriver)," +
+                    "CONSTRAINT FK_Vehicles_Drivers FOREIGN KEY (uidDriver) REFERENCES Vehicles (uid)"+
+                    ");");
             stm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -55,11 +59,12 @@ public class SQLiteVehicleDAO implements VehicleDAO {
     public long insertVehicle(Vehicle vehicle) {
         try {
             connect();
-            PreparedStatement stm = connection.prepareStatement("INSERT INTO Vehicles VALUES (?,?,?,?,?)");
-            stm.setString(2, vehicle.getBrand());
-            stm.setString(3, vehicle.getColor());
-            stm.setString(4, vehicle.getPlate());
-            stm.setString(5, vehicle.getObservation());
+            PreparedStatement stm = connection.prepareStatement("INSERT INTO Vehicles VALUES (?,?,?,?,?,?)");
+            stm.setLong(2, vehicle.getUidDriver());
+            stm.setString(3, vehicle.getBrand());
+            stm.setString(4, vehicle.getColor());
+            stm.setString(5, vehicle.getPlate());
+            stm.setString(6, vehicle.getObservation());
             stm.executeUpdate();
 
             ResultSet rs = connection.prepareStatement("SELECT last_insert_rowid()").executeQuery();
@@ -77,12 +82,14 @@ public class SQLiteVehicleDAO implements VehicleDAO {
     public boolean updateVehicle(Vehicle vehicle) {
         try {
             connect();
-            PreparedStatement stm = connection.prepareStatement("UPDATE Vehicles SET brand=?, color=?, plate=?, observation=? WHERE uid=?");
-            stm.setString(1, vehicle.getBrand());
-            stm.setString(2, vehicle.getColor());
-            stm.setString(3, vehicle.getPlate());
-            stm.setString(4, vehicle.getObservation());
-            stm.setLong(5, vehicle.getUid());
+            PreparedStatement stm = connection.prepareStatement("UPDATE Vehicles SET uidDriver=?, brand=?, color=?, plate=?, observation=? WHERE uid=?");
+            stm.setLong(1, vehicle.getUidDriver());
+            stm.setString(2, vehicle.getBrand());
+            stm.setString(3, vehicle.getColor());
+            stm.setString(4, vehicle.getPlate());
+            stm.setString(5, vehicle.getObservation());
+            stm.setLong(6, vehicle.getUid());
+
             stm.executeUpdate();
             return true;
         } catch (SQLException e) {
@@ -114,6 +121,10 @@ public class SQLiteVehicleDAO implements VehicleDAO {
                 whereClause = "uid = ?";
                 valueClause = value.toString();
             }
+            case UIDDRIVER->{
+                whereClause = "uidDriver = ?";
+                valueClause = value.toString();
+            }
             case BRAND -> {
                 whereClause = "brand LIKE ?";
                 valueClause = "%" + value.toString() + "%";
@@ -140,10 +151,11 @@ public class SQLiteVehicleDAO implements VehicleDAO {
             while(rs.next()) {
                 Vehicle vehicle = new Vehicle();
                 vehicle.setUid(rs.getLong(1));
-                vehicle.setBrand(rs.getString(2));
-                vehicle.setColor(rs.getString(3));
-                vehicle.setPlate(rs.getString(4));
-                vehicle.setObservation(rs.getString(5));
+                vehicle.setUidDriver(rs.getLong(2));
+                vehicle.setBrand(rs.getString(3));
+                vehicle.setColor(rs.getString(4));
+                vehicle.setPlate(rs.getString(5));
+                vehicle.setObservation(rs.getString(6));
 
                 vehicles.add(vehicle);
             }
@@ -164,10 +176,11 @@ public class SQLiteVehicleDAO implements VehicleDAO {
             while(rs.next()) {
                 Vehicle vehicle = new Vehicle();
                 vehicle.setUid(rs.getLong(1));
-                vehicle.setBrand(rs.getString(2));
-                vehicle.setColor(rs.getString(3));
-                vehicle.setPlate(rs.getString(4));
-                vehicle.setObservation(rs.getString(5));
+                vehicle.setUidDriver(rs.getLong(2));
+                vehicle.setBrand(rs.getString(3));
+                vehicle.setColor(rs.getString(4));
+                vehicle.setPlate(rs.getString(5));
+                vehicle.setObservation(rs.getString(6));
 
                 vehicles.add(vehicle);
             }

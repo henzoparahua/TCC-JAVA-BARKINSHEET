@@ -21,4 +21,8 @@ module com.helpfox.main {
     opens com.helpfox.main.Model to javafx.fxml;
     exports com.helpfox.main.Model.SQLite;
     opens com.helpfox.main.Model.SQLite to javafx.fxml;
+    exports com.helpfox.main.Model.SecurityGuard;
+    opens com.helpfox.main.Model.SecurityGuard to javafx.fxml;
+    exports com.helpfox.main.Validation;
+    opens com.helpfox.main.Validation to javafx.fxml;
 }

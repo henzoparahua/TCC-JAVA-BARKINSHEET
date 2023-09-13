@@ -30,7 +30,7 @@
                   </Separator>
                </children>
             </VBox>
-            <ListView id="maindashContainer" maxHeight="548.0" maxWidth="1152.0" minHeight="548.0" minWidth="1152.0" prefHeight="548.0" prefWidth="1152.0" />
+            <ListView id="listViewContainer" fx:id="listvEnterVehicles" maxHeight="548.0" maxWidth="1152.0" minHeight="548.0" minWidth="1152.0" prefHeight="548.0" prefWidth="1152.0" />
          </children>
       </VBox>
    </children>

@@ -1,11 +1,16 @@
 package com.helpfox.main.View;
 
 import com.helpfox.main.Controller.User.DriverCell;
+import com.helpfox.main.Model.Model;
 import com.helpfox.main.Model.Vehicle.Vehicle;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
+import javafx.scene.layout.AnchorPane;
 
-public class DriverCellFactory extends ListCell<Vehicle> {
+import java.io.IOException;
+
+public class DriverCellFactory extends ListCell<Vehicle>{
+
     @Override
     protected void updateItem(Vehicle vehicle, boolean empty) {
         super.updateItem(vehicle, empty);
@@ -19,7 +24,7 @@ public class DriverCellFactory extends ListCell<Vehicle> {
             setText(null);
             try {
                 setGraphic(loader.load());
-            }catch (Exception e){
+            } catch (Exception e){
                 e.printStackTrace();
             }
         }

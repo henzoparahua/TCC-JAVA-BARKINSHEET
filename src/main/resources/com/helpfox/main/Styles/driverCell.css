@@ -1,13 +1,14 @@
-#mainContainer{
-    -fx-min-width: 980px;
-    -fx-pref-width: 980px;
-    -fx-max-width: 980px;
+#cellContainer{
+    -fx-min-width: 1150px;
+    -fx-pref-width: 1150px;
+    -fx-max-width: 1150px;
 
     -fx-min-height: 80px;
     -fx-pref-height: 80px;
     -fx-max-height: 80px;
 
     -fx-background-color: #222;
+    -fx-opacity: 1;
 
     -fx-border-color: #545454;
     -fx-border-width: 1px;

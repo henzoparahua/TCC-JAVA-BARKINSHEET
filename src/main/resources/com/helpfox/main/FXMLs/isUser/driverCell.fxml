@@ -6,12 +6,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="mainContainer" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../Styles/driverCell.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="cellContainer"
+            stylesheets="@../../Styles/driverCell.css"
+            xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="idNum" layoutX="35.0" layoutY="32.0" text="Label" textAlignment="CENTER" textOverrun="CLIP" />
-      <Label fx:id="txtNome" layoutX="170.0" layoutY="32.0" text="Label" textAlignment="CENTER" textOverrun="CLIP" />
-      <Label fx:id="txtFirstPlate" layoutX="500.0" layoutY="32.0" text="Label" textAlignment="CENTER" textOverrun="CLIP" />
-      <Label fx:id="txtSecondPlate" layoutX="650.0" layoutY="32.0" text="Label" textAlignment="CENTER" textOverrun="CLIP" />
-      <Label fx:id="txtThirdPlate" layoutX="800.0" layoutY="32.0" text="Label" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="idNum" layoutX="35.0" layoutY="32.0" text="Label" textAlignment="CENTER" textOverrun="CLIP"/>
+      <Label fx:id="txtNome" layoutX="170.0" layoutY="32.0" text="Label" textAlignment="CENTER" textOverrun="CLIP"/>
+      <Label fx:id="txtFirstPlate" layoutX="500.0" layoutY="32.0" text="Label" textAlignment="CENTER"
+             textOverrun="CLIP"/>
+      <Label fx:id="txtSecondPlate" layoutX="650.0" layoutY="32.0" text="Label" textAlignment="CENTER"
+             textOverrun="CLIP"/>
+      <Label fx:id="txtThirdPlate" layoutX="800.0" layoutY="32.0" text="Label" textAlignment="CENTER"
+             textOverrun="CLIP"/>
    </children>
 </AnchorPane>

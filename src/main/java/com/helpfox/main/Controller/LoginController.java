@@ -41,7 +41,7 @@ public class LoginController implements Initializable {
                 Scene scene = btSignin.getScene();
                 Model.getInstance().getViewFactory().setRoot(scene, "SigninGUI");
             } catch (Exception e){
-
+                e.printStackTrace();
             }
         });
 
@@ -53,6 +53,8 @@ public class LoginController implements Initializable {
 
         btLogin.setOnAction(event -> {
             try {
+                String usu = txtUsu.getText();
+                String pswrd = txtPswrd.getText();
                 onLogin();
             } catch (IOException e) {
                 throw new RuntimeException(e);
