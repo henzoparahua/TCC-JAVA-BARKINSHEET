@@ -41,12 +41,12 @@ public class SecurityGuard {
         }
     }
 
-    public void addNewVehicle(String brand, String color, String plate, String observation) {
+    public void addNewVehicle(Long uidDriver, String brand, String color, String plate) {
         Vehicle vehicle = new Vehicle();
+        vehicle.setUidDriver(uidDriver);
         vehicle.setBrand(brand);
         vehicle.setColor(color);
         vehicle.setPlate(plate);
-        vehicle.setObservation(observation);
 
         try {
             vehicleDAO.connect();

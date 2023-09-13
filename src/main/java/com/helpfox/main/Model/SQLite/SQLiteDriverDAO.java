@@ -19,11 +19,10 @@ public class SQLiteDriverDAO implements DriverDAO {
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:drivers.db");
             PreparedStatement stm = connection.prepareStatement("CREATE TABLE Drivers (" +
-                    "uid INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "uid INTEGER PRIMARY KEY AUTOINCREMENT ," +
                     "nameDriver VARCHAR(60) NOT NULL," +
                     "rg VARCHAR(13) NOT NULL," +
-                    "phone VARCHAR(30)" +
-                    ");");
+                    "phone VARCHAR(30));");
             stm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
