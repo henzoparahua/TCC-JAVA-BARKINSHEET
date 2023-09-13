@@ -36,8 +36,8 @@ public class ViewFactory {
     public void setRoot(Scene scene, String fxml) throws  IOException{
         scene.setRoot(loadFXML(fxml));
     }
-    public AnchorPane listDriverItem () throws  IOException{
-        return (AnchorPane) loadFXML("isUser/driverCell");
+    public FXMLLoader listDriverItem () throws  IOException{
+        return new FXMLLoader(getClass().getResource("/com/helpfox/main/FXMLs/isUser/driverCell.fxml"));
     }
 
     public void showAddDriverPopUp(AnchorPane parent) throws IOException{

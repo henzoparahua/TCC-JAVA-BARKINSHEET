@@ -12,26 +12,26 @@ public class SQLiteVehicleDAO implements VehicleDAO {
     private Connection connection;
     private static final List<Vehicle> EMPTY = new ArrayList<>();
     private static final ArrayList<Vehicle> vehicles = new ArrayList<>();
-
     @Override
     public void setup() throws SQLException {
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:vehicles.db");
             PreparedStatement stm = connection.prepareStatement("CREATE TABLE Vehicles (" +
-                    "uid INTEGER AUTOINCREMENT," +
-                    "uidDriver INTEGER "+
-                    "brand VARCHAR(60)," +
-                    "color VARCHAR(60)," +
-                    "plate VARCHAR(30) NOT NULL," +
-                    "observation VARCHAR(60)" +
-                    "CONSTRAINT PK_Vehiles PRIMARY KEY (uid, uidDriver)," +
-                    "CONSTRAINT FK_Vehicles_Drivers FOREIGN KEY (uidDriver) REFERENCES Vehicles (uid)"+
-                    ");");
+                    "uid INTEGER," +
+                    "uidDriver INTEGER, " +
+                    "brand VARCHAR(60), " +
+                    "color VARCHAR(60), " +
+                    "plate VARCHAR(30) NOT NULL, " +
+                    "observation VARCHAR(60), " +
+                    "CONSTRAINT PK_Vehicles PRIMARY KEY (uid, uidDriver), " +
+                    "CONSTRAINT FK_Vehicles_Drivers FOREIGN KEY (uidDriver) REFERENCES Drivers (uid)); "+
+                    "ALTER TABLE Vehicles MODIFY uid INTERGER NOT NULL AUTO_INCREMENT;");
             stm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
 
     @Override
     public void connect() throws SQLException {

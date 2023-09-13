@@ -29,12 +29,12 @@
         </VBox>
         <VBox alignment="TOP_CENTER" spacing="18.0">
             <children>
-                <Label styleClass="txtField" text="Dono do Veiculo" />
-                <TextField promptText="Placa" styleClass="txtField" />
+                <Label fx:id="setName" styleClass="txtField" text="Dono do Veiculo" />
+                <TextField fx:id="setPlate" promptText="Placa" styleClass="txtField" />
                 <HBox alignment="CENTER" spacing="12.0">
                     <children>
-                        <TextField id="hboxtxtField" promptText="Marca" styleClass="txtField" />
-                        <TextField id="hboxtxtField" promptText="Cor" styleClass="txtField" />
+                        <TextField fx:id="setBrand" id="hboxtxtField" promptText="Marca" styleClass="txtField" />
+                        <TextField fx:id="setColor" id="hboxtxtField" promptText="Cor" styleClass="txtField" />
                     </children>
                 </HBox>
                 <HBox alignment="TOP_CENTER" spacing="32.0">
