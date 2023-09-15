@@ -8,6 +8,7 @@ module com.helpfox.main {
     opens com.helpfox.main to javafx.fxml;
     opens com.helpfox.main.Controller to javafx.fxml;
     opens com.helpfox.main.Controller.User to javafx.fxml;
+    opens com.helpfox.main.View to javafx.fxml;
     exports com.helpfox.main;
     exports com.helpfox.main.Controller;
     exports com.helpfox.main.Controller.Admin;

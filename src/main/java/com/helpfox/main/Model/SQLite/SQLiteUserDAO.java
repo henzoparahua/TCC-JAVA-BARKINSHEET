@@ -17,11 +17,11 @@ public class SQLiteUserDAO implements UserDAO {
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:users.db");
             PreparedStatement stm = connection.prepareStatement("CREATE TABLE Users (" +
-                    "uid INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "uid INTEGER PRIMARY KEY AUTOINCREMENT ," +
                     "name VARCHAR(60) NOT NULL," +
                     "email VARCHAR(60) NOT NULL," +
                     "password VARCHAR(30) NOT NULL," +
-                    "isAdmin BOOLEAN)");
+                    "isAdmin BOOLEAN);");
             stm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
