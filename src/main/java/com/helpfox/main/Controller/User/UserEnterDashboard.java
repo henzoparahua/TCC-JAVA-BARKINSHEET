@@ -37,23 +37,26 @@ public class UserEnterDashboard implements Initializable {
 
 
         ObservableList<VehicleItem> vehicleListItems = FXCollections.observableArrayList();
-
-        vehicleListItems.addAll(
-                new VehicleItem(guard.findLast().get(0).getNameDriver())
-        );
-
+        vehicleListItems.add(new VehicleItem(guard.findLast().get(0).getNameDriver()));
         listView.setItems(vehicleListItems);
         listView.setCellFactory(vehicleListView -> new VehicleCell());
+
         btAddDriver.setOnAction(event -> {
+            DriverDAO driverDAO = new SQLiteDriverDAO();
+            VehicleDAO vehicleDAO = new SQLiteVehicleDAO();
+            SecurityGuard guard = new SecurityGuard(driverDAO, vehicleDAO);
             try {
                 onNewDriver();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+            vehicleListItems.add(new VehicleItem(guard.findLast().get(0).getNameDriver()));
         });
     }
     private void onNewDriver () throws IOException {
         Model.getInstance().getViewFactory().showAddDriverPopUp(mainContainer);
 
     }
+
+
 }
