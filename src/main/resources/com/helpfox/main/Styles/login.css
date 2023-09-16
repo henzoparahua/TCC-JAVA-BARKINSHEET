@@ -88,4 +88,5 @@
 #forgotPswrd:hover{
     -fx-opacity: 1;
     -fx-font-weight: bold;
+    -fx-cursor: hand;
 }

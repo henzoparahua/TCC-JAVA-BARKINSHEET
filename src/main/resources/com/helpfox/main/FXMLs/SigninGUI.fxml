@@ -24,19 +24,7 @@
                <StackPane.margin>
                   <Insets top="25.0" />
                </StackPane.margin></ImageView>
-            <VBox id="cadastrarVbox" alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="79.0" prefWidth="485.0" spacing="16.0" StackPane.alignment="BOTTOM_CENTER">
-               <children>
-                  <Label text="Já tem uma conta?" />
-                  <Button id="forgotPswrd" fx:id="btnLogin" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Entrar" />
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <StackPane.margin>
-                  <Insets bottom="50.0" />
-               </StackPane.margin>
-            </VBox>
-            <VBox id="loginVBoxContainer" alignment="CENTER" minHeight="678.0" prefHeight="678.0" prefWidth="100.0" spacing="16.0" stylesheets="@../Styles/login.css">
+            <VBox id="loginVBoxContainer" alignment="CENTER" minHeight="591.0" prefHeight="591.0" prefWidth="100.0" spacing="16.0" stylesheets="@../Styles/login.css">
                <children>
                   <Label text="CADASTRAR">
                      <VBox.margin>
@@ -51,6 +39,8 @@
                         <Insets top="12.0" />
                      </VBox.margin>
                   </Button>
+                  <Label text="Já tem uma conta?" />
+                  <Button id="loginBack" fx:id="btnLogin" mnemonicParsing="false" onMouseClicked="#onLoginGUI" prefHeight="25.0" prefWidth="80.0" text="Entrar" textAlignment="CENTER" />
                </children>
             </VBox>
          </children>
