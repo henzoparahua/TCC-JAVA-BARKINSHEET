@@ -1,5 +1,6 @@
 package com.helpfox.main.Controller.User;
 
+import com.helpfox.main.Model.Driver.Driver;
 import com.helpfox.main.Model.Driver.DriverDAO;
 import com.helpfox.main.Model.Model;
 import com.helpfox.main.Model.SQLite.SQLiteDriverDAO;
@@ -17,6 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class UserEnterDashboard implements Initializable {
@@ -33,8 +35,14 @@ public class UserEnterDashboard implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        listView.setItems(vehicleListItems);
+        listView.setCellFactory(vehicleListView -> new VehicleCell());
 
-        createViewList();
+        try {
+            createViewList();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         btAddDriver.setOnAction(event -> {
             try {
@@ -49,14 +57,19 @@ public class UserEnterDashboard implements Initializable {
         Model.getInstance().getViewFactory().showAddDriverPopUp(mainContainer);
     }
 
-    private void createViewList(){
-        DriverDAO driverDAO = new SQLiteDriverDAO();
-        VehicleDAO vehicleDAO = new SQLiteVehicleDAO();
-        SecurityGuard guard = new SecurityGuard(driverDAO, vehicleDAO);
+    private void createViewList() throws SQLException {
 
-        vehicleListItems.add(new VehicleItem(guard.findLast().get(0).getNameDriver()));
-        listView.setItems(vehicleListItems);
-        listView.setCellFactory(vehicleListView -> new VehicleCell());
+        DriverDAO driverDAO = new SQLiteDriverDAO();
+        SecurityGuard guard = new SecurityGuard(driverDAO);
+
+        int name = (int) guard.findLast().get(0).getUid();
+
+        for (int i = 0; i < name; i++){
+
+            DriverDAO driverDAO1 = new SQLiteDriverDAO();
+            SecurityGuard guard1 = new SecurityGuard(driverDAO1);
+            vehicleListItems.add(new VehicleItem(guard1.findAllDrivers().get(i).getNameDriver()));
+        }
     }
 
     private void newListCell () {
