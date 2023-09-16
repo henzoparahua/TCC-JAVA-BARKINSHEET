@@ -16,12 +16,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class UserEnterDashboard implements Initializable {
-    DriverDAO driverDAO = new SQLiteDriverDAO();
-    VehicleDAO vehicleDAO = new SQLiteVehicleDAO();
-    SecurityGuard guard = new SecurityGuard(driverDAO, vehicleDAO);
 
     @FXML
     private ListView<VehicleItem> listView;
@@ -31,31 +29,48 @@ public class UserEnterDashboard implements Initializable {
     private TextField searchInput;
     @FXML
     private Button btAddDriver;
+    ObservableList<VehicleItem> vehicleListItems = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-
-        ObservableList<VehicleItem> vehicleListItems = FXCollections.observableArrayList();
-        vehicleListItems.add(new VehicleItem(guard.findLast().get(0).getNameDriver()));
-        listView.setItems(vehicleListItems);
-        listView.setCellFactory(vehicleListView -> new VehicleCell());
+        createViewList();
 
         btAddDriver.setOnAction(event -> {
-            DriverDAO driverDAO = new SQLiteDriverDAO();
-            VehicleDAO vehicleDAO = new SQLiteVehicleDAO();
-            SecurityGuard guard = new SecurityGuard(driverDAO, vehicleDAO);
             try {
                 onNewDriver();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            vehicleListItems.add(new VehicleItem(guard.findLast().get(0).getNameDriver()));
+            newListCell();
         });
     }
     private void onNewDriver () throws IOException {
         Model.getInstance().getViewFactory().showAddDriverPopUp(mainContainer);
+    }
 
+    private void createViewList(){
+        DriverDAO driverDAO = new SQLiteDriverDAO();
+        VehicleDAO vehicleDAO = new SQLiteVehicleDAO();
+        SecurityGuard guard = new SecurityGuard(driverDAO, vehicleDAO);
+
+        vehicleListItems.add(new VehicleItem(guard.findLast().get(0).getNameDriver()));
+        listView.setItems(vehicleListItems);
+        listView.setCellFactory(vehicleListView -> new VehicleCell());
+    }
+
+    private void newListCell () {
+        DriverDAO driverDAO = new SQLiteDriverDAO();
+        VehicleDAO vehicleDAO = new SQLiteVehicleDAO();
+        SecurityGuard guard = new SecurityGuard(driverDAO, vehicleDAO);
+
+        String name = guard.findLast().get(0).getNameDriver();
+        String name1 = vehicleListItems.get(vehicleListItems.size() - 1).getName();
+        if (!name.equals(name1)) {
+            DriverDAO driverDAO1 = new SQLiteDriverDAO();
+            SecurityGuard guard1 = new SecurityGuard(driverDAO1, vehicleDAO);
+            vehicleListItems.add(new VehicleItem(guard1.findLast().get(0).getNameDriver()));
+        }
     }
 
 

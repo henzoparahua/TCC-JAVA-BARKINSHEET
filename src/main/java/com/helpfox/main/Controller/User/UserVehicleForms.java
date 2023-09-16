@@ -48,21 +48,27 @@ public class UserVehicleForms implements Initializable {
         }catch (Exception e) {
             throw new RuntimeException(e);
         }
-        btCancelVehicles.setOnAction(event -> {
-            Stage stage = (Stage) btCancelVehicles.getScene().getWindow();
-            Model.getInstance().getViewFactory().closeStage(stage);
-        });
+
         btConfirmVehicles.setOnAction(event -> {
+
+            if (!setPlate.getText().isEmpty() && !setBrand.getText().isEmpty() && !setColor.getText().isEmpty()){
             try {
                 guard.addNewVehicle(lastDriver.getUid(), setBrand.getText(),
-                        setColor.getText(), setPlate.getText() );
+                        setColor.getText(), setPlate.getText());
             }catch (Exception e) {
                 throw new RuntimeException(e);
             }
 
             Stage stage = (Stage) btCancelVehicles.getScene().getWindow();
             Model.getInstance().getViewFactory().closeStage(stage);
+            }else {
+                System.out.println("Preencha os dados novamente, imbecil!");
+            }
+        });
 
+        btCancelVehicles.setOnAction(event -> {
+            Stage stage = (Stage) btCancelVehicles.getScene().getWindow();
+            Model.getInstance().getViewFactory().closeStage(stage);
         });
 
     }

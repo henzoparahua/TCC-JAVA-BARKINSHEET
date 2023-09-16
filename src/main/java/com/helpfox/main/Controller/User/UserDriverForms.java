@@ -48,18 +48,19 @@ public class UserDriverForms implements Initializable {
         });
 
         btConfirm.setOnAction(event -> {
+            if (!setNome.getText().isEmpty() && !setTel.getText().isEmpty()){
+
             Stage stage = (Stage) btConfirm.getScene().getWindow();
-
             guard.addNewDriver(setNome.getText(), setRG.getText(), setTel.getText());
-
             try {
                 Model.getInstance().getViewFactory().showAddVehiclePopUp(popupContainer);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
             Model.getInstance().getViewFactory().closeStage(stage);
-
+            } else {
+                System.out.println("Preencha a tabela direito, animal!");
+            }
         });
     }
 }
