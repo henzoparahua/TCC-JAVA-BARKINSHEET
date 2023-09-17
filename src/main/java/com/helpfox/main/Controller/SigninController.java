@@ -53,7 +53,9 @@ public class SigninController implements Initializable {
 
                         model.addNewUser(txtName.getText(), txtEmail.getText(), txtPswd.getText(), model.createRoleForNewUser(selectedValue));
 
-                        onSignin();
+                        Stage stage = (Stage) btnSignin.getScene().getWindow();
+                        Model.getInstance().getViewFactory().closeStage(stage);
+                        Model.getInstance().getViewFactory().showClientWindow();
                     } catch (IOException e) {
                         addAlert(SetMsgError.LOGINERROR);
                         throw new RuntimeException(e);
@@ -94,9 +96,6 @@ public class SigninController implements Initializable {
     }
 
     private void onSignin() throws IOException {
-        Stage stage = (Stage) btnSignin.getScene().getWindow();
-        Model.getInstance().getViewFactory().closeStage(stage);
-        Model.getInstance().getViewFactory().showClientWindow();
     }
 
     public void onLoginGUI(MouseEvent mouseEvent) {

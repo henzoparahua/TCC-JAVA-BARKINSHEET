@@ -17,15 +17,13 @@ public class SQLiteVehicleDAO implements VehicleDAO {
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:barkin.db");
             PreparedStatement stm = connection.prepareStatement("CREATE TABLE Vehicles (" +
-                    "uid INTEGER," +
+                    "uid INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "uidDriver INTEGER, " +
                     "brand VARCHAR(60), " +
                     "color VARCHAR(60), " +
                     "plate VARCHAR(30) NOT NULL, " +
                     "observation VARCHAR(60), " +
-                    "CONSTRAINT PK_Vehicles PRIMARY KEY (uid, uidDriver), " +
-                    "CONSTRAINT FK_Vehicles_Drivers FOREIGN KEY (uidDriver) REFERENCES Drivers (uid)); "+
-                    "ALTER TABLE Vehicles MODIFY uid INTERGER NOT NULL AUTO_INCREMENT;");
+                    "CONSTRAINT FK_Vehicles_Drivers FOREIGN KEY (uidDriver) REFERENCES Drivers (uid)); ");
             stm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

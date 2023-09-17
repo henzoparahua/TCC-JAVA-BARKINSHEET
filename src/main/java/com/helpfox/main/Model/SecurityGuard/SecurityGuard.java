@@ -104,6 +104,17 @@ public class SecurityGuard {
         }
         return drivers;
     }
+    public List<Driver> findProperly() {
+        List<Driver> drivers = new ArrayList<>();
+        try {
+            driverDAO.connect();
+            drivers = driverDAO.findProperly();
+            driverDAO.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return drivers;
+    }
     public List<Vehicle> findAllVehicles(){
         return vehicleDAO.findAll();
     }
