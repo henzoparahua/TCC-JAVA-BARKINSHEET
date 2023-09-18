@@ -209,5 +209,21 @@ public class SQLiteDriverDAO implements DriverDAO {
         }
         return EMPTY;
     }
+    public Integer countProperly(int uid) {
+        try {
+            PreparedStatement stm = connection.prepareStatement("SELECT COUNT(*) FROM Vehicles WHERE uidDriver = ?");
+            stm.setInt(1, uid);
+            ResultSet rs = stm.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
+
+
+}
 

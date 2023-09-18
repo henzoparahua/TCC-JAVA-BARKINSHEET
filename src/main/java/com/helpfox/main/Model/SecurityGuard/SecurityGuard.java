@@ -115,6 +115,17 @@ public class SecurityGuard {
         }
         return drivers;
     }
+    public Integer countProperly(int i){
+        Integer count = null;
+        try {
+            driverDAO.connect();
+            count = driverDAO.countProperly(i);
+            driverDAO.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return count;
+    }
     public List<Vehicle> findAllVehicles(){
         return vehicleDAO.findAll();
     }

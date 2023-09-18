@@ -13,4 +13,5 @@ public interface DriverDAO extends DAO {
     public List<Driver> findAll();
     public List<Driver> findLast();
     public List<Driver> findProperly(int i);
+    public Integer countProperly(int i);
 }
