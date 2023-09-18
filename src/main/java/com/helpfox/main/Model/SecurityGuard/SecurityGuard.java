@@ -104,11 +104,11 @@ public class SecurityGuard {
         }
         return drivers;
     }
-    public List<Driver> findProperly() {
+    public List<Driver> findProperly(int i) {
         List<Driver> drivers = new ArrayList<>();
         try {
             driverDAO.connect();
-            drivers = driverDAO.findProperly();
+            drivers = driverDAO.findProperly(i);
             driverDAO.close();
         } catch (SQLException e) {
             e.printStackTrace();

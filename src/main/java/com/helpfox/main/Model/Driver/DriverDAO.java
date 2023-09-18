@@ -12,5 +12,5 @@ public interface DriverDAO extends DAO {
     public List<Driver> findByProp(DriverSearchType searchType, Object value);
     public List<Driver> findAll();
     public List<Driver> findLast();
-    public List<Driver> findProperly();
+    public List<Driver> findProperly(int i);
 }

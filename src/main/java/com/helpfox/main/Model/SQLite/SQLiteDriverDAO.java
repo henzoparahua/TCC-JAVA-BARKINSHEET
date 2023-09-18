@@ -183,22 +183,23 @@ public class SQLiteDriverDAO implements DriverDAO {
         }
         return EMPTY;
     }
-    public List<Driver> findProperly() {
+    public List<Driver> findProperly(int i) {
         List<Driver> drivers = new ArrayList<>();
         try {
             PreparedStatement stm = connection.prepareStatement(" SELECT " +
-                    " Drivers.nameDriver, Vehicles.brand, Vehicles.color, Vehicles.plate " +
+                    " Drivers.uid, Drivers.nameDriver, Vehicles.brand, Vehicles.color, Vehicles.plate " +
                     " FROM Drivers JOIN VEHICLES " +
                     " ON DRIVERS.UID = VEHICLES.UIDDRIVER " +
-                    " ORDER BY Drivers.uid DESC LIMIT 1; ");
+                    " WHERE DRIVERS.UID LIKE '"+i+"';");
             ResultSet rs = stm.executeQuery();
 
             if(rs.next()) {
                 Driver driver = new Driver();
-                driver.setNameDriver(rs.getString(1));
-                driver.setBrand(rs.getString(2));
-                driver.setColor(rs.getString(3));
-                driver.setPlate(rs.getString(4));
+                driver.setUid(rs.getLong(1));
+                driver.setNameDriver(rs.getString(2));
+                driver.setBrand(rs.getString(3));
+                driver.setColor(rs.getString(4));
+                driver.setPlate(rs.getString(5));
 
                 drivers.add(driver);
             }
