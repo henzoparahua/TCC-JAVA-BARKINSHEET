@@ -47,13 +47,14 @@ public class UserEnterDashboard implements Initializable {
         btAddDriver.setOnAction(event -> {
             try {
                 onNewDriver();
-            } catch (IOException e) {
+                createViewList();
+             } catch (IOException | SQLException e) {
                 throw new RuntimeException(e);
             }
-            newListCell();
         });
     }
-    private void onNewDriver () throws IOException {
+
+    private void onNewDriver() throws IOException {
         Model.getInstance().getViewFactory().showAddDriverPopUp(mainContainer);
     }
 
@@ -61,38 +62,51 @@ public class UserEnterDashboard implements Initializable {
         DriverDAO driverDAO = new SQLiteDriverDAO();
         VehicleDAO vehicleDAO = new SQLiteVehicleDAO();
         SecurityGuard guard = new SecurityGuard(driverDAO, vehicleDAO);
-        if (!guard.findLast().isEmpty()){
+        if (!guard.findLast().isEmpty()) {
             forListView();
         }
     }
+
     private void forListView() {
         DriverDAO driverDAO = new SQLiteDriverDAO();
-        SecurityGuard guard = new SecurityGuard(driverDAO);
+        VehicleDAO vehicleDAO = new SQLiteVehicleDAO();
+        SecurityGuard guard = new SecurityGuard(driverDAO, vehicleDAO);
 
         List<Driver> lastDrivers = guard.findLast();
         if (!lastDrivers.isEmpty()) {
-            int name = (int) lastDrivers.get(0).getUid();
+            DriverDAO driverDAO1 = new SQLiteDriverDAO();
+            VehicleDAO vehicleDAO1 = new SQLiteVehicleDAO();
+            SecurityGuard guard1 = new SecurityGuard(driverDAO1, vehicleDAO1);
+            int name = (int) guard1.findLast().get(0).getUid();
             if (name != 0) {
-                for (int i = 1; i < name; i++) {
-                    vehicleListItems.add(new VehicleItem(getNameDrivers(i), getPlates(i, 0), getPlates(i, 1), getPlates(i, 2)));
+                if (vehicleListItems.isEmpty()){
+                    int list = 0;
+                    for (int i = list; i < name; i++) {
+                        vehicleListItems.add(new VehicleItem(getNameDrivers(i), getPlates(i+1, 0), getPlates(i+1, 1), getPlates(i+1, 2)));
+                    }
+                } else {
+                    for (int i = 1; i < name; i++) {
+                        vehicleListItems.add(new VehicleItem(getNameDrivers(i), getPlates(i+1, 0), getPlates(i+1, 1), getPlates(i+1, 2)));
+                    }
                 }
             }
         }
     }
 
 
-    private void newListCell () {
+    private void newListCell() {
         DriverDAO driverDAO = new SQLiteDriverDAO();
         VehicleDAO vehicleDAO = new SQLiteVehicleDAO();
         SecurityGuard guard = new SecurityGuard(driverDAO, vehicleDAO);
 
-        String name = guard.findLast().get(0).getNameDriver();
-        if (vehicleListItems.isEmpty()){
-                DriverDAO driverDAO1 = new SQLiteDriverDAO();
-                SecurityGuard guard1 = new SecurityGuard(driverDAO1, vehicleDAO);
 
-                long uidDriver = guard1.findLast().get(0).getUid();
-                vehicleListItems.add(new VehicleItem(getNameDrivers((int) uidDriver), getPlates((int) uidDriver, 0), getPlates((int) uidDriver, 1), getPlates((int) uidDriver, 2)));
+        String name = guard.findLast().get(0).getNameDriver();
+        if (vehicleListItems.isEmpty()) {
+            DriverDAO driverDAO1 = new SQLiteDriverDAO();
+            SecurityGuard guard1 = new SecurityGuard(driverDAO1, vehicleDAO);
+
+            long uidDriver = guard1.findLast().get(0).getUid();
+            vehicleListItems.add(new VehicleItem(getNameDrivers((int) uidDriver), getPlates((int) uidDriver, 0), getPlates((int) uidDriver, 1), getPlates((int) uidDriver, 2)));
         } else {
             String name1 = vehicleListItems.get(vehicleListItems.size() - 1).getName();
 
@@ -124,18 +138,19 @@ public class UserEnterDashboard implements Initializable {
         }
     }
 
-    private Integer Count(int i){
+    private Integer Count(int i) {
         DriverDAO driverDAO = new SQLiteDriverDAO();
         VehicleDAO vehicleDAO = new SQLiteVehicleDAO();
         SecurityGuard guard = new SecurityGuard(driverDAO, vehicleDAO);
         return guard.countProperly(i);
 
     }
-    private String getNameDrivers(int i){
+
+    private String getNameDrivers(int i) {
         DriverDAO driverDAO = new SQLiteDriverDAO();
         VehicleDAO vehicleDAO = new SQLiteVehicleDAO();
         SecurityGuard guard = new SecurityGuard(driverDAO, vehicleDAO);
-        return guard.findProperly(i).get(0).getNameDriver();
+        return guard.findAllDrivers().get(i).getNameDriver();
     }
 }
 
