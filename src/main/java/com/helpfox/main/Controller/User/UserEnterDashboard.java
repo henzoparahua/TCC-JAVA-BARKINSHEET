@@ -116,8 +116,9 @@ public class UserEnterDashboard implements Initializable {
             DriverDAO driverDAO1 = new SQLiteDriverDAO();
             SecurityGuard guard1 = new SecurityGuard(driverDAO1, vehicleDAO);
 
-            int uidDriver = (int) guard1.findLast().get(0).getUid();
-            vehicleListItems.add(new VehicleItem(getNameDrivers(uidDriver),
+            List<Driver> name1 = guard1.findLast();
+            int uidDriver = (int) name1.get(0).getUid();
+            vehicleListItems.add(new VehicleItem(name1.get(0).getNameDriver(),
                     getPlates(uidDriver, 0), getPlates(uidDriver, 1), getPlates(uidDriver, 2)));
         } else {
             if (!vehicleListItems.get(vehicleListItems.size() - 1).getName().equals(name)) {
