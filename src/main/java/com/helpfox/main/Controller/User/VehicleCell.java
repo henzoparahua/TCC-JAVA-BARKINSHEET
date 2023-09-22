@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -30,12 +31,18 @@ public class VehicleCell extends ListCell<VehicleItem> {
         if (b || vehicleItem == null){
             setText(null);
             setGraphic(null);
+            setOnMouseClicked(null);
         }else{
             if (fxmlLoader == null){
 
                 FXMLLoader loader = null;
                 try {
                     loader = Model.getInstance().getViewFactory().listDriverItem();
+                    setOnMouseClicked(event -> {
+                        if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 1) {
+                            System.out.println("Clicked on driver: " + vehicleItem.getName());
+                        }
+                    });
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

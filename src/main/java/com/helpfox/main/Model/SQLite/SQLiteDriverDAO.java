@@ -211,7 +211,8 @@ public class SQLiteDriverDAO implements DriverDAO {
     }
     public Integer countProperly(int uid) {
         try {
-            PreparedStatement stm = connection.prepareStatement("SELECT COUNT(*) FROM Vehicles WHERE uidDriver = ?");
+            PreparedStatement stm = connection.prepareStatement(
+                    "SELECT COUNT(*) FROM Vehicles WHERE uidDriver = ?");
             stm.setInt(1, uid);
             ResultSet rs = stm.executeQuery();
 
