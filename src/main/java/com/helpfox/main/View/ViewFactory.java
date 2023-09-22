@@ -41,21 +41,11 @@ public class ViewFactory {
         return new FXMLLoader(getClass().getResource("/com/helpfox/main/FXMLs/isUser/driverCell.fxml"));
     }
 
-    public void showAddDriverPopUp(AnchorPane parent) throws IOException{
+    public void showAddDriverPopUp() throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass()
                 .getResource("/com/helpfox/main/FXMLs/isUser/driverFormsPopUp.fxml"));
         popUp(loader);
     }
-    public void showDriverEnterPopUp(int i) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass()
-                .getResource("/com/helpfox/main/FXMLs/isUser/driverInfo.fxml"));
-        DriverInfo driverInfo = new DriverInfo();
-        loader.setController(driverInfo);
-
-        popUp(loader);
-
-    }
-
     public void showAddVehiclePopUp(VBox parent) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass()
                 .getResource("/com/helpfox/main/FXMLs/isUser/vehicleFormsPopUp.fxml"));

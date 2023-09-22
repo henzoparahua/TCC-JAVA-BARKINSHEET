@@ -55,7 +55,7 @@ public class UserEnterDashboard implements Initializable {
     }
 
     private void onNewDriver() throws IOException {
-        Model.getInstance().getViewFactory().showAddDriverPopUp(mainContainer);
+        Model.getInstance().getViewFactory().showAddDriverPopUp();
     }
 
     private void createViewList() throws SQLException {
