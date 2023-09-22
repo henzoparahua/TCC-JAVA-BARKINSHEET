@@ -40,7 +40,11 @@ public class VehicleCell extends ListCell<VehicleItem> {
                     loader = Model.getInstance().getViewFactory().listDriverItem();
                     setOnMouseClicked(event -> {
                         if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 1) {
-                            System.out.println("Clicked on driver: " + vehicleItem.getName());
+                            try {
+                                Model.getInstance().getViewFactory().showDriverEnterPopUp(vehicleItem.getVehicleuid());
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
                         }
                     });
                 } catch (IOException e) {

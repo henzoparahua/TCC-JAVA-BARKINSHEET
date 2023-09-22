@@ -3,26 +3,39 @@ package com.helpfox.main.Model.SecurityGuard;
 import com.helpfox.main.Model.Driver.Driver;
 import com.helpfox.main.Model.Driver.DriverDAO;
 import com.helpfox.main.Model.Driver.DriverSearchType;
+import com.helpfox.main.Model.Gateway.Gateway;
+import com.helpfox.main.Model.Gateway.GatewayDAO;
 import com.helpfox.main.Model.Vehicle.Vehicle;
 import com.helpfox.main.Model.Vehicle.VehicleDAO;
 
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class SecurityGuard {
     private  DriverDAO driverDAO;
     private  VehicleDAO vehicleDAO;
+    private GatewayDAO gatewayDAO;
 
     public SecurityGuard(DriverDAO driverDAO, VehicleDAO vehicleDAO) {
         this.driverDAO = driverDAO;
         this.vehicleDAO = vehicleDAO;
+    }
+    public SecurityGuard(DriverDAO driverDAO, VehicleDAO vehicleDAO, GatewayDAO gatewayDAO) {
+        this.driverDAO = driverDAO;
+        this.vehicleDAO = vehicleDAO;
+        this.gatewayDAO = gatewayDAO;
     }
     public SecurityGuard(DriverDAO driverDAO) {
         this.driverDAO = driverDAO;
     }
     public SecurityGuard(VehicleDAO vehicleDAO) {
         this.vehicleDAO = vehicleDAO;
+    }
+    public SecurityGuard(GatewayDAO gatewayDAO) {
+        this.gatewayDAO = gatewayDAO;
     }
 
     public void addNewDriver(String nameDriver, String rg, String phone) {
@@ -38,6 +51,33 @@ public class SecurityGuard {
             driverDAO.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+    public void enterGateway(Long uidDriver, Date entryDate, Time entryTime){
+        Gateway gateway = new Gateway();
+        gateway.setUidVehicle(uidDriver);
+        gateway.setEntry_date(entryDate);
+        gateway.setEntry_time(entryTime);
+
+        try {
+            gatewayDAO.connect();
+            gatewayDAO.insertGateway(gateway);
+            gatewayDAO.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void exitGateway(Long uid, Time exitTime){
+        Gateway gateway = new Gateway();
+        gateway.setUid(uid);
+        gateway.setExit_time(exitTime);
+
+        try{
+            gatewayDAO.connect();
+            gatewayDAO.updateGateway(gateway);
+            gatewayDAO.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 

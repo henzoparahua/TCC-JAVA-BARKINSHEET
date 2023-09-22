@@ -117,6 +117,5 @@
     -fx-font-weight: bold;
     -fx-text-fill: #fff;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 10, 0, 0, 0);
-
-    }
+}
 

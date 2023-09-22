@@ -1,6 +1,7 @@
 package com.helpfox.main.View;
 
 import com.helpfox.main.App;
+import com.helpfox.main.Controller.User.DriverInfo;
 import com.helpfox.main.Controller.User.UserController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -44,6 +45,15 @@ public class ViewFactory {
         FXMLLoader loader = new FXMLLoader(getClass()
                 .getResource("/com/helpfox/main/FXMLs/isUser/driverFormsPopUp.fxml"));
         popUp(loader);
+    }
+    public void showDriverEnterPopUp(int i) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass()
+                .getResource("/com/helpfox/main/FXMLs/isUser/driverInfo.fxml"));
+        DriverInfo driverInfo = new DriverInfo();
+        loader.setController(driverInfo);
+
+        popUp(loader);
+
     }
 
     public void showAddVehiclePopUp(VBox parent) throws IOException{
@@ -112,6 +122,15 @@ public class ViewFactory {
         AnchorPane.setRightAnchor(topbar, 0.0);
         AnchorPane.setTopAnchor(topbar, 0.0);
         parent.getChildren().add(topbar);
+        topbar.getChildren().remove(1);
+        topbar.getChildren().remove(0);
+    }
+    public void createPopUp (AnchorPane parent) throws IOException {
+        HBox topbar = (HBox) loadFXML("Topbar");
+        AnchorPane.setRightAnchor(topbar, 0.0);
+        AnchorPane.setTopAnchor(topbar, 0.0);
+        parent.getChildren().add(topbar);
+        topbar.getChildren().remove(2);
         topbar.getChildren().remove(1);
         topbar.getChildren().remove(0);
     }

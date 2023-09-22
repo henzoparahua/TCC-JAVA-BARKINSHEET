@@ -39,7 +39,6 @@ public class SigninController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         UserDAO userDAO = new SQLiteUserDAO();
-
         Office model = new Office(userDAO);
 
         choiceBox.getItems().setAll(SetAdminType.values());
