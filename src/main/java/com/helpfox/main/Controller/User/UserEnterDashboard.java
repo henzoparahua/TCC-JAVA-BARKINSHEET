@@ -10,11 +10,17 @@ import com.helpfox.main.Model.Vehicle.VehicleDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -50,6 +56,30 @@ public class UserEnterDashboard implements Initializable {
                 newListCell();
              } catch (IOException e) {
                 throw new RuntimeException(e);
+            }
+        });
+
+        listView.setOnMouseClicked(event ->{
+            if (event.getTarget() instanceof ListCell<vehicle>) {
+                VehicleItem selectedItem = listView.getSelectionModel().getSelectedItem();
+
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/helpfox/main/FXMLs/isUser/driverInfo.fxml"));
+                    Parent root = loader.load();
+                    DriverInfo driverInfo = loader.getController();
+
+                    driverInfo.name.setText(selectedItem.getName());
+                    driverInfo.radioPlate_one.setText(selectedItem.getPlate_one());
+                    driverInfo.radioPlate_two.setText(selectedItem.getPlate_two());
+                    driverInfo.radioPlate_three.setText(selectedItem.getPlate_three());
+
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root));
+                    stage.toFront();
+                    stage.showAndWait();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

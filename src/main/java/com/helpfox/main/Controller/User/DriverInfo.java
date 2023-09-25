@@ -12,13 +12,18 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class DriverInfo {
-    @FXML public RadioButton radioPlate_three;
-    @FXML public RadioButton radioPlate_one;
-    @FXML public RadioButton radioPlate_two;
-    @FXML public AnchorPane anchorMain;
+public class DriverInfo implements Initializable{
+    @FXML
+    public Label name;
+    @FXML
+    public RadioButton radioPlate_one;
 
-    @FXML public Label name;  // Ensure that 'name' is properly annotated with @FXML
+    @FXML
+    public RadioButton radioPlate_two;
+    @FXML
+    public RadioButton radioPlate_three;
+    @FXML
+    public AnchorPane anchorMain;
 
     public void getPlate(ActionEvent event){
         if (radioPlate_one.isSelected()){
@@ -30,5 +35,13 @@ public class DriverInfo {
         } else {
             System.out.println("nothing happens");
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        name.setText(null);
+        radioPlate_one.setText(null);
+        radioPlate_two.setText(null);
+        radioPlate_three.setText(null);
     }
 }
