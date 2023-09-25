@@ -60,7 +60,7 @@ public class UserEnterDashboard implements Initializable {
         });
 
         listView.setOnMouseClicked(event ->{
-            if (event.getTarget() instanceof ListCell<vehicle>) {
+            if (event.getTarget() instanceof ListCell) {
                 VehicleItem selectedItem = listView.getSelectionModel().getSelectedItem();
 
                 try {
@@ -68,10 +68,24 @@ public class UserEnterDashboard implements Initializable {
                     Parent root = loader.load();
                     DriverInfo driverInfo = loader.getController();
 
+
                     driverInfo.name.setText(selectedItem.getName());
                     driverInfo.radioPlate_one.setText(selectedItem.getPlate_one());
                     driverInfo.radioPlate_two.setText(selectedItem.getPlate_two());
                     driverInfo.radioPlate_three.setText(selectedItem.getPlate_three());
+
+                    if (selectedItem.getPlate_one().isBlank()){
+                        driverInfo.radioPlate_one.setVisible(false);
+                        driverInfo.radioPlate_one.setDisable(true);
+                    }
+                    if (selectedItem.getPlate_two().isBlank()){
+                        driverInfo.radioPlate_two.setVisible(false);
+                        driverInfo.radioPlate_two.setDisable(true);
+                    }
+                    if (selectedItem.getPlate_three().isBlank()){
+                        driverInfo.radioPlate_three.setVisible(false);
+                        driverInfo.radioPlate_three.setDisable(true);
+                    }
 
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root));
