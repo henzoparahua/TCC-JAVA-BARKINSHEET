@@ -48,22 +48,5 @@ public class App extends Application {
 
     public static void main(String[] args) throws SQLException {
         launch(args);
-
-//      The code below start a local database test, if there is any error, comment start function and/or launch(args)
-
-//        UserDAO userDAO = new SqliteUserDAO();
-
-//        userDAO.setup();
-
-//        Office model = new Office(userDAO);
-//
-//        model.addNewUser("José", "jose@exemplo.com", "pass", true);
-//        model.addNewUser("Rodrigo", "rodrigo@exemplo.com", "123", false);
-//        model.addNewUser("John Due", "john@due.com", "456", false);
-
-//        System.out.println(userDAO.findAll());
-//
-//        userDAO.close();
-//        System.exit(0);
     }
 }

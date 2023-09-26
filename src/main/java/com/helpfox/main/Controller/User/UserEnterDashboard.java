@@ -62,12 +62,10 @@ public class UserEnterDashboard implements Initializable {
         listView.setOnMouseClicked(event ->{
             if (event.getTarget() instanceof ListCell) {
                 VehicleItem selectedItem = listView.getSelectionModel().getSelectedItem();
-
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/helpfox/main/FXMLs/isUser/driverInfo.fxml"));
                     Parent root = loader.load();
                     DriverInfo driverInfo = loader.getController();
-
 
                     driverInfo.name.setText(selectedItem.getName());
                     driverInfo.radioPlate_one.setText(selectedItem.getPlate_one());
@@ -86,7 +84,6 @@ public class UserEnterDashboard implements Initializable {
                         driverInfo.radioPlate_three.setVisible(false);
                         driverInfo.radioPlate_three.setDisable(true);
                     }
-
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root));
                     stage.toFront();
@@ -110,33 +107,6 @@ public class UserEnterDashboard implements Initializable {
             forListView();
         }
     }
-/*
-     private void forListView() {
-        DriverDAO driverDAO = new SQLiteDriverDAO();
-        VehicleDAO vehicleDAO = new SQLiteVehicleDAO();
-        SecurityGuard guard = new SecurityGuard(driverDAO, vehicleDAO);
-
-        List<Driver> lastDrivers = guard.findLast();
-        if (!lastDrivers.isEmpty()) {
-            DriverDAO driverDAO1 = new SQLiteDriverDAO();
-            VehicleDAO vehicleDAO1 = new SQLiteVehicleDAO();
-            SecurityGuard guard1 = new SecurityGuard(driverDAO1, vehicleDAO1);
-            int name = (int) guard1.findLast().get(0).getUid();
-            if (name != 0) {
-                if (vehicleListItems.isEmpty()){
-                    int list = 0;
-                    for (int i = list; i < name; i++) {
-                        vehicleListItems.add(new VehicleItem(getNameDrivers(i), getPlates(i+1, 0), getPlates(i+1, 1), getPlates(i+1, 2)));
-                    }
-                } else {
-                    for (int i = 1; i < name; i++) {
-                        vehicleListItems.add(new VehicleItem(getNameDrivers(i), getPlates(i+1, 0), getPlates(i+1, 1), getPlates(i+1, 2)));
-                    }
-                }
-            }
-        }
-    }
-*/
     private void forListView(){
         DriverDAO driverDAO = new SQLiteDriverDAO();
         VehicleDAO vehicleDAO = new SQLiteVehicleDAO();
@@ -148,7 +118,6 @@ public class UserEnterDashboard implements Initializable {
             i++;
         }
     }
-
 
     private void newListCell() {
         DriverDAO driverDAO = new SQLiteDriverDAO();
@@ -175,8 +144,6 @@ public class UserEnterDashboard implements Initializable {
             }
         }
     }
-
-
 
     private String getPlates(int i, int e) {
         Integer y = Count(i);

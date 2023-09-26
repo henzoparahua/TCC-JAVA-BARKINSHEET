@@ -1,12 +1,13 @@
 package com.helpfox.main.Model.Gateway;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Gateway {
     private long uid;
     private long uidVehicle;
-    private Date entry_date;
+    private LocalDate entry_date;
     private Time entry_time;
     private Time exit_time;
     private String nameDriver;
@@ -28,13 +29,8 @@ public class Gateway {
         this.uidVehicle = uidVehicle;
     }
 
-    public java.sql.Date getEntry_date() {
-        return (java.sql.Date) entry_date;
-    }
 
-    public void setEntry_date(Date entry_date) {
-        this.entry_date = entry_date;
-    }
+
 
     public Time getEntry_time() {
         return entry_time;
@@ -66,5 +62,13 @@ public class Gateway {
 
     public void setPlateDriver(String plateDriver) {
         this.plateDriver = plateDriver;
+    }
+
+    public LocalDate getEntry_date() {
+        return entry_date;
+    }
+
+    public void setEntry_date(LocalDate entry_date) {
+        this.entry_date = entry_date;
     }
 }

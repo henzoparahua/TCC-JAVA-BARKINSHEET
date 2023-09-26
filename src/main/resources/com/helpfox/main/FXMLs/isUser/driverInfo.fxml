@@ -20,7 +20,7 @@
          </RadioButton>
          <RadioButton fx:id="radioPlate_two" mnemonicParsing="false" text="plate#2" toggleGroup="$getPlates"/>
          <RadioButton fx:id="radioPlate_three" mnemonicParsing="false" text="plate#3" toggleGroup="$getPlates"/>
-         <Button mnemonicParsing="false" text="Button"/>
+         <Button mnemonicParsing="false" text="Button" fx:id="btGatewayVehicle"/>
       </children>
    </VBox>
 </AnchorPane>

@@ -7,11 +7,12 @@ import com.helpfox.main.Model.Gateway.Gateway;
 import com.helpfox.main.Model.Gateway.GatewayDAO;
 import com.helpfox.main.Model.Vehicle.Vehicle;
 import com.helpfox.main.Model.Vehicle.VehicleDAO;
+import com.helpfox.main.Model.Vehicle.VehicleSearchType;
 
 import java.sql.SQLException;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class SecurityGuard {
@@ -53,13 +54,20 @@ public class SecurityGuard {
             e.printStackTrace();
         }
     }
-    public void enterGateway(Long uidDriver, Date entryDate, Time entryTime){
+
+    public void enterGateway(String plate, LocalDate entryDate, Time entryTime){
         Gateway gateway = new Gateway();
-        gateway.setUidVehicle(uidDriver);
-        gateway.setEntry_date(entryDate);
-        gateway.setEntry_time(entryTime);
 
         try {
+            vehicleDAO.connect();
+            List<Vehicle> vehicle = vehicleDAO.findByProp(VehicleSearchType.PLATE, plate);
+            Long uidDriver = vehicle.get(0).getUidDriver();
+            vehicleDAO.close();
+
+            gateway.setUidVehicle(uidDriver);
+            gateway.setEntry_date(entryDate);
+            gateway.setEntry_time(entryTime);
+
             gatewayDAO.connect();
             gatewayDAO.insertGateway(gateway);
             gatewayDAO.close();

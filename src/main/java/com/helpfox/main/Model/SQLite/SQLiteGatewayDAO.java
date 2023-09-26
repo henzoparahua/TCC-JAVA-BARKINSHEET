@@ -17,7 +17,7 @@ public class SQLiteGatewayDAO implements GatewayDAO {
         try{
             connection = DriverManager.getConnection("jdbc:sqlite:barkin.db");
             PreparedStatement stm = connection.prepareStatement("CREATE TABLE Gateway (" +
-                    "    uid INT PRIMARY KEY AUTO_INCREMENT, " +
+                    "    uid INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "    uidVehicle INT NOT NULL, " +
                     "    entry_date DATE NOT NULL, " +
                     "    entry_time TIME NOT NULL, " +
@@ -53,11 +53,10 @@ public class SQLiteGatewayDAO implements GatewayDAO {
     @Override
     public long insertGateway(Gateway gateway) {
         try{
-            PreparedStatement stm = connection.prepareStatement("INSERT INTO Gateway VALUES (?,?,?,?)");
+            PreparedStatement stm = connection.prepareStatement("INSERT INTO Gateway VALUES (?,?,?,?,?)");
             stm.setLong(2, gateway.getUidVehicle());
-            stm.setDate(3, gateway.getEntry_date());
+            stm.setDate(3, Date.valueOf(gateway.getEntry_date()));
             stm.setTime(4, gateway.getEntry_time());
-            stm.setTime(5, gateway.getExit_time());
             stm.executeUpdate();
 
             ResultSet rs = connection.prepareStatement("SELECT last_insert_rowid()").executeQuery();
@@ -76,7 +75,7 @@ public class SQLiteGatewayDAO implements GatewayDAO {
         try{
             PreparedStatement stm = connection.prepareStatement("UPDATE Gateway SET uidVehicle=?, entry_date=?, entry_time=?, exit_time=?");
             stm.setLong(2, gateway.getUidVehicle());
-            stm.setDate(3,gateway.getEntry_date());
+            stm.setDate(3, Date.valueOf(gateway.getEntry_date()));
             stm.setTime(4,gateway.getEntry_time());
             stm.setTime(5,gateway.getExit_time());
             stm.executeUpdate();
