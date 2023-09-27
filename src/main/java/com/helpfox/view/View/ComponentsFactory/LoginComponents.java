@@ -22,7 +22,7 @@ public class LoginComponents {
     public VBox verticalBox(){
         VBox vBox= new VBox();
         Label label = new Label();
-        Image image = new Image(getClass().getResourceAsStream("../../main/Images/barkinsheetlogo.png"));
+        Image image = new Image(getClass().getResourceAsStream("/com/helpfox/main/Images/barkinsheetlogo-min.png"));
         ImageView imageView = new ImageView(image);
 
         label.setText("Barkin");
