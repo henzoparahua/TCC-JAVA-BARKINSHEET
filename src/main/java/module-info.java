@@ -14,8 +14,10 @@ module com.helpfox.main {
     exports com.helpfox.main.Controller;
     exports com.helpfox.main.Controller.Admin;
     exports com.helpfox.main.Controller.User;
-    exports com.helpfox.main.View;
 */
+    opens com.helpfox.main.Styles.DarkTheme;
+    opens com.helpfox.main.Images;
+
     /* Model Related Exports
     exports com.helpfox.main.Model.User;
     opens com.helpfox.main.Model.User to javafx.fxml;

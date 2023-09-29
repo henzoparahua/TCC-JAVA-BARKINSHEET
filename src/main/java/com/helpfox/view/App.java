@@ -1,6 +1,6 @@
 package com.helpfox.view;
 
-import com.helpfox.view.View.LoginFactory;
+import com.helpfox.view.View.ViewFactory;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
@@ -12,7 +12,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        LoginFactory.getInstance().showLogin();
+        ViewFactory.getInstance().showLogin(stage);
     }
 
     public static void main(String[] args) throws SQLException {

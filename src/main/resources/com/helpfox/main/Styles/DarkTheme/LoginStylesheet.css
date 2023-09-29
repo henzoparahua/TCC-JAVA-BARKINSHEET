@@ -1,0 +1,25 @@
+#loginContainer{
+    -fx-min-width: 485px;
+    -fx-max-width: 485px;
+    -fx-pref-width: 485px;
+
+    -fx-min-height: 680px;
+    -fx-pref-height: 680px;
+    -fx-max-height: 680px;
+
+    -fx-background-color: #bbb;
+    -fx-background-image: url(../../Images/line-two.png);
+
+}
+#mainContainer{
+    -fx-min-height: 680px;
+    -fx-pref-height: 680px;
+    -fx-max-height: 680px;
+
+    -fx-min-width: 1152px;
+    -fx-pref-width: 1152px;
+    -fx-max-width: 1152px;
+
+    -fx-background-image: url(../../Images/line.png);
+    -fx-background-color: #111;
+}

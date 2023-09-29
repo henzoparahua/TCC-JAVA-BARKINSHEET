@@ -1,30 +1,39 @@
 package com.helpfox.view.View.ComponentsFactory;
 
-import com.helpfox.view.View.LoginFactory;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 
-public class LoginComponents {
-    private static LoginComponents contentLogin;
-    public static synchronized LoginComponents getInstance(){
+public class LoginFactory {
+    private static LoginFactory contentLogin;
+    public static synchronized LoginFactory getInstance(){
         if (contentLogin == null){
-            contentLogin = new LoginComponents();
+            contentLogin = new LoginFactory();
         }
         return contentLogin;
     }
+    public void showLogin(StackPane root){
+        VBox vBoxLogin = LoginFactory.getInstance().verticalBox();
+        root.setAlignment(vBoxLogin, Pos.TOP_LEFT);
+        root.getStylesheets().addAll("/com/helpfox/main/Styles/DarkTheme/LoginStylesheet.css");
+        root.setId("mainContainer");
+        root.getChildren().add(vBoxLogin);
+    }
     public VBox verticalBox(){
         VBox vBox= new VBox();
+        vBox.setId("loginContainer");
         Label label = new Label();
         Image image = new Image(getClass().getResourceAsStream("/com/helpfox/main/Images/barkinsheetlogo-min.png"));
         ImageView imageView = new ImageView(image);
-
+        vBox.setAlignment(Pos.TOP_CENTER);
         label.setText("Barkin");
         label.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
 
