@@ -55,8 +55,8 @@ public class SQLiteGatewayDAO implements GatewayDAO {
         try{
             PreparedStatement stm = connection.prepareStatement("INSERT INTO Gateway VALUES (?,?,?,?,?)");
             stm.setLong(2, gateway.getUidVehicle());
-            stm.setDate(3, Date.valueOf(gateway.getEntry_date()));
-            stm.setTime(4, gateway.getEntry_time());
+            stm.setString(3, gateway.getEntry_date());
+            stm.setString(4, gateway.getEntry_time());
             stm.executeUpdate();
 
             ResultSet rs = connection.prepareStatement("SELECT last_insert_rowid()").executeQuery();
@@ -76,8 +76,8 @@ public class SQLiteGatewayDAO implements GatewayDAO {
             PreparedStatement stm = connection.prepareStatement("UPDATE Gateway SET uidVehicle=?, entry_date=?, entry_time=?, exit_time=?");
             stm.setLong(2, gateway.getUidVehicle());
             stm.setDate(3, Date.valueOf(gateway.getEntry_date()));
-            stm.setTime(4,gateway.getEntry_time());
-            stm.setTime(5,gateway.getExit_time());
+            stm.setString(4,gateway.getEntry_time());
+            stm.setString(5,gateway.getExit_time());
             stm.executeUpdate();
             return true;
         } catch (SQLException e){

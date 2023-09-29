@@ -11,7 +11,6 @@ import com.helpfox.main.Model.Vehicle.VehicleSearchType;
 
 import java.sql.SQLException;
 import java.sql.Time;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,7 +54,7 @@ public class SecurityGuard {
         }
     }
 
-    public void enterGateway(String plate, LocalDate entryDate, Time entryTime){
+    public void enterGateway(String plate, String entryDate, String entryTime){
         Gateway gateway = new Gateway();
 
         try {
@@ -75,7 +74,7 @@ public class SecurityGuard {
             throw new RuntimeException(e);
         }
     }
-    public void exitGateway(Long uid, Time exitTime){
+    public void exitGateway(Long uid, String exitTime){
         Gateway gateway = new Gateway();
         gateway.setUid(uid);
         gateway.setExit_time(exitTime);

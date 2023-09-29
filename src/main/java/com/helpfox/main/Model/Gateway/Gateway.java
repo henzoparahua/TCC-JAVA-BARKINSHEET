@@ -7,9 +7,9 @@ import java.util.Date;
 public class Gateway {
     private long uid;
     private long uidVehicle;
-    private LocalDate entry_date;
-    private Time entry_time;
-    private Time exit_time;
+    private String entry_date;
+    private String entry_time;
+    private String exit_time;
     private String nameDriver;
     private String plateDriver;
 
@@ -29,25 +29,6 @@ public class Gateway {
         this.uidVehicle = uidVehicle;
     }
 
-
-
-
-    public Time getEntry_time() {
-        return entry_time;
-    }
-
-    public void setEntry_time(Time entry_time) {
-        this.entry_time = entry_time;
-    }
-
-    public Time getExit_time() {
-        return exit_time;
-    }
-
-    public void setExit_time(Time exit_time) {
-        this.exit_time = exit_time;
-    }
-
     public String getNameDriver() {
         return nameDriver;
     }
@@ -64,11 +45,27 @@ public class Gateway {
         this.plateDriver = plateDriver;
     }
 
-    public LocalDate getEntry_date() {
+    public String getExit_time() {
+        return exit_time;
+    }
+
+    public void setExit_time(String exit_time) {
+        this.exit_time = exit_time;
+    }
+
+    public String getEntry_time() {
+        return entry_time;
+    }
+
+    public void setEntry_time(String entry_time) {
+        this.entry_time = entry_time;
+    }
+
+    public String getEntry_date() {
         return entry_date;
     }
 
-    public void setEntry_date(LocalDate entry_date) {
+    public void setEntry_date(String entry_date) {
         this.entry_date = entry_date;
     }
 }
