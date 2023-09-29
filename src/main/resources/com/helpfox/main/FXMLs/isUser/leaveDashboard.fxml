@@ -7,13 +7,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="maindashContainer" prefHeight="607.0" prefWidth="1152.0" stylesheets="@../../Styles/dashboard.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.helpfox.main.Controller.User.UserEnterDashboard">
+<AnchorPane id="maindashContainer" prefHeight="607.0" prefWidth="1152.0" stylesheets="@../../Styles/dashboard.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.helpfox.main.Controller.User.UserLeaveDashboard">
     <children>
         <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <VBox id="hbarContainer" prefHeight="200.0" prefWidth="100.0">
+                <VBox id="hbarContainer" alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
                     <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                             <children>
                                 <TextField fx:id="searchInput" promptText="Digite o que deseja procurar" />
                             </children>
@@ -25,7 +25,7 @@
                         </Separator>
                     </children>
                 </VBox>
-                <ListView id="maindashContainer" maxHeight="548.0" maxWidth="1152.0" minHeight="548.0" minWidth="1152.0" prefHeight="548.0" prefWidth="1152.0" />
+                <ListView id="listViewContainer" fx:id="listView" maxHeight="548.0" maxWidth="1152.0" minHeight="548.0" minWidth="1152.0" prefHeight="548.0" prefWidth="1152.0" />
             </children>
         </VBox>
     </children>

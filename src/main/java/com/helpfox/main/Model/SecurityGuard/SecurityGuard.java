@@ -5,12 +5,14 @@ import com.helpfox.main.Model.Driver.DriverDAO;
 import com.helpfox.main.Model.Driver.DriverSearchType;
 import com.helpfox.main.Model.Gateway.Gateway;
 import com.helpfox.main.Model.Gateway.GatewayDAO;
+import com.helpfox.main.Model.Gateway.GatewaySearchType;
 import com.helpfox.main.Model.Vehicle.Vehicle;
 import com.helpfox.main.Model.Vehicle.VehicleDAO;
 import com.helpfox.main.Model.Vehicle.VehicleSearchType;
 
 import java.sql.SQLException;
 import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,6 +105,31 @@ public class SecurityGuard {
             e.printStackTrace();
         }
     }
+
+    public List<Gateway>findEmptyGateways(long uid){
+        try {
+            gatewayDAO.connect();
+            List<Gateway> gateways = gatewayDAO.findGatewayByProp(GatewaySearchType.UID, uid);
+            if (gateways.get(0).getExit_time() == null){
+                return gateways;
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public Integer countEmptyGateways(){
+            Integer count = null;
+            try {
+                gatewayDAO.connect();
+                count = gatewayDAO.countOpenGateways();
+                gatewayDAO.close();
+            } catch (SQLException e){
+                e.printStackTrace();
+            }
+            return count;
+        }
 
     public void checkPermanence(long uid, SetCheckType setCheckType) {
         try {

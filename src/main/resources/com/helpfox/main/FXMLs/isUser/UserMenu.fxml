@@ -21,7 +21,9 @@
                       </Tab>
                         <Tab closable="false" text="REGISTRAR SAIDA">
                            <content>
-                              <AnchorPane id="mainChildContainer" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@../../Styles/tabchild.css" />
+                              <AnchorPane id="mainChildContainer" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@../../Styles/tabchild.css">
+                               <fx:include source="leaveDashboard.fxml"/>
+                               </AnchorPane>
                            </content>
                         </Tab>
                     </tabs>

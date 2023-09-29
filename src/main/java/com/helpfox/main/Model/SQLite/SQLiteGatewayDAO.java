@@ -2,6 +2,8 @@ package com.helpfox.main.Model.SQLite;
 
 import com.helpfox.main.Model.Gateway.Gateway;
 import com.helpfox.main.Model.Gateway.GatewayDAO;
+import com.helpfox.main.Model.Gateway.GatewaySearchType;
+import com.helpfox.main.Model.Vehicle.Vehicle;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -84,6 +86,70 @@ public class SQLiteGatewayDAO implements GatewayDAO {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public List<Gateway> findGatewayByProp(GatewaySearchType searchType, Object value) {
+        String whereClause = "";
+        String valueClause = "";
+        switch (searchType) {
+            case UID -> {
+                whereClause = "uid = ?";
+                valueClause = value.toString();
+            }
+            case UIDDRIVER->{
+                whereClause = "uidDriver = ?";
+                valueClause = value.toString();
+            }
+            case ENTRYDATE -> {
+                whereClause = "brand LIKE ?";
+                valueClause = "%" + value.toString() + "%";
+            }
+            case ENTRYTIME -> {
+                whereClause = "color LIKE ?";
+                valueClause = "%" + value.toString() + "%";
+            }
+            case EXITTIME -> {
+                whereClause = "plate LIKE ?";
+                valueClause = "%" + value.toString() + "%";
+            }
+            default -> System.out.println("Unknown search type");
+        }
+        try {
+            connect();
+            PreparedStatement stm = connection.prepareStatement("SELECT * FROM Gateway WHERE " + whereClause);
+            stm.setString(1, valueClause);
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()) {
+                Gateway gateway = new Gateway();
+                gateway.setUid(rs.getLong(1));
+                gateway.setUidVehicle(rs.getLong(2));
+                gateway.setEntry_date(rs.getString(3));
+                gateway.setEntry_time(rs.getString(4));
+                gateway.setExit_time(rs.getString(5));
+
+                gateways.add(gateway);
+            }
+            return gateways;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return EMPTY;
+    }
+
+    @Override
+    public Integer countOpenGateways() {
+        try {
+            PreparedStatement stm = connection.prepareStatement(
+                    "SELECT COUNT(*) FROM Gateway WHERE exit_time IS NULL");
+            ResultSet rs = stm.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
