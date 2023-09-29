@@ -2,7 +2,7 @@ package com.helpfox.main.Controller.User;
 
 public class VehicleItem {
 
-    private static int vehicleId = 1;
+    private static int vehicleId = 0;
     private int vehicleuid;
     private String name;
     private String Plate_one;
