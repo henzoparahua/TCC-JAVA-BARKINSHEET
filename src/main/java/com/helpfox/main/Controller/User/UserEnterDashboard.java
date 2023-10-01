@@ -2,10 +2,14 @@ package com.helpfox.main.Controller.User;
 
 import com.helpfox.main.Model.Driver.Driver;
 import com.helpfox.main.Model.Driver.DriverDAO;
+import com.helpfox.main.Model.Gateway.Gateway;
+import com.helpfox.main.Model.Gateway.GatewayDAO;
 import com.helpfox.main.Model.Model;
 import com.helpfox.main.Model.SQLite.SQLiteDriverDAO;
+import com.helpfox.main.Model.SQLite.SQLiteGatewayDAO;
 import com.helpfox.main.Model.SQLite.SQLiteVehicleDAO;
 import com.helpfox.main.Model.SecurityGuard.SecurityGuard;
+import com.helpfox.main.Model.Vehicle.Vehicle;
 import com.helpfox.main.Model.Vehicle.VehicleDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,156 +30,126 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class UserEnterDashboard implements Initializable {
 
     @FXML
-    private ListView<VehicleItem> listView;
-    @FXML
-    private AnchorPane mainContainer;
-    @FXML
-    private TextField searchInput;
+    private ListView<VehicleItem> listViewone;
     @FXML
     private Button btAddDriver;
-    ObservableList<VehicleItem> vehicleListItems = FXCollections.observableArrayList();
+    ObservableList<VehicleItem> driverListItems = FXCollections.observableArrayList();
+    private int y = 0;
+
+    public UserEnterDashboard() {
+        startUpdatingListy();
+    }
+
+    public synchronized int getValue() {
+        return y;
+    }
+
+    public synchronized void setValue(int newValue) {
+        this.y = newValue;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        listView.setItems(vehicleListItems);
-        listView.setCellFactory(vehicleListView -> new VehicleCell());
-
-        try {
-            createViewList();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
+        listViewone.setItems(driverListItems);
+        listViewone.setCellFactory(driverListItems -> new VehicleCell());
         btAddDriver.setOnAction(event -> {
             try {
-                onNewDriver();
-                newListCell();
-             } catch (IOException e) {
+                Model.getInstance().getViewFactory().showAddDriverPopUp();
+            } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         });
+    }
 
-        listView.setOnMouseClicked(event ->{
-            if (event.getTarget() instanceof ListCell) {
-                VehicleItem selectedItem = listView.getSelectionModel().getSelectedItem();
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/helpfox/main/FXMLs/isUser/driverInfo.fxml"));
-                    Parent root = loader.load();
-                    DriverInfo driverInfo = loader.getController();
+    private void startUpdatingListy() {
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
 
-                    driverInfo.name.setText(selectedItem.getName());
-                    driverInfo.radioPlate_one.setText(selectedItem.getPlate_one());
-                    driverInfo.radioPlate_two.setText(selectedItem.getPlate_two());
-                    driverInfo.radioPlate_three.setText(selectedItem.getPlate_three());
+        executor.scheduleAtFixedRate(() -> {
+            y = forListView(y);
+        }, 0, 2, TimeUnit.SECONDS);
+        executor.scheduleAtFixedRate(() -> {
+            checkList();
+        }, 0, 5, TimeUnit.SECONDS);
+    }
 
-                    if (selectedItem.getPlate_one().isBlank()){
-                        driverInfo.radioPlate_one.setVisible(false);
-                        driverInfo.radioPlate_one.setDisable(true);
-                    }
-                    if (selectedItem.getPlate_two().isBlank()){
-                        driverInfo.radioPlate_two.setVisible(false);
-                        driverInfo.radioPlate_two.setDisable(true);
-                    }
-                    if (selectedItem.getPlate_three().isBlank()){
-                        driverInfo.radioPlate_three.setVisible(false);
-                        driverInfo.radioPlate_three.setDisable(true);
-                    }
-                    Stage stage = new Stage();
-                    stage.setScene(new Scene(root));
-                    stage.toFront();
-                    stage.showAndWait();
-                } catch (Exception e) {
-                    e.printStackTrace();
+    private int forListView(int y) {
+        try {
+            DriverDAO driverDAO = new SQLiteDriverDAO();
+            SecurityGuard guard = new SecurityGuard(driverDAO);
+
+            int lng = guard.countProperly();
+            while (y < lng) {
+                Driver driver = getDriver(y);
+                List<Vehicle> vehicles = getVehicle(Math.toIntExact(driver.getUid()));
+                String plate1 = " ";
+                String plate2 = " ";
+                String plate3 = " ";
+                if (!vehicles.isEmpty()){
+                    plate1 = vehicles.get(0).getPlate();
+                }
+                if (vehicles.size() >= 2){
+                    plate2 = vehicles.get(1).getPlate();
+                }
+                if (vehicles.size() >= 3){
+                    plate3 = vehicles.get(2).getPlate();
+                }
+                driverListItems.add(new VehicleItem(
+                        driver.getNameDriver(),
+                        plate1,
+                        plate2,
+                        plate3));
+                y++;
+                vehicles.clear();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return y;
+    }
+
+    private List<Vehicle> getVehicle(int i) {
+        VehicleDAO vehicleDAO = new SQLiteVehicleDAO();
+        SecurityGuard guard = new SecurityGuard(vehicleDAO);
+        return guard.findVehicle(i);
+    }
+    private Driver getDriver (int i){
+        DriverDAO driverDAO = new SQLiteDriverDAO();
+        SecurityGuard guard = new SecurityGuard(driverDAO);
+        return guard.findAllDrivers().get(i);
+    }
+    private void checkList(){
+        int i = 0;
+        while (i != driverListItems.size()){
+            Driver driver = getDriver(i);
+            List<Vehicle> vehicles = getVehicle(Math.toIntExact(driver.getUid()));
+            if (!vehicles.isEmpty()){
+                if (!driverListItems.get(i+1).getPlate_one().equals(vehicles.get(0).getPlate())){
+                    driverListItems.get(i+1).setPlate_one(vehicles.get(0).getPlate());
+                    listViewone.refresh();
                 }
             }
-        });
-    }
+            if (vehicles.size() >= 2){
+                if (!driverListItems.get(i+1).getPlate_two().equals(vehicles.get(1).getPlate())){
+                    driverListItems.get(i+1).setPlate_two(vehicles.get(1).getPlate());
+                    listViewone.refresh();
+                }
+            }
+            if (vehicles.size() >= 3){
+                if (!driverListItems.get(i+1).getPlate_three().equals(vehicles.get(2).getPlate())){
+                    driverListItems.get(i+1).setPlate_three(vehicles.get(2).getPlate());
+                    listViewone.refresh();
+                }
+            }
 
-    private void onNewDriver() throws IOException {
-        Model.getInstance().getViewFactory().showAddDriverPopUp();
-    }
-
-    private void createViewList() throws SQLException {
-        DriverDAO driverDAO = new SQLiteDriverDAO();
-        VehicleDAO vehicleDAO = new SQLiteVehicleDAO();
-        SecurityGuard guard = new SecurityGuard(driverDAO, vehicleDAO);
-        if (!guard.findLast().isEmpty()) {
-            forListView();
-        }
-    }
-    private void forListView(){
-        DriverDAO driverDAO = new SQLiteDriverDAO();
-        VehicleDAO vehicleDAO = new SQLiteVehicleDAO();
-        SecurityGuard guard = new SecurityGuard(driverDAO, vehicleDAO);
-        int i = 0;
-        long lng = guard.findLast().get(0).getUid();
-        while (i < lng){
-            vehicleListItems.add(new VehicleItem(getNameDrivers(i), getPlates(i+1, 0), getPlates(i+1, 1), getPlates(i+1, 2)));
+            vehicles.clear();
             i++;
         }
     }
-
-    private void newListCell() {
-        DriverDAO driverDAO = new SQLiteDriverDAO();
-        VehicleDAO vehicleDAO = new SQLiteVehicleDAO();
-        SecurityGuard guard = new SecurityGuard(driverDAO, vehicleDAO);
-        String name = guard.findLast().get(0).getNameDriver();
-
-        if (vehicleListItems.isEmpty()) {
-            DriverDAO driverDAO1 = new SQLiteDriverDAO();
-            SecurityGuard guard1 = new SecurityGuard(driverDAO1, vehicleDAO);
-
-            List<Driver> name1 = guard1.findLast();
-            int uidDriver = (int) name1.get(0).getUid();
-            vehicleListItems.add(new VehicleItem(name1.get(0).getNameDriver(),
-                    getPlates(uidDriver, 0), getPlates(uidDriver, 1), getPlates(uidDriver, 2)));
-        } else {
-            if (!vehicleListItems.get(vehicleListItems.size() - 1).getName().equals(name)) {
-                DriverDAO driverDAO1 = new SQLiteDriverDAO();
-                SecurityGuard guard1 = new SecurityGuard(driverDAO1, vehicleDAO);
-                List<Driver> driver = guard1.findLast();
-                int uiddriver = (int) driver.get(0).getUid();
-                vehicleListItems.add(new VehicleItem(driver.get(0).getNameDriver(),
-                        getPlates(uiddriver, 0), getPlates(uiddriver, 1), getPlates(uiddriver, 2)));
-            }
-        }
-    }
-
-    private String getPlates(int i, int e) {
-        Integer y = Count(i);
-        if (y == null || e >= y) {
-            return " ";
-        } else {
-            DriverDAO driverDAO1 = new SQLiteDriverDAO();
-            VehicleDAO vehicleDAO1 = new SQLiteVehicleDAO();
-            SecurityGuard guard1 = new SecurityGuard(driverDAO1, vehicleDAO1);
-            List<Driver> drivers = guard1.findProperly(i);
-
-            if (drivers.size() > e) {
-                return drivers.get(e).getPlate();
-            } else {
-                return " ";
-            }
-        }
-    }
-
-    private Integer Count(int i) {
-        DriverDAO driverDAO = new SQLiteDriverDAO();
-        VehicleDAO vehicleDAO = new SQLiteVehicleDAO();
-        SecurityGuard guard = new SecurityGuard(driverDAO, vehicleDAO);
-        return guard.countProperly(i);
-
-    }
-
-    private String getNameDrivers(int i) {
-        DriverDAO driverDAO = new SQLiteDriverDAO();
-        VehicleDAO vehicleDAO = new SQLiteVehicleDAO();
-        SecurityGuard guard = new SecurityGuard(driverDAO, vehicleDAO);
-        return guard.findAllDrivers().get(i).getNameDriver();
-    }
 }
-

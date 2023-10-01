@@ -183,48 +183,20 @@ public class SQLiteDriverDAO implements DriverDAO {
         }
         return EMPTY;
     }
-    public List<Driver> findProperly(int i) {
-        List<Driver> drivers = new ArrayList<>();
-        try {
-            PreparedStatement stm = connection.prepareStatement(" SELECT " +
-                    " Drivers.uid, Drivers.nameDriver, Vehicles.brand, Vehicles.color, Vehicles.plate " +
-                    " FROM Drivers JOIN VEHICLES " +
-                    " ON DRIVERS.UID = VEHICLES.UIDDRIVER " +
-                    " WHERE DRIVERS.UID LIKE '"+i+"';");
-            ResultSet rs = stm.executeQuery();
 
-            if(rs.next()) {
-                Driver driver = new Driver();
-                driver.setUid(rs.getLong(1));
-                driver.setNameDriver(rs.getString(2));
-                driver.setBrand(rs.getString(3));
-                driver.setColor(rs.getString(4));
-                driver.setPlate(rs.getString(5));
-
-                drivers.add(driver);
-            }
-            return drivers;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return EMPTY;
-    }
-    public Integer countProperly(int uid) {
+    @Override
+    public int countProperly() {
         try {
             PreparedStatement stm = connection.prepareStatement(
-                    "SELECT COUNT(*) FROM Vehicles WHERE uidDriver = ?");
-            stm.setInt(1, uid);
+                    "SELECT COUNT(*) FROM Drivers WHERE UID IS NOT NULL");
             ResultSet rs = stm.executeQuery();
-
             if (rs.next()) {
                 return rs.getInt(1);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return 0;
     }
-
-
 }
 

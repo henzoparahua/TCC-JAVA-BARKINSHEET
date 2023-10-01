@@ -178,22 +178,11 @@ public class SecurityGuard {
         }
         return drivers;
     }
-    public List<Driver> findProperly(int i) {
-        List<Driver> drivers = new ArrayList<>();
+    public int countProperly(){
+        int count = 0;
         try {
             driverDAO.connect();
-            drivers = driverDAO.findProperly(i);
-            driverDAO.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return drivers;
-    }
-    public Integer countProperly(int i){
-        Integer count = null;
-        try {
-            driverDAO.connect();
-            count = driverDAO.countProperly(i);
+            count = driverDAO.countProperly();
             driverDAO.close();
         } catch (SQLException e){
             e.printStackTrace();
@@ -202,5 +191,27 @@ public class SecurityGuard {
     }
     public List<Vehicle> findAllVehicles(){
         return vehicleDAO.findAll();
+    }
+    public List<Driver> findDriver(Integer uid){
+        List<Driver> driver = null;
+        try {
+            driverDAO.connect();
+            driver = driverDAO.findByProp(DriverSearchType.UID, uid);
+            driverDAO.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return driver;
+    }
+    public List<Vehicle> findVehicle(Integer uid){
+        List<Vehicle> vehicles = null;
+        try {
+            vehicleDAO.connect();
+            vehicles = vehicleDAO.findByProp(VehicleSearchType.UIDDRIVER, uid);
+            vehicleDAO.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return vehicles;
     }
 }

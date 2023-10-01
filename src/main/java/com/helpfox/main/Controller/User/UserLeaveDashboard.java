@@ -25,9 +25,7 @@ import java.util.concurrent.TimeUnit;
 
 public class UserLeaveDashboard implements Initializable {
     @FXML
-    public TextField searchInput;
-    @FXML
-    public ListView listView;
+    private ListView<VehicleItem> listView;
 
     ObservableList<VehicleItem> vehicleListItems = FXCollections.observableArrayList();
 
@@ -49,7 +47,7 @@ public class UserLeaveDashboard implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         listView.setItems(vehicleListItems);
         listView.setCellFactory(vehicleListView -> new VehicleCell());
-    }
+        }
 
     private void startUpdatingList() {
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);

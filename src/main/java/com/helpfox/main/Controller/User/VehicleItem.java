@@ -17,6 +17,7 @@ public class VehicleItem {
         this.Plate_three = plate_three;
     }
 
+
     public String getName() {
         return name;
     }
