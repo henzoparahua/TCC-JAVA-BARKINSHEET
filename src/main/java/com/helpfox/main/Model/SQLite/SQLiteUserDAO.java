@@ -15,7 +15,7 @@ public class SQLiteUserDAO implements UserDAO {
     @Override
     public void setup() throws SQLException {
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:users.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:barkin.db");
             PreparedStatement stm = connection.prepareStatement("CREATE TABLE Users (" +
                     "uid INTEGER PRIMARY KEY AUTOINCREMENT ," +
                     "name VARCHAR(60) NOT NULL," +
@@ -32,7 +32,7 @@ public class SQLiteUserDAO implements UserDAO {
     public void connect() throws SQLException {
         try {
             if(connection == null) {
-                connection = DriverManager.getConnection("jdbc:sqlite:users.db");
+                connection = DriverManager.getConnection("jdbc:sqlite:barkin.db");
             }
         } catch (SQLException e) {
             e.printStackTrace();

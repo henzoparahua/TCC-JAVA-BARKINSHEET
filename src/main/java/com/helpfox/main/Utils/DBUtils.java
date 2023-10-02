@@ -1,7 +1,9 @@
 package com.helpfox.main.Utils;
 
 import com.helpfox.main.Model.Driver.DriverDAO;
+import com.helpfox.main.Model.Gateway.GatewayDAO;
 import com.helpfox.main.Model.SQLite.SQLiteDriverDAO;
+import com.helpfox.main.Model.SQLite.SQLiteGatewayDAO;
 import com.helpfox.main.Model.SQLite.SQLiteUserDAO;
 import com.helpfox.main.Model.SQLite.SQLiteVehicleDAO;
 import com.helpfox.main.Model.User.UserDAO;
@@ -47,11 +49,13 @@ public class DBUtils {
         UserDAO userDAO = new SQLiteUserDAO();
         DriverDAO driverDAO = new SQLiteDriverDAO();
         VehicleDAO vehicleDAO = new SQLiteVehicleDAO();
+        GatewayDAO gatewayDAO = new SQLiteGatewayDAO();
 
         try {
             userDAO.setup();
             driverDAO.setup();
             vehicleDAO.setup();
+            gatewayDAO.setup();
         } catch (SQLException e) {
             e.printStackTrace();
         }

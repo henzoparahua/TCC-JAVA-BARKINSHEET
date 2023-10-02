@@ -2,6 +2,10 @@ package com.helpfox.main.Controller;
 
 import com.helpfox.main.App;
 import com.helpfox.main.Model.Model;
+import com.helpfox.main.Model.Office.Office;
+import com.helpfox.main.Model.SQLite.SQLiteUserDAO;
+import com.helpfox.main.Model.User.UserDAO;
+import com.helpfox.main.Validation.SetMsgError;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,12 +22,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static com.helpfox.main.Validation.CheckingAccount.*;
+
 
 public class LoginController implements Initializable {
     @FXML
-    public TextField txtUsu;
+    public TextField txtEmail;
     @FXML
-    public PasswordField txtPswrd;
+    public PasswordField txtPswd;
     @FXML
     public Button btLogin;
     @FXML
@@ -33,6 +39,11 @@ public class LoginController implements Initializable {
 
     @FXML
     private Button btSignin;
+
+    UserDAO userDAO = new SQLiteUserDAO();
+
+    Office model = new Office(userDAO);
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -40,7 +51,7 @@ public class LoginController implements Initializable {
             try {
                 Scene scene = btSignin.getScene();
                 Model.getInstance().getViewFactory().setRoot(scene, "SigninGUI");
-            } catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         });
@@ -52,12 +63,35 @@ public class LoginController implements Initializable {
         }
 
         btLogin.setOnAction(event -> {
-            try {
-                String usu = txtUsu.getText();
-                String pswrd = txtPswrd.getText();
-                onLogin();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            if (!txtEmail.getText().isEmpty() && !txtPswd.getText().isEmpty()) {
+                if (isValidEmail(txtEmail.getText()) && isValidPassword(txtPswd.getText())) {
+                    if (model.isValidUser(txtEmail.getText(), txtPswd.getText())) {
+                        try {
+                            onLogin();
+                        } catch (IOException e) {
+                            addAlert(SetMsgError.LOGINERROR);
+                            throw new RuntimeException(e);
+                        }
+                    } else {
+                        addAlert(SetMsgError.INVALIDLOGIN);
+                    }
+                } else {
+                    if (!isValidEmail(txtEmail.getText())) {
+                        addAlert(SetMsgError.INVALIDEMAIL);
+                    }
+
+                    if (!isValidPassword(txtPswd.getText())) {
+                        addAlert(SetMsgError.INVALIDPASSWORD);
+                    }
+                }
+            } else {
+                if (txtEmail.getText().isEmpty()) {
+                    addAlert(SetMsgError.EMPTYEMAIL);
+                }
+
+                if (txtPswd.getText().isEmpty()) {
+                    addAlert(SetMsgError.EMPTYPASSWORD);
+                }
             }
         });
 

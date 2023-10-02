@@ -23,8 +23,8 @@
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin></Label>
-                  <TextField fx:id="txtUsu" promptText="Usuario" />
-                  <PasswordField fx:id="txtPswrd" promptText="Senha" />
+                  <TextField fx:id="txtEmail" promptText="Usuario" />
+                  <PasswordField fx:id="txtPswd" promptText="Senha" />
                   <Button fx:id="btLogin" mnemonicParsing="false" text="CONTINUAR">
                      <VBox.margin>
                         <Insets top="12.0" />

@@ -5,6 +5,9 @@ import java.util.Objects;
 public class Driver {
     private long uid;
     private String nameDriver;
+    private String brand;
+    private String color;
+    private String plate;
     private String rg;
     private String phone;
     private boolean permanence;
@@ -70,5 +73,29 @@ public class Driver {
     @Override
     public int hashCode() {
         return Objects.hash(getNameDriver());
+    }
+
+    public String getPlate() {
+        return plate;
+    }
+
+    public void setPlate(String plate) {
+        this.plate = plate;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 }
