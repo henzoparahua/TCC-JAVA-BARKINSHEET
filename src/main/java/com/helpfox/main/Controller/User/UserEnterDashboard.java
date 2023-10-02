@@ -23,7 +23,9 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -64,6 +66,20 @@ public class UserEnterDashboard implements Initializable {
                 Model.getInstance().getViewFactory().showAddDriverPopUp();
             } catch (IOException e) {
                 throw new RuntimeException(e);
+            }
+        });
+        listViewone.setOnMouseClicked(event ->{
+            if (event.getTarget() instanceof ListCell) {
+                VehicleItem selectedItem = listViewone.getSelectionModel().getSelectedItem();
+                String name = selectedItem.getName().toString();
+                String plate1 = selectedItem.getPlate_one().toString();
+                String plate2 = selectedItem.getPlate_two().toString();
+                String plate3 = selectedItem.getPlate_three().toString();
+                try {
+                    Model.getInstance().getViewFactory().showDriverInfo(name, plate1, plate2, plate3);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }

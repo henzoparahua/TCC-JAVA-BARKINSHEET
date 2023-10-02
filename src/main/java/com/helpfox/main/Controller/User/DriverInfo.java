@@ -8,7 +8,6 @@ import com.helpfox.main.Model.SQLite.SQLiteGatewayDAO;
 import com.helpfox.main.Model.SQLite.SQLiteVehicleDAO;
 import com.helpfox.main.Model.SecurityGuard.SecurityGuard;
 import com.helpfox.main.Model.Vehicle.VehicleDAO;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -18,14 +17,9 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Time;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 public class DriverInfo implements Initializable{
@@ -41,14 +35,9 @@ public class DriverInfo implements Initializable{
     public AnchorPane anchorMain;
     @FXML
     public Button btGatewayVehicle;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        name.setText(null);
-        radioPlate_one.setText(null);
-        radioPlate_two.setText(null);
-        radioPlate_three.setText(null);
-
         btGatewayVehicle.setOnAction(event -> {
             DriverDAO driverDAO = new SQLiteDriverDAO();
             VehicleDAO vehicleDAO = new SQLiteVehicleDAO();
@@ -67,16 +56,15 @@ public class DriverInfo implements Initializable{
                 guard.enterGateway(radioPlate_two.getText(), date, time);
             } else if (radioPlate_three.isSelected()) {
                 guard.enterGateway(radioPlate_three.getText(), date, time);
-            }else {
+            } else {
 
             }
         });
 
-    }
-
-    public void name(RadioButton i){
-
-
-
+        try {
+            Model.getInstance().getViewFactory().createTop(anchorMain);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
