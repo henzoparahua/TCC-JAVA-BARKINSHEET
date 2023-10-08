@@ -8,6 +8,7 @@ import com.helpfox.main.Model.SQLite.SQLiteVehicleDAO;
 import com.helpfox.main.Model.SecurityGuard.SecurityGuard;
 import com.helpfox.main.Model.Vehicle.Vehicle;
 import com.helpfox.main.Model.Vehicle.VehicleDAO;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -66,74 +67,80 @@ public class UserEnterDashboard implements Initializable {
         DriverDAO driverDAO = new SQLiteDriverDAO();
         SecurityGuard guard = new SecurityGuard(driverDAO);
         int lng = guard.countProperly();
-        while (getValue()<lng) {
-            Driver driver = getDriver(getValue());
-            List<Vehicle> vehicles = getVehicle(Math.toIntExact(driver.getUid()));
-            driverListItems.add(new VehicleItem(driver.getNameDriver(), " ", " ", " "));
-            vehicles.clear();
-            setValue(getValue()+1);
-        }
-        for (int i = 0; i < lng; i++) {
-            Driver driver = getDriver(i);
-            List<Vehicle> vehicles = getVehicle(Math.toIntExact(driver.getUid()));
-            switch (vehicles.size()){
-                case 1:
-                    if (!listViewone.getItems().get(i).getPlate_one().equals(vehicles.get(0).getPlate())){
-                    listViewone.getItems().get(i).setPlate_one(vehicles.get(0).getPlate());
-                    //     System.out.println("entrei aqui");
-                        listViewone.refresh();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+                while (getValue()<lng) {
+                    Driver driver = getDriver(getValue());
+                    List<Vehicle> vehicles = getVehicle(Math.toIntExact(driver.getUid()));
+                    driverListItems.add(new VehicleItem(driver.getNameDriver(), " ", " ", " "));
+                    vehicles.clear();
+                    setValue(getValue()+1);
+                }
+                for (int i = 0; i < lng; i++) {
+                    Driver driver = getDriver(i);
+                    List<Vehicle> vehicles = getVehicle(Math.toIntExact(driver.getUid()));
+                    switch (vehicles.size()){
+                        case 1:
+                            if (!listViewone.getItems().get(i).getPlate_one().equals(vehicles.get(0).getPlate())){
+                                listViewone.getItems().get(i).setPlate_one(vehicles.get(0).getPlate());
+                                //     System.out.println("entrei aqui");
+                                listViewone.refresh();
+                            }
+                            // System.out.println("nao entrei aqui");
+                            break;
+                        case 2:
+                            if (!vehicles.get(0).getPlate().equals(listViewone.getItems().get(i).getPlate_one())){
+                                listViewone.getItems().get(i).setPlate_one(vehicles.get(0).getPlate());
+                                listViewone.refresh();
+                                //     System.out.println("entrei aqui 1:1");
+
+                            }
+                            // System.out.println("nao entrei aqui 1:1");
+
+                            if (!vehicles.get(1).getPlate().equals(listViewone.getItems().get(i).getPlate_one())){
+                                listViewone.getItems().get(i).setPlate_one(vehicles.get(1).getPlate());
+                                listViewone.refresh();
+                                //     System.out.println("entrei aqui 1:2");
+
+                            }
+                            // System.out.println("nao entrei aqui 1:2");
+
+                            break;
+                        case 3:
+                            if (!vehicles.get(0).getPlate().equals(listViewone.getItems().get(i).getPlate_one())){
+                                listViewone.getItems().get(i).setPlate_one(vehicles.get(0).getPlate());
+                                listViewone.refresh();
+                                //     System.out.println("entrei aqui 2:1");
+
+                            }
+                            // System.out.println("nao entrei aqui 2:1");
+
+                            if (!vehicles.get(1).getPlate().equals(listViewone.getItems().get(i).getPlate_one())){
+                                listViewone.getItems().get(i).setPlate_one(vehicles.get(1).getPlate());
+                                listViewone.refresh();
+                                //     System.out.println("entrei aqui 2:2");
+
+                            }
+                            // System.out.println("nao entrei aqui 2:2");
+
+                            if (!vehicles.get(2).getPlate().equals(listViewone.getItems().get(i).getPlate_one())){
+                                listViewone.getItems().get(i).setPlate_one(vehicles.get(2).getPlate());
+                                listViewone.refresh();
+                                //     System.out.println("entrei aqui 2:3");
+
+                            }
+                            // System.out.println("nao entrei aqui 2:3");
+
+                            break;
+                        default:
+                            break;
                     }
-                    // System.out.println("nao entrei aqui");
-                    break;
-                case 2:
-                    if (!vehicles.get(0).getPlate().equals(listViewone.getItems().get(i).getPlate_one())){
-                        listViewone.getItems().get(i).setPlate_one(vehicles.get(0).getPlate());
-                        listViewone.refresh();
-                    //     System.out.println("entrei aqui 1:1");
-
-                    }
-                    // System.out.println("nao entrei aqui 1:1");
-
-                    if (!vehicles.get(1).getPlate().equals(listViewone.getItems().get(i).getPlate_one())){
-                    listViewone.getItems().get(i).setPlate_one(vehicles.get(1).getPlate());
-                        listViewone.refresh();
-                    //     System.out.println("entrei aqui 1:2");
-
-                    }
-                    // System.out.println("nao entrei aqui 1:2");
-
-                    break;
-                case 3:
-                    if (!vehicles.get(0).getPlate().equals(listViewone.getItems().get(i).getPlate_one())){
-                        listViewone.getItems().get(i).setPlate_one(vehicles.get(0).getPlate());
-                        listViewone.refresh();
-                    //     System.out.println("entrei aqui 2:1");
-
-                    }
-                    // System.out.println("nao entrei aqui 2:1");
-
-                    if (!vehicles.get(1).getPlate().equals(listViewone.getItems().get(i).getPlate_one())){
-                        listViewone.getItems().get(i).setPlate_one(vehicles.get(1).getPlate());
-                        listViewone.refresh();
-                    //     System.out.println("entrei aqui 2:2");
-
-                    }
-                    // System.out.println("nao entrei aqui 2:2");
-
-                    if (!vehicles.get(2).getPlate().equals(listViewone.getItems().get(i).getPlate_one())){
-                    listViewone.getItems().get(i).setPlate_one(vehicles.get(2).getPlate());
-                        listViewone.refresh();
-                    //     System.out.println("entrei aqui 2:3");
-
-                    }
-                    // System.out.println("nao entrei aqui 2:3");
-
-                    break;
-                default:
-                    break;
+                    vehicles.clear();
+                }
             }
-            vehicles.clear();
-        }
+        });
     }
     private void run () {
         forListView();
@@ -143,13 +150,16 @@ public class UserEnterDashboard implements Initializable {
         listViewone.setItems(driverListItems);
         listViewone.setCellFactory(driverListItems -> new VehicleCell());
         btAddDriver.setOnAction(event -> {
+            btAddDriver.setDisable(true);
             try {
                 Model.getInstance().getViewFactory().showAddDriverPopUp();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+            btAddDriver.setDisable(false);
         });
         listViewone.setOnMouseClicked(event -> {
+            listViewone.setDisable(true);
             if (event.getTarget() instanceof ListCell) {
                 VehicleItem selectedItem = listViewone.getSelectionModel().getSelectedItem();
                 String name = selectedItem.getName().toString();
@@ -162,6 +172,7 @@ public class UserEnterDashboard implements Initializable {
                     throw new RuntimeException(e);
                 }
             }
+            listViewone.setDisable(false);
         });
     }
 

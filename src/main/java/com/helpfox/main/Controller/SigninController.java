@@ -94,9 +94,6 @@ public class SigninController implements Initializable {
         }
     }
 
-    private void onSignin() throws IOException {
-    }
-
     public void onLoginGUI(MouseEvent mouseEvent) {
         try {
             Scene scene = btnLogin.getScene();
