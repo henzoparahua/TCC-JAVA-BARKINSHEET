@@ -10,4 +10,5 @@ public interface GatewayDAO extends DAO {
     public List<Gateway> findGatewayByProp(GatewaySearchType searchType, Object value);
     public Integer countOpenGateways();
     public boolean deleteGateway(Gateway gateway);
+    public List<Gateway> findEmptyGateways();
 }

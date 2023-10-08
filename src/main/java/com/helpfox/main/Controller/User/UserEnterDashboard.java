@@ -19,6 +19,7 @@ import javafx.scene.control.ListView;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.Executors;
@@ -49,7 +50,7 @@ public class UserEnterDashboard implements Initializable {
     private List<Vehicle> getVehicle (int i){
         VehicleDAO vehicleDAO = new SQLiteVehicleDAO();
         SecurityGuard guard = new SecurityGuard(vehicleDAO);
-        return guard.findVehicle(i);
+        return guard.findVehicleByDriver(i);
     }
     private Driver getDriver ( int i){
         DriverDAO driverDAO = new SQLiteDriverDAO();
@@ -70,11 +71,10 @@ public class UserEnterDashboard implements Initializable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-
                 while (getValue()<lng) {
                     Driver driver = getDriver(getValue());
                     List<Vehicle> vehicles = getVehicle(Math.toIntExact(driver.getUid()));
-                    driverListItems.add(new VehicleItem(driver.getNameDriver(), " ", " ", " "));
+                    driverListItems.add(new VehicleItem(getValue(), driver.getNameDriver(), " ", " ", " "));
                     vehicles.clear();
                     setValue(getValue()+1);
                 }
@@ -159,9 +159,9 @@ public class UserEnterDashboard implements Initializable {
             btAddDriver.setDisable(false);
         });
         listViewone.setOnMouseClicked(event -> {
-            listViewone.setDisable(true);
             if (event.getTarget() instanceof ListCell) {
                 VehicleItem selectedItem = listViewone.getSelectionModel().getSelectedItem();
+                listViewone.setDisable(true);
                 String name = selectedItem.getName().toString();
                 String plate1 = selectedItem.getPlate_one().toString();
                 String plate2 = selectedItem.getPlate_two().toString();

@@ -164,4 +164,27 @@ public class SQLiteGatewayDAO implements GatewayDAO {
         }
     }
 
+    @Override
+    public List<Gateway> findEmptyGateways() {
+        try {
+            connect();
+            PreparedStatement stm = connection.prepareStatement("SELECT * FROM Gateway WHERE exit_time IS NULL");
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()) {
+                Gateway gateway = new Gateway();
+                gateway.setUid(rs.getLong(1));
+                gateway.setUidVehicle(rs.getLong(2));
+                gateway.setEntry_date(rs.getString(3));
+                gateway.setEntry_time(rs.getString(4));
+                gateway.setExit_time(rs.getString(5));
+
+                gateways.add(gateway);
+            }
+            return gateways;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return EMPTY;
+    }
+
 }
