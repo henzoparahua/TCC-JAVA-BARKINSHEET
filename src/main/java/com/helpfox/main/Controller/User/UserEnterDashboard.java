@@ -32,19 +32,8 @@ public class UserEnterDashboard implements Initializable {
     private Button btAddDriver;
     ObservableList<VehicleItem> driverListItems = FXCollections.observableArrayList();
     private int y = 0;
-    private int i = 0;
-    public synchronized int getValuei() {
-        return i;
-    }
-
-    public synchronized int setValuei(int newValue) {
-        this.i = newValue;
-        return newValue;
-    }
-
-
     public UserEnterDashboard() {
-        startUpdatingListy();
+        startUpdatingList();
     }
 
     public synchronized int getValue() {
@@ -68,9 +57,9 @@ public class UserEnterDashboard implements Initializable {
     }
 
 
-    private void startUpdatingListy() {
-        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-        executor.scheduleAtFixedRate(this::run, 0, 2, TimeUnit.SECONDS);
+    private void startUpdatingList() {
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(2);
+        executor.scheduleAtFixedRate(this::run, 2, 4, TimeUnit.SECONDS);
     }
 
     private void forListView() {
@@ -80,8 +69,7 @@ public class UserEnterDashboard implements Initializable {
         while (getValue()<lng) {
             Driver driver = getDriver(getValue());
             List<Vehicle> vehicles = getVehicle(Math.toIntExact(driver.getUid()));
-            driverListItems.add(new VehicleItem(
-                    driver.getNameDriver(), " ", " ", " "));
+            driverListItems.add(new VehicleItem(driver.getNameDriver(), " ", " ", " "));
             vehicles.clear();
             setValue(getValue()+1);
         }
@@ -175,28 +163,6 @@ public class UserEnterDashboard implements Initializable {
                 }
             }
         });
-        if (getValuei() < driverListItems.size()){
-            Driver driver = getDriver(getValuei());
-            List<Vehicle> vehicles = getVehicle(Math.toIntExact(driver.getUid()));
-
-            if (!vehicles.isEmpty()) {
-                if (!driverListItems.get(getValuei()).getPlate_one().toString().equals(vehicles.get(0).getPlate())) {
-                    driverListItems.get(getValuei()).setPlate_one(vehicles.get(0).getPlate());
-                }
-            }
-            if (vehicles.size() == 2) {
-                if (!driverListItems.get(getValuei()).getPlate_two().toString().equals(vehicles.get(1).getPlate())) {
-                    driverListItems.get(getValuei()).setPlate_two(vehicles.get(1).getPlate());
-                }
-            }
-            if (vehicles.size() == 3) {
-                if (!driverListItems.get(getValuei()).getPlate_three().toString().equals(vehicles.get(2).getPlate())) {
-                    driverListItems.get(getValuei()).setPlate_three(vehicles.get(2).getPlate());
-                }
-            }
-            setValuei(getValue()+1);
-            listViewone.refresh();
-        }
     }
 
 
