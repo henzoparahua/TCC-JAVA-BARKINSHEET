@@ -32,7 +32,7 @@ public class App extends Application {
                     // Update configuration to indicate setup completion
                     setSetupCompleted(true);
                 } else {
-                    // Setup has already been completed
+                    // Setup has already beewwn completed
                     System.out.println("Database setup has already been completed.");
                 }
             }

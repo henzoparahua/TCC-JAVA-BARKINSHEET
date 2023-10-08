@@ -36,31 +36,33 @@ public class UserDriverForms implements Initializable {
     private Button btConfirm;
     @FXML
     private Button btCancel;
-    DriverDAO driverDAO = new SQLiteDriverDAO();
-    SecurityGuard guard = new SecurityGuard(driverDAO);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         btCancel.setOnAction(event -> {
-            Stage stage = (Stage) btCancel.getScene().getWindow();
-            Model.getInstance().getViewFactory().closeStage(stage);
+            close(btCancel);
         });
 
         btConfirm.setOnAction(event -> {
-            if (!setNome.getText().isEmpty() && !setTel.getText().isEmpty()){
+            DriverDAO driverDAO = new SQLiteDriverDAO();
+            SecurityGuard guard = new SecurityGuard(driverDAO);
 
-            Stage stage = (Stage) btConfirm.getScene().getWindow();
-            try {
-                Model.getInstance().getViewFactory().showAddVehiclePopUp(popupContainer);
+            if (!setNome.getText().isEmpty() && !setTel.getText().isEmpty()){
                 guard.addNewDriver(setNome.getText(), setRG.getText(), setTel.getText());
-                Model.getInstance().getViewFactory().closeStage(stage);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            } else {
+                try {
+                    Model.getInstance().getViewFactory().showAddVehiclePopUp(popupContainer);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                close(btConfirm);
+                } else {
                 System.out.println("Preencha a tabela direito, animal!");
             }
         });
+    }
+    public void close (Button button){
+        Stage stage = (Stage) button.getScene().getWindow();
+        Model.getInstance().getViewFactory().closeStage(stage);
     }
 }
