@@ -3,7 +3,6 @@ package com.helpfox.main.Model.SQLite;
 import com.helpfox.main.Model.Driver.Driver;
 import com.helpfox.main.Model.Driver.DriverDAO;
 import com.helpfox.main.Model.Driver.DriverSearchType;
-import com.helpfox.main.Model.User.User;
 
 import java.sql.*;
 import java.util.ArrayList;

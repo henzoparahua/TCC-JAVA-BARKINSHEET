@@ -4,6 +4,11 @@ module com.helpfox.main {
     requires java.sql;
     requires org.xerial.sqlitejdbc;
 
+    //needed for HTTP
+    requires unirest.java;
+
+    //needed for JSON
+    requires gson;
 
     opens com.helpfox.main to javafx.fxml;
     opens com.helpfox.main.Controller to javafx.fxml;

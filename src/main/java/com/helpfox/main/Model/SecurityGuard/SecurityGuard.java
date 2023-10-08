@@ -11,8 +11,6 @@ import com.helpfox.main.Model.Vehicle.VehicleDAO;
 import com.helpfox.main.Model.Vehicle.VehicleSearchType;
 
 import java.sql.SQLException;
-import java.sql.Time;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 

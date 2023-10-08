@@ -1,9 +1,5 @@
 package com.helpfox.main.Model.Gateway;
 
-import java.sql.Time;
-import java.time.LocalDate;
-import java.util.Date;
-
 public class Gateway {
     private long uid;
     private long uidVehicle;

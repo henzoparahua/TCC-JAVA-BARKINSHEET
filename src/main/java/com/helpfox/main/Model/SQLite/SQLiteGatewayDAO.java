@@ -3,7 +3,6 @@ package com.helpfox.main.Model.SQLite;
 import com.helpfox.main.Model.Gateway.Gateway;
 import com.helpfox.main.Model.Gateway.GatewayDAO;
 import com.helpfox.main.Model.Gateway.GatewaySearchType;
-import com.helpfox.main.Model.Vehicle.Vehicle;
 
 import java.sql.*;
 import java.util.ArrayList;

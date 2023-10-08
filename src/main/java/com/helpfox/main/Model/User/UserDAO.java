@@ -2,7 +2,6 @@ package com.helpfox.main.Model.User;
 
 import com.helpfox.main.Model.DAO;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface UserDAO extends DAO {

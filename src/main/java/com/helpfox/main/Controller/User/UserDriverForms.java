@@ -3,22 +3,17 @@ package com.helpfox.main.Controller.User;
 import com.helpfox.main.Model.Driver.DriverDAO;
 import com.helpfox.main.Model.Model;
 import com.helpfox.main.Model.SQLite.SQLiteDriverDAO;
-import com.helpfox.main.Model.SQLite.SQLiteVehicleDAO;
 import com.helpfox.main.Model.SecurityGuard.SecurityGuard;
-import com.helpfox.main.Model.Vehicle.VehicleDAO;
-import com.helpfox.main.View.ViewFactory;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class UserDriverForms implements Initializable {

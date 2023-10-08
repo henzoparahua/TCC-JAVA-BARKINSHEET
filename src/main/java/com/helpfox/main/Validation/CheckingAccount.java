@@ -2,7 +2,6 @@ package com.helpfox.main.Validation;
 
 import com.helpfox.main.Model.User.User;
 import com.helpfox.main.Model.User.UserDAO;
-import com.helpfox.main.Model.User.UserSearchType;
 import javafx.scene.control.Alert;
 
 import java.util.regex.Matcher;

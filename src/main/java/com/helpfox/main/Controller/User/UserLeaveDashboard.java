@@ -1,23 +1,16 @@
 package com.helpfox.main.Controller.User;
 
-import com.helpfox.main.Controller.User.VehicleItem;
-import com.helpfox.main.Model.Driver.DriverDAO;
 import com.helpfox.main.Model.Gateway.Gateway;
 import com.helpfox.main.Model.Gateway.GatewayDAO;
-import com.helpfox.main.Model.SQLite.SQLiteDriverDAO;
 import com.helpfox.main.Model.SQLite.SQLiteGatewayDAO;
-import com.helpfox.main.Model.SQLite.SQLiteVehicleDAO;
 import com.helpfox.main.Model.SecurityGuard.SecurityGuard;
-import com.helpfox.main.Model.Vehicle.VehicleDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;

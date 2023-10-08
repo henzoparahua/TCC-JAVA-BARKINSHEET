@@ -3,14 +3,8 @@ package com.helpfox.main.Controller.User;
 import com.helpfox.main.Model.Model;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
-import javafx.scene.control.RadioButton;
-import javafx.scene.input.MouseButton;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
