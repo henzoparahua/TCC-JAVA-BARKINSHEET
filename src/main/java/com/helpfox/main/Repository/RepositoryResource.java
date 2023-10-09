@@ -1,5 +1,6 @@
 package com.helpfox.main.Repository;
 
+import com.helpfox.main.Resource.Resource;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 import java.util.List;

@@ -3,11 +3,11 @@ package com.helpfox.main.Resource;
 import java.time.LocalDateTime;
 
 public class GatewayResource {
-    private int id;
-    private LocalDateTime input;
-    private LocalDateTime output;
-    private boolean permanence;
-    private int driver_id;
+    public int id;
+    public LocalDateTime input;
+    public LocalDateTime output;
+    public boolean permanence;
+    public int driver_id;
 
     public GatewayResource(int id, LocalDateTime input, LocalDateTime output, boolean permanence, int driver_id) {
         this.id = id;

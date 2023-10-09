@@ -3,11 +3,19 @@ package com.helpfox.main.Resource;
 import java.util.List;
 
 public class Resource {
-    private List data;
-    private Object links;
-    private Object meta;
 
-    public List getData() {
+    //add paginate, it needs to response the json
+    public List<?> data;
+    public Object links;
+    public Object meta;
+
+    public Resource(List<?> data, Object links, Object meta) {
+        this.data = data;
+        this.links = links;
+        this.meta = meta;
+    }
+
+    public List<?> getData() {
         return data;
     }
 

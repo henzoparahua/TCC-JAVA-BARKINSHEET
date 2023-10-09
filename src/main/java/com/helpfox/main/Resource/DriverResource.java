@@ -4,13 +4,13 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class DriverResource {
-    private int id;
-    private String name;
-    private String rg;
-    private String phone;
-    private List<VehicleResource> vehicles;
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+    public int id;
+    public String name;
+    public String rg;
+    public String phone;
+    public List<VehicleResource> vehicles;
+    public LocalDateTime created_at;
+    public LocalDateTime updated_at;
 
     public DriverResource(int id, String name, String rg, String phone, List<VehicleResource> vehicles, LocalDateTime created_at, LocalDateTime updated_at) {
         this.id = id;

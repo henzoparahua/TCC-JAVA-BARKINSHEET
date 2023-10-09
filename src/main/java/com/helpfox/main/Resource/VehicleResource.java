@@ -3,14 +3,14 @@ package com.helpfox.main.Resource;
 import java.time.LocalDateTime;
 
 public class VehicleResource {
-    private int id;
-    private String brand;
-    private String color;
-    private String plate;
-    private String observation;
-    private int driver_id;
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+    public int id;
+    public String brand;
+    public String color;
+    public String plate;
+    public String observation;
+    public int driver_id;
+    public LocalDateTime created_at;
+    public LocalDateTime updated_at;
 
     public VehicleResource(int id, String brand, String color, String plate, String observation, int driver_id, LocalDateTime created_at, LocalDateTime updated_at) {
         this.id = id;

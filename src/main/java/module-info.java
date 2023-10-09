@@ -6,9 +6,7 @@ module com.helpfox.main {
 
     //needed for HTTP
     requires unirest.java;
-
-    //needed for JSON
-    requires gson;
+    requires com.google.gson;
 
     opens com.helpfox.main to javafx.fxml;
     opens com.helpfox.main.Controller to javafx.fxml;
