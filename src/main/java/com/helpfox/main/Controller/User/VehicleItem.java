@@ -2,15 +2,14 @@ package com.helpfox.main.Controller.User;
 
 public class VehicleItem {
 
-    private static int vehicleId = 0;
-    private int vehicleuid;
+    private int vehiclepos;
     private String name;
     private String Plate_one;
     private String Plate_two;
     private String Plate_three;
 
-    public VehicleItem(String name, String plate_one, String plate_two, String plate_three){
-        vehicleuid = vehicleId++;
+    public VehicleItem(Integer i, String name, String plate_one, String plate_two, String plate_three){
+        this.vehiclepos = i;
         this.name = name;
         this.Plate_one = plate_one;
         this.Plate_two = plate_two;
@@ -24,10 +23,6 @@ public class VehicleItem {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getVehicleuid() {
-        return vehicleuid;
     }
 
     public String getPlate_one() {
@@ -52,5 +47,9 @@ public class VehicleItem {
 
     public void setPlate_three(String plate_three) {
         Plate_three = plate_three;
+    }
+
+    public int getVehiclepos() {
+        return vehiclepos;
     }
 }

@@ -1,16 +1,25 @@
 package com.helpfox.main.Controller.User;
 
+import com.helpfox.main.Controller.User.VehicleItem;
+import com.helpfox.main.Model.Driver.DriverDAO;
 import com.helpfox.main.Model.Gateway.Gateway;
 import com.helpfox.main.Model.Gateway.GatewayDAO;
+import com.helpfox.main.Model.SQLite.SQLiteDriverDAO;
 import com.helpfox.main.Model.SQLite.SQLiteGatewayDAO;
+import com.helpfox.main.Model.SQLite.SQLiteVehicleDAO;
 import com.helpfox.main.Model.SecurityGuard.SecurityGuard;
+import com.helpfox.main.Model.Vehicle.Vehicle;
+import com.helpfox.main.Model.Vehicle.VehicleDAO;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -22,7 +31,7 @@ public class UserLeaveDashboard implements Initializable {
 
     ObservableList<VehicleItem> vehicleListItems = FXCollections.observableArrayList();
 
-    private int i = 1;
+    private int i = 0;
 
     public UserLeaveDashboard() {
         startUpdatingList();
@@ -44,30 +53,53 @@ public class UserLeaveDashboard implements Initializable {
 
     private void startUpdatingList() {
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-
-        executor.scheduleAtFixedRate(() -> {
-            i = forListView(i);
-        }, 0, 2, TimeUnit.SECONDS);
+        executor.scheduleAtFixedRate(this::forListView, 0, 2, TimeUnit.SECONDS);
     }
 
-    private int forListView(int i) {
+    private void forListView() {
         GatewayDAO gatewayDAO = new SQLiteGatewayDAO();
         SecurityGuard guard = new SecurityGuard(gatewayDAO);
-
         int lng = guard.countEmptyGateways();
-        while (i <= lng) {
-            Gateway driver = getDriver(i);
-            vehicleListItems.add(new VehicleItem(driver.getNameDriver(), driver.getEntry_date(), driver.getEntry_time(), driver.getPlateDriver()));
-            i++;
-        }
-        return i;
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                while (getValue() < lng) {
+                    Gateway gateway = getGateway(getValue());
+                    Vehicle vehicle = getVehicle((int) gateway.getUidVehicle());
+                    String name = getDriver(vehicle);
+                    vehicleListItems.add(new VehicleItem(getValue(), name, gateway.getEntry_date(), gateway.getEntry_time(), vehicle.getPlate()));
+                    setValue(getValue()+1);
+                }
+            }
+        });
+
     }
 
-    private Gateway getDriver(int i) {
+    private Gateway getGateway(int i) {
         GatewayDAO gatewayDAO = new SQLiteGatewayDAO();
         SecurityGuard guard = new SecurityGuard(gatewayDAO);
-        Gateway driver = guard.findEmptyGateways(i).get(0);
-            return driver;
-
+        return guard.findEmptyGateways().get(i);
     }
+    private Vehicle getVehicle(int uid){
+        Vehicle vehicles = null;
+        VehicleDAO vehicleDAO = new SQLiteVehicleDAO();
+        SecurityGuard guard = new SecurityGuard(vehicleDAO);
+        try {
+            vehicles = guard.findVehicle(uid).get(0);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return vehicles;
+    }
+    private String getDriver(Vehicle vehicle){
+        VehicleDAO vehicleDAO = new SQLiteVehicleDAO();
+        DriverDAO driverDAO = new SQLiteDriverDAO();
+        SecurityGuard guard = new SecurityGuard(driverDAO, vehicleDAO);
+        try {
+        return guard.findDriverName(vehicle.getPlate());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

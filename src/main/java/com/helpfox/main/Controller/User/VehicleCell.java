@@ -45,7 +45,7 @@ public class VehicleCell extends ListCell<VehicleItem> {
                     throw new RuntimeException(e);
                 }
             }
-            idNum.setText(String.valueOf(vehicleItem.getVehicleuid()));
+            idNum.setText(String.valueOf(1+vehicleItem.getVehiclepos()));
             txtNome.setText(vehicleItem.getName());
             txtFirstPlate.setText(vehicleItem.getPlate_one());
             txtSecondPlate.setText(vehicleItem.getPlate_two());

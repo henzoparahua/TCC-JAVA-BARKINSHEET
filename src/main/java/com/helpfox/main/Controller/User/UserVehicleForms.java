@@ -28,12 +28,13 @@ public class UserVehicleForms implements Initializable {
     @FXML public TextField setPlate;
     @FXML public Label setName;
 
-    DriverDAO driverDAO = new SQLiteDriverDAO();
-    VehicleDAO vehicleDAO = new SQLiteVehicleDAO();
-    SecurityGuard guard = new SecurityGuard(driverDAO, vehicleDAO);
 
 
     private Driver lastDriverConstructor (){
+        DriverDAO driverDAO = new SQLiteDriverDAO();
+        VehicleDAO vehicleDAO = new SQLiteVehicleDAO();
+        SecurityGuard guard = new SecurityGuard(driverDAO, vehicleDAO);
+
         List<Driver> lastDriver = guard.findLast();
         return lastDriver.get(0);
     }
@@ -42,34 +43,26 @@ public class UserVehicleForms implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         Driver lastDriver = lastDriverConstructor();
-
-        try {
-            setName.setText(lastDriver.getNameDriver());
-        }catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        setName.setText(lastDriver.getNameDriver());
 
         btConfirmVehicles.setOnAction(event -> {
-
             if (!setPlate.getText().isEmpty() && !setBrand.getText().isEmpty() && !setColor.getText().isEmpty()){
-            try {
+                VehicleDAO vehicleDAO = new SQLiteVehicleDAO();
+                SecurityGuard guard = new SecurityGuard(vehicleDAO);
                 guard.addNewVehicle(lastDriver.getUid(), setBrand.getText(),
                         setColor.getText(), setPlate.getText());
-            }catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-
-            Stage stage = (Stage) btCancelVehicles.getScene().getWindow();
-            Model.getInstance().getViewFactory().closeStage(stage);
+                close(btConfirmVehicles);
             }else {
                 System.out.println("Preencha os dados novamente, imbecil!");
             }
         });
-
         btCancelVehicles.setOnAction(event -> {
-            Stage stage = (Stage) btCancelVehicles.getScene().getWindow();
-            Model.getInstance().getViewFactory().closeStage(stage);
+            close(btCancelVehicles);
         });
 
+    }
+    public void close (Button button){
+        Stage stage = (Stage) button.getScene().getWindow();
+        Model.getInstance().getViewFactory().closeStage(stage);
     }
 }

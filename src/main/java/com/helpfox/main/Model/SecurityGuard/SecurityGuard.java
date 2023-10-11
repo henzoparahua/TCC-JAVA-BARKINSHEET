@@ -104,20 +104,17 @@ public class SecurityGuard {
         }
     }
 
-    public List<Gateway>findEmptyGateways(long uid){
+    public List<Gateway>findEmptyGateways() {
         try {
             gatewayDAO.connect();
-            List<Gateway> gateways = gatewayDAO.findGatewayByProp(GatewaySearchType.UID, uid);
-            if (gateways.get(0).getExit_time() == null){
-                return gateways;
-            } else {
-                return null;
-            }
+            List<Gateway> gateways = gatewayDAO.findEmptyGateways();
+            gatewayDAO.close();
+            return gateways;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-    public Integer countEmptyGateways(){
+        public Integer countEmptyGateways(){
             Integer count = null;
             try {
                 gatewayDAO.connect();
@@ -201,7 +198,7 @@ public class SecurityGuard {
         }
         return driver;
     }
-    public List<Vehicle> findVehicle(Integer uid){
+    public List<Vehicle> findVehicleByDriver(Integer uid){
         List<Vehicle> vehicles = null;
         try {
             vehicleDAO.connect();
@@ -211,5 +208,22 @@ public class SecurityGuard {
             throw new RuntimeException(e);
         }
         return vehicles;
+    }
+    public List<Vehicle> findVehicle(Integer uid) throws SQLException {
+        List<Vehicle> vehicles = null;
+        vehicleDAO.connect();
+        vehicles = vehicleDAO.findByProp(VehicleSearchType.UID, uid);
+        vehicleDAO.close();
+        return vehicles;
+    }
+    public String findDriverName(String plate) throws SQLException {
+        String driver = null;
+        vehicleDAO.connect();
+        Long driveruid = vehicleDAO.findByProp(VehicleSearchType.PLATE, plate).get(0).getUidDriver();
+        vehicleDAO.close();
+        driverDAO.connect();
+        driver = driverDAO.findByProp(DriverSearchType.UID, driveruid).get(0).getNameDriver();
+        driverDAO.close();
+        return driver;
     }
 }
