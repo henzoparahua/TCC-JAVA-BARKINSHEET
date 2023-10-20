@@ -1,13 +1,13 @@
 package com.helpfox.main.Utils;
 
-import com.helpfox.main.Model.Driver.DriverDAO;
-import com.helpfox.main.Model.Gateway.GatewayDAO;
-import com.helpfox.main.Model.SQLite.SQLiteDriverDAO;
-import com.helpfox.main.Model.SQLite.SQLiteGatewayDAO;
-import com.helpfox.main.Model.SQLite.SQLiteUserDAO;
-import com.helpfox.main.Model.SQLite.SQLiteVehicleDAO;
-import com.helpfox.main.Model.User.UserDAO;
-import com.helpfox.main.Model.Vehicle.VehicleDAO;
+import com.helpfox.main.Dao.DriverDAO;
+import com.helpfox.main.Dao.GatewayDAO;
+import com.helpfox.main.Database.SQLite.SQLiteDriverDAO;
+import com.helpfox.main.Database.SQLite.SQLiteGatewayDAO;
+import com.helpfox.main.Database.SQLite.SQLiteUserDAO;
+import com.helpfox.main.Database.SQLite.SQLiteVehicleDAO;
+import com.helpfox.main.Dao.UserDAO;
+import com.helpfox.main.Dao.VehicleDAO;
 
 import java.io.*;
 import java.nio.file.Files;

@@ -1,6 +1,5 @@
 package com.helpfox.main.Controller;
 
-import com.helpfox.main.Model.Model;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox id="ToolBar"
+      alignment="TOP_RIGHT"
+      maxHeight="-Infinity"
+      maxWidth="-Infinity"
+      minHeight="-Infinity"
+      minWidth="-Infinity"
+      prefHeight="400.0"
+      prefWidth="600.0"
+      stylesheets="@../Css/topbar.css"
+      xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.helpfox.main.Controller.TopbarController">
+    <children>
+        <Button id="helpButton"
+                fx:id="btHelp"
+                mnemonicParsing="false"
+                onAction="#Help"
+                styleClass="btToolBar"
+                text="btHelp"/>
+        <Button id="confButton"
+                fx:id="btConfig"
+                mnemonicParsing="false"
+                onAction="#Config"
+                styleClass="btToolBar"
+                text="btConf"/>
+        <Button id="minimizeButton"
+                fx:id="btMinimize"
+                mnemonicParsing="false"
+                onAction="#Minimize"
+                styleClass="btToolBar"
+                text="btMin"/>
+        <Button id="exitButton"
+                fx:id="btClose"
+                mnemonicParsing="false"
+                onAction="#Close"
+                styleClass="btToolBar"
+                text="btClos"/>
+    </children>
+</HBox>

@@ -1,8 +1,5 @@
 package com.helpfox.main;
 
-import com.helpfox.main.Model.Model;
-import com.helpfox.main.Repository.VehicleRepository;
-import com.helpfox.main.Resource.Resource;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -15,44 +12,45 @@ public class App extends Application {
 
     @Override
     public void init() throws UnirestException {
-//        try {
-//            if (configFileExists()) {
-//                System.out.println("Running config setup...");
-//            } else {
-//                // Create the configuration file first
-//                createConfigFile();
-//
-//                List<String> databaseFileNames = List.of("barkin.db");
-//
-//                if (!allDatabaseExists(databaseFileNames)) {
-//                    setSetupCompleted(false);
-//                }
-//                if (!isSetupCompleted()) {
-//                    System.out.println("Running database setup...");
-//
-//                    setupDatabase();
-//
-//                    // Update configuration to indicate setup completion
-//                    setSetupCompleted(true);
-//                } else {
-//                    // Setup has already been completed
-//                    System.out.println("Database setup has already been completed.");
-//                }
-//            }
-//        } catch (Exception e) {
-//            throw new RuntimeException("Initial setup hasn't already been completed.");
-//        }
+        try {
+            if (configFileExists()) {
+                System.out.println("Running config setup...");
+            } else {
+                // Create the configuration file first
+                createConfigFile();
 
-        VehicleRepository vehicleRepository = new VehicleRepository();
+                List<String> databaseFileNames = List.of("barkin.db");
 
-        System.out.println("Response: " + vehicleRepository.all());
+                if (!allDatabaseExists(databaseFileNames)) {
+                    setSetupCompleted(false);
+                }
+                if (!isSetupCompleted()) {
+                    System.out.println("Running database setup...");
 
-        System.exit(1);
+                    setupDatabase();
+
+                    // Update configuration to indicate setup completion
+                    setSetupCompleted(true);
+                } else {
+                    // Setup has already been completed
+                    System.out.println("Database setup has already been completed.");
+                }
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Initial setup hasn't already been completed.");
+        }
+
+//        VehicleRepository vehicleRepository = new VehicleRepository();
+//
+//        System.out.println("Response: " + vehicleRepository.all());
+//
+//        System.exit(1);
     }
 
     @Override
     public void start(Stage stage) throws IOException {
-//        Model.getInstance().getViewFactory().showLoginWindow();
+
+
     }
 
     public static void main(String[] args) throws SQLException {
