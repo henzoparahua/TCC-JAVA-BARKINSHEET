@@ -1,5 +1,0 @@
-package com.helpfox.main.Http.Validation;
-
-public enum SetMsgError {
-    EMPTYNAME, EMPTYEMAIL, EMPTYPASSWORD, INVALIDNAME, INVALIDEMAIL, INVALIDPASSWORD, LOGINERROR, INVALIDLOGIN
-}

@@ -1,17 +1,20 @@
 package com.helpfox.main;
 
-import com.mashape.unirest.http.exceptions.UnirestException;
+import com.helpfox.main.core.components.component.MaterialButton;
+import com.helpfox.main.core.manager.ActivityFactory;
 import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import static com.helpfox.main.Utils.DBUtils.*;
+import static com.helpfox.main.server.util.DBUtils.*;
 
 public class App extends Application {
 
     @Override
-    public void init() throws UnirestException {
+    public void init() {
         try {
             if (configFileExists()) {
                 System.out.println("Running config setup...");
@@ -39,18 +42,22 @@ public class App extends Application {
         } catch (Exception e) {
             throw new RuntimeException("Initial setup hasn't already been completed.");
         }
-
-//        VehicleRepository vehicleRepository = new VehicleRepository();
-//
-//        System.out.println("Response: " + vehicleRepository.all());
-//
-//        System.exit(1);
     }
 
     @Override
     public void start(Stage stage) throws IOException {
+        StackPane root = new StackPane(); // Create root pane
+        stage.setScene(new Scene(root)); // Set the scene in the stage
 
+        // this object represent the stack  of activities  in your application
+        ActivityFactory factory=new ActivityFactory(stage);
 
+        // set the material design style in your application
+        stage.getScene().getStylesheets().add(MaterialButton.class.getResource("controls.css").toExternalForm());
+        stage.getScene().getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+
+        factory.startActivity(MainActivity.class); // start the activity
+        stage.show();
     }
 
     public static void main(String[] args) throws SQLException {
