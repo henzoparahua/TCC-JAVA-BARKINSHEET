@@ -13,6 +13,8 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.util.HashMap;
 
+import static com.helpfox.main.core.View.DETAILSFRAGMENT;
+
 public class DetailsFragment extends Fragment {
     @FXML
     private Label label;
@@ -28,7 +30,7 @@ public class DetailsFragment extends Fragment {
     @Override
     public void onCreateView(FXMLLoader loader) {
 
-        loader.setLocation(getClass().getResource("details_fragment.fxml"));
+        loader.setLocation(getClass().getResource(DETAILSFRAGMENT.toString()));
 
         try {
             loader.load();

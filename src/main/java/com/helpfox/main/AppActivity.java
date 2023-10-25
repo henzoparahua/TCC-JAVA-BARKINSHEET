@@ -15,6 +15,8 @@ import javafx.fxml.FXML;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static com.helpfox.main.core.View.APPACTIVITY;
+
 public class AppActivity extends Activity {
     @FXML
     Toolbar toolbar;
@@ -28,7 +30,7 @@ public class AppActivity extends Activity {
     @Override
     public void onCreate() {
         super.onCreate();
-        setContentView(getClass().getResource("/view/app_activity.fxml"));
+        setContentView(getClass().getResource(APPACTIVITY.toString()));
 
         toolbar.setTitle("App Activity");
         toolbar.setDisplayShowHomeEnabled(true);

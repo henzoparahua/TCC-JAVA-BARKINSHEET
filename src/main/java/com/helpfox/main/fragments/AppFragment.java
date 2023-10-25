@@ -12,13 +12,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static com.helpfox.main.core.View.APPACTIVITY;
+
 public class AppFragment extends Fragment {
     @FXML
     private Label label;
 
     @Override
     public void onCreateView(FXMLLoader fxmlLoader) {
-        fxmlLoader.setLocation(getClass().getResource("app_fragment.fxml"));
+        fxmlLoader.setLocation(getClass().getResource(APPACTIVITY.toString()));
         try {
             fxmlLoader.load();
         } catch (IOException e) {

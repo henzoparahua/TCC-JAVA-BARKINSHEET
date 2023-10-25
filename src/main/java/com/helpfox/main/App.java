@@ -9,6 +9,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+
+import static com.helpfox.main.core.Css.CONTROLS;
+import static com.helpfox.main.core.Css.STYLES;
 import static com.helpfox.main.server.util.DBUtils.*;
 
 public class App extends Application {
@@ -53,8 +56,8 @@ public class App extends Application {
         ActivityFactory factory = new ActivityFactory(stage);
 
         // set the material design style in your application
-        stage.getScene().getStylesheets().add(MaterialButton.class.getResource("/component/controls.css").toExternalForm());
-        stage.getScene().getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
+        stage.getScene().getStylesheets().add(MaterialButton.class.getResource(CONTROLS.toString()).toExternalForm());
+        stage.getScene().getStylesheets().add(getClass().getResource(STYLES.toString()).toExternalForm());
 
         factory.startActivity(MainActivity.class); // start the activity
         stage.show();

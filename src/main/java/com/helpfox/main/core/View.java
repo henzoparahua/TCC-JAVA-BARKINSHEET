@@ -1,17 +1,19 @@
 package com.helpfox.main.core;
 
 public enum View {
-    LOGIN("Login"),
-    SIGNIN("Signin"),
-    DRIVER("Driver"),
-    DRIVERFORM("DriverForm"),
-    GATEWAY("Gateway"),
-    GATEWAYFORM("GatewayForm");
-
+    MAINACACTIVITY("main_activity"),
+    APPACTIVITY("app_activity"),
+    APPFRAGMENT("app_fragment"),
+    DETAILSFRAGMENT("details_fragment");
 
     public final String location;
 
     View(String location) {
-        this.location = "../Resource/View/" + location + ".fxml";
+        this.location = "/View/" + location + ".fxml";
+    }
+
+    @Override
+    public String toString() {
+        return this.location;
     }
 }
