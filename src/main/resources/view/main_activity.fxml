@@ -9,8 +9,7 @@
 
 <VBox prefWidth="600" prefHeight="400"
       xmlns:fx="http://javafx.com/fxml"
-      style="-fx-background-color:white; -fx-padding:16px" spacing="8" alignment="center"
-      fx:controller="com.helpfox.main.MainActivity" >
+      style="-fx-background-color:white; -fx-padding:16px" spacing="8" alignment="center">
     <TextInputLayout>
         <TextField promptText="Username"/>
     </TextInputLayout>
