@@ -28,7 +28,7 @@ public class AppActivity extends Activity {
     @Override
     public void onCreate() {
         super.onCreate();
-        setContentView(getClass().getResource("app_activity.fxml"));
+        setContentView(getClass().getResource("/view/app_activity.fxml"));
 
         toolbar.setTitle("App Activity");
         toolbar.setDisplayShowHomeEnabled(true);
@@ -37,7 +37,7 @@ public class AppActivity extends Activity {
 
         drawer.setDrawerListener(new ActionBarDrawerToggle(this,drawer,toolbar));
 
-        ViewPagerAdapter pagerAdapter=new ViewPagerAdapter(getFragmentManager());
+        ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(getFragmentManager());
         viewPager.setAdapter(pagerAdapter);
         pagerAdapter.addTab(new Tab("Fragment", AppFragment.class));
         pagerAdapter.addTab(new Tab("Fragment 1", AppFragment.class));
@@ -53,15 +53,15 @@ public class AppActivity extends Activity {
         private ArrayList<Tab> tabs;
         public ViewPagerAdapter(FragmentManager fragmentManager) {
             super(fragmentManager);
-            tabs=new ArrayList<>();
+            tabs = new ArrayList<>();
         }
 
         @Override
         public Fragment getItem(int i) {
             try {
-                Fragment fragment=tabs.get(i).fragment.newInstance();
+                Fragment fragment = tabs.get(i).fragment.newInstance();
 
-                HashMap arguments=new HashMap();
+                HashMap arguments = new HashMap();
                 arguments.put("textLabel","Fragment #"+(i+1));
                 fragment.setArguments(arguments);
 
@@ -93,13 +93,13 @@ public class AppActivity extends Activity {
 
     }
 
-    private static class Tab{
+    private static class Tab {
         protected String title;
         protected Class<? extends Fragment> fragment;
 
         public Tab(String title,Class<? extends Fragment > fragment){
-            this.title=title;
-            this.fragment=fragment;
+            this.title = title;
+            this.fragment = fragment;
         }
     }
 

@@ -6,7 +6,7 @@ public class MainActivity extends Activity {
     @Override
     public void onCreate() {
         super.onCreate();
-        setContentView(getClass().getResource("main_activity.fxml"));
+        setContentView(getClass().getResource("/view/main_activity.fxml"));
     }
 
     public void login(){
