@@ -18,6 +18,11 @@
     -color-body:#F5F5F5;
 }
 
+.title{
+    -fx-font-size: 32;
+    -fx-font-family:"Roboto Bold";
+}
+
 .text-input{
     -fx-highlight-fill: rgba(0,0,0,0.15);
     -fx-highlight-text-fill: black;

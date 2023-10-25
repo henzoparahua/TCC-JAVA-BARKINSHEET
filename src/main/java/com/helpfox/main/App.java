@@ -10,8 +10,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-import static com.helpfox.main.core.Css.CONTROLS;
-import static com.helpfox.main.core.Css.STYLES;
+import static com.helpfox.main.core.Css.*;
 import static com.helpfox.main.server.util.DBUtils.*;
 
 public class App extends Application {

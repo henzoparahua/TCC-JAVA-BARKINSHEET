@@ -4,7 +4,8 @@ public enum View {
     MAINACACTIVITY("main_activity"),
     APPACTIVITY("app_activity"),
     APPFRAGMENT("app_fragment"),
-    DETAILSFRAGMENT("details_fragment");
+    DETAILSFRAGMENT("details_fragment"),
+    NAVITEM("nav_item");
 
     public final String location;
 

@@ -17,7 +17,7 @@ public abstract class FragmentStatePagerAdapter extends PagerAdapter {
     public Object instantiateItem(Pane container, int position) {
         if(position<getCount()){
             FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.replace(container.getId(),getItem(position));
+            transaction.replace(container.getId(), getItem(position));
             transaction.commit();
         }
         return null;

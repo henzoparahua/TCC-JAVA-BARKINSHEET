@@ -7,14 +7,19 @@
 <?import com.helpfox.main.core.components.component.TextInputLayout?>
 <?import com.helpfox.main.core.components.component.MaterialButton?>
 
+<?import javafx.scene.control.Label?>
 <VBox prefWidth="600" prefHeight="400"
       xmlns:fx="http://javafx.com/fxml"
-      style="-fx-background-color:white; -fx-padding:16px" spacing="8" alignment="center">
+      style="-fx-background-color:white; -fx-padding:16px" spacing="8" alignment="center" >
+    <Label text="Barkin" styleClass="title"></Label>
     <TextInputLayout>
-        <TextField promptText="Username"/>
+        <TextField promptText="Email"/>
     </TextInputLayout>
     <TextInputLayout>
-        <PasswordField promptText="Password" />
+        <PasswordField promptText="Senha" />
     </TextInputLayout>
-    <MaterialButton text="Login" onAction="#login"/>
+    <HBox alignment="CENTER" spacing="32">
+        <MaterialButton text="Entrar" onAction="#login"/>
+        <MaterialButton text="Cadastrar" onAction="#signin"/>
+    </HBox>
 </VBox>

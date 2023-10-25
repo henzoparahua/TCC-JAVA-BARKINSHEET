@@ -15,8 +15,8 @@ final class FragmentManagerImpl extends FragmentManager{
     protected BackStackRecord backStack;
 
     public FragmentManagerImpl(Activity activityHost){
-        this.activityHost=activityHost;
-        added=new ArrayList<>();
+        this.activityHost = activityHost;
+        added = new ArrayList<>();
     }
 
     @Override
@@ -26,8 +26,8 @@ final class FragmentManagerImpl extends FragmentManager{
 
     @Override
     public Fragment findFragmentByTag(String tag) {
-        if(added!=null){
-            for(Fragment f:added){
+        if(added != null){
+            for(Fragment f : added){
                 if(f.tag.equals(tag)){
                     return f;
                 }

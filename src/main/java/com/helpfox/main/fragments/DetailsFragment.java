@@ -19,11 +19,10 @@ public class DetailsFragment extends Fragment {
     @FXML
     private Label label;
     @FXML
-
-    private StackPane card;
+    StackPane card;
 
     @FXML
-    private HBox controlsContainer;
+    HBox controlsContainer;
 
     private HashMap data;
 

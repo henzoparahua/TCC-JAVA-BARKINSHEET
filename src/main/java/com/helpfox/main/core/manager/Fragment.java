@@ -1,8 +1,10 @@
 package com.helpfox.main.core.manager;
 
 import javafx.animation.Timeline;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import java.util.HashMap;
 
@@ -14,6 +16,9 @@ public abstract class Fragment extends AnchorPane {
     static final int STOPPED = 3;
     static final int STARTED = 4;
     static final int RESUMED = 5;
+
+    @FXML
+    private Label label;
 
     private HashMap arguments;
     String tag;

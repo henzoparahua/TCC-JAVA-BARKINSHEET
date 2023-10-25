@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import com.helpfox.main.core.components.component.MaterialButton?>
 
-<fx:root xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx/8" type="com.helpfox.main.core.manager.Fragment">
+<fx:root xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx/8" type="com.helpfox.main.core.manager.Fragment" >
     <StackPane styleClass="card" prefWidth="100" style="-fx-padding:16px" fx:id="card">
         <VBox spacing="8" alignment="TOP_CENTER">
             <Label fx:id="label"/>

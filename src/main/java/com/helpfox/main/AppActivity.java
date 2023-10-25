@@ -1,21 +1,29 @@
 package com.helpfox.main;
 
+import com.helpfox.main.core.components.component.RippleViewRow;
+import com.helpfox.main.core.components.component.SVGFactory;
 import com.helpfox.main.core.components.layout.DrawerLayout;
+import com.helpfox.main.core.components.layout.RecyclerView;
 import com.helpfox.main.core.components.layout.SlidingTabLayout;
 import com.helpfox.main.core.components.layout.ViewPager;
 import com.helpfox.main.core.framework.ActionBarDrawerToggle;
-import com.helpfox.main.core.framework.FragmentStatePagerAdapter;
 import com.helpfox.main.core.framework.Toolbar;
 import com.helpfox.main.core.manager.Activity;
-import com.helpfox.main.core.manager.Fragment;
-import com.helpfox.main.core.manager.FragmentManager;
-import com.helpfox.main.fragments.AppFragment;
+import com.helpfox.main.fragments.DriverFragment;
+import com.helpfox.main.fragments.GatewayFragment;
+import com.helpfox.main.fragments.ProfileFragment;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.shape.SVGPath;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import static com.helpfox.main.core.View.APPACTIVITY;
+import static com.helpfox.main.core.View.NAVITEM;
 
 public class AppActivity extends Activity {
     @FXML
@@ -27,83 +35,72 @@ public class AppActivity extends Activity {
     @FXML
     private DrawerLayout drawer;
 
+    @FXML
+    private RecyclerView<NavItem> nav_items;
+
     @Override
     public void onCreate() {
         super.onCreate();
         setContentView(getClass().getResource(APPACTIVITY.toString()));
 
-        toolbar.setTitle("App Activity");
+        toolbar.setTitle("Motoristas");
         toolbar.setDisplayShowHomeEnabled(true);
 
         setActionBar(toolbar);
 
         drawer.setDrawerListener(new ActionBarDrawerToggle(this,drawer,toolbar));
 
-        ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(getFragmentManager());
-        viewPager.setAdapter(pagerAdapter);
-        pagerAdapter.addTab(new Tab("Fragment", AppFragment.class));
-        pagerAdapter.addTab(new Tab("Fragment 1", AppFragment.class));
-        tabLayout.setViewPager(viewPager);
+        Adapter adapter = new Adapter();
 
-        viewPager.setCurrentItem(0);
+        nav_items.setAdapter(adapter);
 
+        nav_items.getItems().addAll(
+                new NavItem("Motoristas", getClass().getResource("/img/driver.svg").getFile(), DriverFragment.class),
+                new NavItem("Portaria", getClass().getResource("/img/gateway.svg").getFile(), GatewayFragment.class),
+                new NavItem("Perfil", getClass().getResource("/img/profile.svg").getFile(), ProfileFragment.class)
+        );
     }
 
-
-    private static class ViewPagerAdapter extends FragmentStatePagerAdapter {
-
-        private ArrayList<Tab> tabs;
-        public ViewPagerAdapter(FragmentManager fragmentManager) {
-            super(fragmentManager);
-            tabs = new ArrayList<>();
+    public static class Adapter extends RecyclerView.Adapter<Holder> {
+        @Override
+        public RecyclerView.ViewRow call(ListView param) {
+            return new RippleViewRow(this);
         }
 
         @Override
-        public Fragment getItem(int i) {
-            try {
-                Fragment fragment = tabs.get(i).fragment.newInstance();
+        public Holder onCreateViewHolder(FXMLLoader loader) {
+            loader.setLocation(getClass().getResource(NAVITEM.toString()));
+            return new Holder(loader);
+        }
 
-                HashMap arguments = new HashMap();
-                arguments.put("textLabel","Fragment #"+(i+1));
-                fragment.setArguments(arguments);
+        @Override
+        public void onBindViewHolder(Holder holder, Object item) {
+            NavItem object = (NavItem) item;
+            holder.title.setText(object.title);
+            holder.svg.setContent(object.item);
+        }
+    }
+        public static class Holder extends RecyclerView.ViewHolder {
+            @FXML
+            Label title;
+            @FXML
+            SVGPath svg;
 
-                return fragment;
-
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
+            public Holder(FXMLLoader loader){
+                super(loader);
             }
-
-            return null;
         }
 
-        @Override
-        public String getPageTitle(int i) {
-            return tabs.get(i).title;
+        public class NavItem {
+            protected String title;
+            protected String item;
+            protected Class<?> fragment;
+
+            public NavItem(String title, String item, Class<?> fragment) {
+                this.title = title;
+                this.item = SVGFactory.getSVGContent(new File(item));
+                this.fragment = fragment;
+            }
         }
-
-        @Override
-        public int getCount() {
-            return tabs.size();
-        }
-
-        public void addTab(Tab tab){
-            tabs.add(tab);
-        }
-
-
-    }
-
-    private static class Tab {
-        protected String title;
-        protected Class<? extends Fragment> fragment;
-
-        public Tab(String title,Class<? extends Fragment > fragment){
-            this.title = title;
-            this.fragment = fragment;
-        }
-    }
-
 }
 

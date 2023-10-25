@@ -7,7 +7,8 @@
 <?import com.helpfox.main.core.components.layout.SlidingTabLayout?>
 <?import com.helpfox.main.core.components.layout.ViewPager?>
 
-<DrawerLayout xmlns:fx="http://javafx.com/fxml/1" prefWidth="800" prefHeight="600" fx:id="drawer">
+<?import com.helpfox.main.core.components.layout.RecyclerView?>
+<DrawerLayout xmlns:fx="http://javafx.com/fxml" prefWidth="800" prefHeight="600" fx:id="drawer">
     <content>
         <VBox  spacing="8" alignment="TOP_CENTER">
             <Toolbar fx:id="toolbar">
@@ -18,7 +19,7 @@
     </content>
     <nav>
         <VBox style="-fx-background-color: white;">
-            <Label text="This is the nav"/>
+            <RecyclerView fx:id="nav_items"></RecyclerView>
         </VBox>
     </nav>
 

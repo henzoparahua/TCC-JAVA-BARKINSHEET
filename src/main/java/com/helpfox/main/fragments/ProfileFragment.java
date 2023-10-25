@@ -2,31 +2,27 @@ package com.helpfox.main.fragments;
 
 import com.helpfox.main.core.manager.Fragment;
 import com.helpfox.main.core.manager.FragmentTransaction;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import static com.helpfox.main.core.View.APPACTIVITY;
 
-public class AppFragment extends Fragment {
-
-    @FXML
-    private Label label;
-
+public class ProfileFragment extends Fragment{
+    Label label;
     @Override
-    public void onCreateView(FXMLLoader fxmlLoader) {
-        fxmlLoader.setLocation(getClass().getResource(APPACTIVITY.toString()));
+    public void onCreateView(FXMLLoader loader) {
+        loader.setLocation(getClass().getResource(APPACTIVITY.toString()));
         try {
-            fxmlLoader.load();
+            loader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
 
         HashMap arguments = getArguments();
 
