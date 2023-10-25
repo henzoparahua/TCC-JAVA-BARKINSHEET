@@ -8,7 +8,9 @@
 <?import com.helpfox.main.core.components.component.MaterialButton?>
 
 <VBox prefWidth="600" prefHeight="400"
-      style="-fx-background-color:white; -fx-padding:16px" spacing="8" alignment="center">
+      xmlns:fx="http://javafx.com/fxml"
+      style="-fx-background-color:white; -fx-padding:16px" spacing="8" alignment="center"
+      fx:controller="com.helpfox.main.MainActivity" >
     <TextInputLayout>
         <TextField promptText="Username"/>
     </TextInputLayout>

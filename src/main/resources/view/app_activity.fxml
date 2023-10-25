@@ -7,7 +7,7 @@
 <?import com.helpfox.main.core.components.layout.SlidingTabLayout?>
 <?import com.helpfox.main.core.components.layout.ViewPager?>
 
-<DrawerLayout xmlns:fx="http://javafx.com/fxml" prefWidth="800" prefHeight="600" fx:id="drawer">
+<DrawerLayout xmlns:fx="http://javafx.com/fxml/1" prefWidth="800" prefHeight="600" fx:id="drawer">
     <content>
         <VBox  spacing="8" alignment="TOP_CENTER">
             <Toolbar fx:id="toolbar">
