@@ -11,7 +11,7 @@ The BarkinSheet is a parking management system.
 We are using:
 
 * Intellij IDEA
-* Java 18.0.2
+* Java 17.0.8
 * Maven
 * JavaFX
 * SQLite
