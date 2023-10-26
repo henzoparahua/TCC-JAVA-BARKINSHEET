@@ -1,12 +1,18 @@
 package com.helpfox.main;
 
 import com.helpfox.main.core.components.component.MaterialButton;
+import com.helpfox.main.core.components.component.SVGFactory;
 import com.helpfox.main.core.manager.ActivityFactory;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.SVGPath;
 import javafx.stage.Stage;
+
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -50,6 +56,9 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         StackPane root = new StackPane(); // Create root pane
         stage.setScene(new Scene(root)); // Set the scene in the stage
+
+        stage.setTitle("Barkin"); // Set the title of the stage
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo.png"))); // Set the icon of the stage
 
         // this object represent the stack  of activities  in your application
         ActivityFactory factory = new ActivityFactory(stage);
