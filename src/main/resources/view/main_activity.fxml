@@ -11,7 +11,7 @@
 <VBox prefWidth="600" prefHeight="400"
       xmlns:fx="http://javafx.com/fxml"
       style="-fx-background-color:white; -fx-padding:16px" spacing="8" alignment="center" >
-    <Label text="Barkin" styleClass="title"></Label>
+    <Label text="Barkin" style="-fx-font-size:32px; -fx-font-family:'Roboto Bold'; -fx-font-weight: bold;"></Label>
     <TextInputLayout>
         <TextField promptText="Email"/>
     </TextInputLayout>
