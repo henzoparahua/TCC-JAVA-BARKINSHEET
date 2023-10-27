@@ -3,7 +3,7 @@ package com.helpfox.main.core;
 public enum View {
     MAINACACTIVITY("main_activity"),
     APPACTIVITY("app_activity"),
-    APPFRAGMENT("app_fragment"),
+    DRIVERFRAGMENT("driver_fragment"),
     DETAILSFRAGMENT("details_fragment"),
     NAVITEM("nav_item");
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.cell.CheckBoxTableCell?>
+<?import com.helpfox.main.core.components.component.MaterialButton?>
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           prefHeight="48"
+           alignment="CENTER_LEFT"
+           styleClass="nav-item">
+    <HBox alignment="CENTER"  spacing="10">
+        <CheckBoxTableCell fx:id="chkDriver"></CheckBoxTableCell>
+        <Label fx:id="driverName"></Label>
+        <Label fx:id="rg"></Label>
+        <Label fx:id="phone"></Label>
+        <MaterialButton text="+ veículo" onAction="#onAddVehicle"></MaterialButton>
+        <MaterialButton text="editar" onAction="#onEdit"></MaterialButton>
+        <MaterialButton text="excluir" onAction="#onDelete"></MaterialButton>
+    </HBox>
+</StackPane>

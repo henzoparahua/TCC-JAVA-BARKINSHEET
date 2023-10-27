@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import com.helpfox.main.core.components.layout.RecyclerView?>
+
+<fx:root xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx/8" type="com.helpfox.main.core.manager.Fragment">
+    <StackPane fx:id="content" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0">
+        <VBox style="-fx-padding:16px">
+            <StackPane styleClass="card" prefWidth="200" style="-fx-padding:16px" fx:id="card" onMouseClicked="#startTransition">
+                <Label fx:id="title"/>
+            </StackPane>
+            <RecyclerView fx:id="driverRV"></RecyclerView>
+        </VBox>
+    </StackPane>
+</fx:root>
