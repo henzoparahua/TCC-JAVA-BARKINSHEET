@@ -1,11 +1,14 @@
 package com.helpfox.main.fragments;
 
+import com.helpfox.main.core.components.component.MaterialButton;
 import com.helpfox.main.core.components.layout.RecyclerView;
 import com.helpfox.main.core.manager.Fragment;
 import com.helpfox.main.core.manager.FragmentTransaction;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 
@@ -60,5 +63,62 @@ public class DriverFragment extends Fragment {
         transaction.commit();
 
 
+    }
+
+    public static class Adapter extends RecyclerView.Adapter<Holder> {
+        @Override
+        public RecyclerView.ViewRow call(ListView param) {
+            return super.call(param);
+        }
+
+        @Override
+        public Holder onCreateViewHolder(FXMLLoader loader) {
+            return null;
+        }
+
+        @Override
+        public void onBindViewHolder(Holder holder, Object item) {
+
+        }
+    }
+
+    public static class Holder extends RecyclerView.ViewHolder {
+        @FXML
+        CheckBoxTableCell checkBoxTableCell;
+        @FXML
+        Label driverName;
+        @FXML
+        Label rg;
+        @FXML
+        Label phone;
+        @FXML
+        MaterialButton addVehicle;
+        @FXML
+        MaterialButton edit;
+        @FXML
+        MaterialButton delete;
+        public Holder(FXMLLoader loader) {super(loader);}
+    }
+
+    public class DriverItem {
+        CheckBoxTableCell checkBoxTableCell;
+        Label driverName;
+        Label rg;
+        Label phone;
+        MaterialButton addVehicle;
+        MaterialButton edit;
+        MaterialButton delete;
+        Class<?> fragment;
+
+        public DriverItem(CheckBoxTableCell checkBoxTableCell, Label driverName, Label rg, Label phone, MaterialButton addVehicle, MaterialButton edit, MaterialButton delete, Class<?> fragment) {
+            this.checkBoxTableCell = checkBoxTableCell;
+            this.driverName = driverName;
+            this.rg = rg;
+            this.phone = phone;
+            this.addVehicle = addVehicle;
+            this.edit = edit;
+            this.delete = delete;
+            this.fragment = fragment;
+        }
     }
 }
