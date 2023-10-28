@@ -3,6 +3,8 @@ package com.helpfox.main;
 import com.helpfox.main.core.components.component.MaterialButton;
 import com.helpfox.main.core.components.component.SVGFactory;
 import com.helpfox.main.core.manager.ActivityFactory;
+import com.helpfox.main.server.dao.UserDAO;
+import com.helpfox.main.server.database.sqlite.SQLiteUserDAO;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -69,6 +71,8 @@ public class App extends Application {
 
         factory.startActivity(MainActivity.class); // start the activity
         stage.show();
+
+        UserDAO userDAO = new SQLiteUserDAO();
     }
 
     public static void main(String[] args) throws SQLException {

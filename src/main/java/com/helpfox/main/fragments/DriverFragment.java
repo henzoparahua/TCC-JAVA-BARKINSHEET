@@ -1,11 +1,14 @@
 package com.helpfox.main.fragments;
 
 import com.helpfox.main.core.components.component.MaterialButton;
+import com.helpfox.main.core.components.component.RippleViewRow;
 import com.helpfox.main.core.components.layout.RecyclerView;
 import com.helpfox.main.core.manager.Fragment;
 import com.helpfox.main.core.manager.FragmentTransaction;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.cell.CheckBoxTableCell;
@@ -16,12 +19,13 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import static com.helpfox.main.core.View.DRIVERFRAGMENT;
+import static com.helpfox.main.core.View.DRIVERITEM;
 
 public class DriverFragment extends Fragment {
     @FXML
     Label title;
     @FXML
-    RecyclerView driverRV;
+    RecyclerView<DriverItem> driver_items;
     @Override
     public void onCreateView(FXMLLoader loader) {
         loader.setLocation(getClass().getResource(DRIVERFRAGMENT.toString()));
@@ -34,11 +38,17 @@ public class DriverFragment extends Fragment {
 
         HashMap arguments = getArguments();
 
-        if(arguments != null){
-            if(arguments.containsKey("textLabel")){
+        if (arguments != null) {
+            if (arguments.containsKey("textLabel")) {
                 title.setText(arguments.get("textLabel").toString());
             }
         }
+
+        Adapter adapter = new Adapter();
+        driver_items.setAdapter(adapter);
+
+
+
     }
 
     public void startTransition(MouseEvent event)
@@ -68,23 +78,29 @@ public class DriverFragment extends Fragment {
     public static class Adapter extends RecyclerView.Adapter<Holder> {
         @Override
         public RecyclerView.ViewRow call(ListView param) {
-            return super.call(param);
+            return new RippleViewRow(this);
         }
 
         @Override
         public Holder onCreateViewHolder(FXMLLoader loader) {
-            return null;
+            loader.setLocation(getClass().getResource(DRIVERITEM.toString()));
+            return new Holder(loader);
         }
 
         @Override
         public void onBindViewHolder(Holder holder, Object item) {
+            DriverItem object = (DriverItem) item;
+//            holder.chkDriver.setSelectedStateCallback();
+            holder.driverName.setText(object.driverName);
+            holder.rg.setText(object.rg);
+            holder.phone.setText(object.phone);
 
         }
     }
 
     public static class Holder extends RecyclerView.ViewHolder {
         @FXML
-        CheckBoxTableCell checkBoxTableCell;
+        CheckBoxTableCell chkDriver;
         @FXML
         Label driverName;
         @FXML
@@ -101,17 +117,17 @@ public class DriverFragment extends Fragment {
     }
 
     public class DriverItem {
-        CheckBoxTableCell checkBoxTableCell;
-        Label driverName;
-        Label rg;
-        Label phone;
-        MaterialButton addVehicle;
-        MaterialButton edit;
-        MaterialButton delete;
+        Button chkDriver;
+        String driverName;
+        String rg;
+        String phone;
+        Button addVehicle;
+        Button edit;
+        Button delete;
         Class<?> fragment;
 
-        public DriverItem(CheckBoxTableCell checkBoxTableCell, Label driverName, Label rg, Label phone, MaterialButton addVehicle, MaterialButton edit, MaterialButton delete, Class<?> fragment) {
-            this.checkBoxTableCell = checkBoxTableCell;
+        public DriverItem(Button chkDriver, String driverName, String rg, String phone, Button addVehicle, Button edit, Button delete, Class<?> fragment) {
+            this.chkDriver = chkDriver;
             this.driverName = driverName;
             this.rg = rg;
             this.phone = phone;

@@ -5,7 +5,8 @@ public enum View {
     APPACTIVITY("app_activity"),
     DRIVERFRAGMENT("driver_fragment"),
     DETAILSFRAGMENT("details_fragment"),
-    NAVITEM("nav_item");
+    NAVITEM("nav_item"),
+    DRIVERITEM("driver_item");
 
     public final String location;
 
