@@ -1,4 +1,4 @@
-package com.helpfox.main.fragments;
+package com.helpfox.main.app.fragments;
 
 import com.helpfox.main.core.manager.Fragment;
 import javafx.animation.*;

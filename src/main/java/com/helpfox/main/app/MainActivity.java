@@ -1,6 +1,5 @@
-package com.helpfox.main;
+package com.helpfox.main.app;
 
-import com.helpfox.main.core.View;
 import com.helpfox.main.core.manager.Activity;
 
 import static com.helpfox.main.core.View.MAINACACTIVITY;

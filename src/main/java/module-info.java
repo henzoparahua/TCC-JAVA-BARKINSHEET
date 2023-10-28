@@ -5,11 +5,9 @@ module com.helpfox.main {
     requires org.xerial.sqlitejdbc;
 
     //needed for HTTP
-    requires unirest.java;
+    //requires unirest.java;
     requires com.google.gson;
 
-    opens com.helpfox.main to javafx.fxml;
-    exports com.helpfox.main;
     opens com.helpfox.main.server.controller to javafx.fxml;
     exports com.helpfox.main.server.controller;
     exports com.helpfox.main.server.model;
@@ -35,4 +33,6 @@ module com.helpfox.main {
     opens com.helpfox.main.core.components.component to javafx.fxml;
     exports com.helpfox.main.core.components.layout;
     opens com.helpfox.main.core.components.layout to javafx.fxml;
+    exports com.helpfox.main.app;
+    opens com.helpfox.main.app to javafx.fxml;
 }

@@ -1,7 +1,6 @@
-package com.helpfox.main;
+package com.helpfox.main.app;
 
 import com.helpfox.main.core.components.component.MaterialButton;
-import com.helpfox.main.core.components.component.SVGFactory;
 import com.helpfox.main.core.manager.ActivityFactory;
 import com.helpfox.main.server.dao.UserDAO;
 import com.helpfox.main.server.database.sqlite.SQLiteUserDAO;
@@ -9,12 +8,9 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
-import javafx.scene.shape.SVGPath;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.List;
 

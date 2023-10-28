@@ -1,4 +1,4 @@
-package com.helpfox.main;
+package com.helpfox.main.app;
 
 import com.helpfox.main.core.components.component.RippleViewRow;
 import com.helpfox.main.core.components.component.SVGFactory;
@@ -9,9 +9,9 @@ import com.helpfox.main.core.components.layout.ViewPager;
 import com.helpfox.main.core.framework.ActionBarDrawerToggle;
 import com.helpfox.main.core.framework.Toolbar;
 import com.helpfox.main.core.manager.Activity;
-import com.helpfox.main.fragments.DriverFragment;
-import com.helpfox.main.fragments.GatewayFragment;
-import com.helpfox.main.fragments.ProfileFragment;
+import com.helpfox.main.app.fragments.DriverFragment;
+import com.helpfox.main.app.fragments.GatewayFragment;
+import com.helpfox.main.app.fragments.ProfileFragment;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -19,8 +19,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.shape.SVGPath;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import static com.helpfox.main.core.View.APPACTIVITY;
 import static com.helpfox.main.core.View.NAVITEM;

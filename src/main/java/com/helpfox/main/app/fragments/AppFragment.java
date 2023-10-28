@@ -1,7 +1,8 @@
-package com.helpfox.main.fragments;
+package com.helpfox.main.app.fragments;
 
 import com.helpfox.main.core.manager.Fragment;
 import com.helpfox.main.core.manager.FragmentTransaction;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -12,17 +13,19 @@ import java.util.HashMap;
 
 import static com.helpfox.main.core.View.APPACTIVITY;
 
-public class GatewayFragment extends Fragment {
-    Label label;
+public class AppFragment extends Fragment {
+
+    @FXML
+    private Label label;
+
     @Override
-    public void onCreateView(FXMLLoader loader) {
-        loader.setLocation(getClass().getResource(APPACTIVITY.toString()));
+    public void onCreateView(FXMLLoader fxmlLoader) {
+        fxmlLoader.setLocation(getClass().getResource(APPACTIVITY.toString()));
         try {
-            loader.load();
+            fxmlLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
         HashMap arguments = getArguments();
 
