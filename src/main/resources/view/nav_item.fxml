@@ -15,13 +15,13 @@
            styleClass="nav-item">
     <SVGPath fx:id="svg" styleClass="icon">
         <StackPane.margin>
-            <Insets left="16"></Insets>
+            <Insets left="24"></Insets>
         </StackPane.margin>
     </SVGPath>
 
     <Label fx:id="title" >
         <StackPane.margin>
-            <Insets left="72"></Insets>
+            <Insets left="116"></Insets>
         </StackPane.margin>
     </Label>
 

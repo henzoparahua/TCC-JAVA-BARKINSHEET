@@ -9,18 +9,15 @@
     <StackPane fx:id="content" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0">
         <VBox style="-fx-padding:16px">
                 <Label fx:id="title"/>
-                <TableView fx:id="tblDriver" editable="true" layoutX="9.0" layoutY="16.0" onMouseClicked="#getSelectedItem" prefHeight="244.0" prefWidth="980.0">
+                <TableView fx:id="tblDriver" styleClass="mfx-table-view" editable="true" layoutX="9.0" layoutY="16.0" onMouseClicked="#getSelectedItem" prefHeight="244.0" prefWidth="980.0">
                     <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
                     </columnResizePolicy>
                     <columns>
-                        <TableColumn fx:id="colSelect" minWidth="40" maxWidth="40" text=""/>
-                        <TableColumn fx:id="colName" prefWidth="46.66667175292969" text="Nome" />
-                        <TableColumn fx:id="colRG" prefWidth="62.66667175292969" text="RG" />
-                        <TableColumn fx:id="colPhone" prefWidth="61.0" text="Telefone" />
-                        <TableColumn fx:id="colAddVehicle" prefWidth="80.00003051757812" text="+ Veículo" />
-                        <TableColumn fx:id="colEdit" prefWidth="82.33334350585938" text="Editar" />
-                        <TableColumn fx:id="colDelete" prefWidth="82.33334350585938" text="Excluir" />
+                        <TableColumn fx:id="colSelect" minWidth="40" maxWidth="40" style="-fx-alignment: CENTER;"/>
+                        <TableColumn fx:id="colName" minWidth="90" maxWidth="360" text="Nome" />
+                        <TableColumn fx:id="colRG" minWidth="100" maxWidth="120" text="RG" />
+                        <TableColumn fx:id="colPhone" minWidth="130" maxWidth="130" text="Telefone" />
                     </columns>
                 </TableView>
         </VBox>

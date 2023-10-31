@@ -4,8 +4,6 @@ import com.helpfox.main.core.components.component.RippleViewRow;
 import com.helpfox.main.core.components.component.SVGFactory;
 import com.helpfox.main.core.components.layout.DrawerLayout;
 import com.helpfox.main.core.components.layout.RecyclerView;
-import com.helpfox.main.core.components.layout.SlidingTabLayout;
-import com.helpfox.main.core.components.layout.ViewPager;
 import com.helpfox.main.core.framework.ActionBarDrawerToggle;
 import com.helpfox.main.core.framework.Toolbar;
 import com.helpfox.main.core.manager.Activity;
@@ -50,15 +48,15 @@ public class AppActivity extends Activity {
         nav_items.setAdapter(adapter);
 
         nav_items.getItems().addAll(
-                new NavItem("Motoristas", getClass().getResource("/img/driver.svg").getFile(), DriverFragment.class),
-                new NavItem("Portaria", getClass().getResource("/img/gateway.svg").getFile(), GatewayFragment.class),
-                new NavItem("Perfil", getClass().getResource("/img/profile.svg").getFile(), ProfileFragment.class)
+                new NavItem(getClass().getResource("/img/driver.svg").getFile(), "Motoristas", DriverFragment.class),
+                new NavItem(getClass().getResource("/img/gateway.svg").getFile(), "Portaria", GatewayFragment.class),
+                new NavItem(getClass().getResource("/img/profile.svg").getFile(), "Perfil", ProfileFragment.class)
         );
 
         nav_items.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             try {
-                Fragment fragment = (Fragment) newValue.fragment.getDeclaredConstructor().newInstance();
+                Fragment fragment = newValue.fragment.getDeclaredConstructor().newInstance();
                 transaction.replace("content", fragment);
                 transaction.commit();
                 toolbar.setTitle(newValue.title);
@@ -67,6 +65,12 @@ public class AppActivity extends Activity {
                 throw new RuntimeException(e);
             }
         });
+    }
+
+    public void refresh(){
+        DriverFragment fragment = (DriverFragment) getFragmentManager().findFragmentByTag("DriverFragment");
+        //Needed to refresh the list | I'll create it later
+        fragment.getDrivers();
     }
 
     public static class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
@@ -102,13 +106,13 @@ public class AppActivity extends Activity {
 
 
     public static class NavItem {
-        protected String title;
         protected String item;
-        protected Class<?> fragment;
+        protected String title;
+        protected Class<? extends Fragment> fragment;
 
-        public NavItem(String title, String item, Class<?> fragment) {
-            this.title = title;
+        public NavItem(String item, String title, Class<? extends Fragment> fragment) {
             this.item = SVGFactory.getSVGContent(new File(item));
+            this.title = title;
             this.fragment = fragment;
         }
     }

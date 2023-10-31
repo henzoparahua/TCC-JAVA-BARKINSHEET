@@ -62,7 +62,15 @@
     -fx-text-fill: #fff;
     -fx-padding: 8 16 8 16;
 }
-
+.ripple-button:add {
+    -fx-background-color: #0891DE;
+}
+.ripple-button:edit {
+    -fx-background-color: #DE5508;
+}
+.ripple-button:delete {
+    -fx-background-color: #B40E0E;
+}
 .ripple-button.flat{
     -fx-background-color: transparent;
     -fx-font-size: 13;

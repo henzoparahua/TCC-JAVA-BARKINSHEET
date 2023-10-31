@@ -22,7 +22,6 @@
         <nav>
             <VBox style="-fx-background-color: white;">
                 <RecyclerView fx:id="nav_items">
-
                 </RecyclerView>
             </VBox>
         </nav>
