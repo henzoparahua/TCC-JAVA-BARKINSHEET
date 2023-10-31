@@ -12,6 +12,8 @@ import com.helpfox.main.core.manager.Activity;
 import com.helpfox.main.app.fragments.DriverFragment;
 import com.helpfox.main.app.fragments.GatewayFragment;
 import com.helpfox.main.app.fragments.ProfileFragment;
+import com.helpfox.main.core.manager.Fragment;
+import com.helpfox.main.core.manager.FragmentTransaction;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -19,6 +21,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.shape.SVGPath;
 
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 
 import static com.helpfox.main.core.View.APPACTIVITY;
 import static com.helpfox.main.core.View.NAVITEM;
@@ -27,12 +30,7 @@ public class AppActivity extends Activity {
     @FXML
     Toolbar toolbar;
     @FXML
-    private SlidingTabLayout tabLayout;
-    @FXML
-    private ViewPager viewPager;
-    @FXML
     private DrawerLayout drawer;
-
     @FXML
     private RecyclerView<NavItem> nav_items;
 
@@ -41,12 +39,11 @@ public class AppActivity extends Activity {
         super.onCreate();
         setContentView(getClass().getResource(APPACTIVITY.toString()));
 
-        toolbar.setTitle("Motoristas");
         toolbar.setDisplayShowHomeEnabled(true);
-
+        toolbar.setTitle("Barkin");
         setActionBar(toolbar);
 
-        drawer.setDrawerListener(new ActionBarDrawerToggle(this,drawer,toolbar));
+        drawer.setDrawerListener(new ActionBarDrawerToggle(this, drawer, toolbar));
 
         Adapter adapter = new Adapter();
 
@@ -57,9 +54,22 @@ public class AppActivity extends Activity {
                 new NavItem("Portaria", getClass().getResource("/img/gateway.svg").getFile(), GatewayFragment.class),
                 new NavItem("Perfil", getClass().getResource("/img/profile.svg").getFile(), ProfileFragment.class)
         );
+
+        nav_items.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            try {
+                Fragment fragment = (Fragment) newValue.fragment.getDeclaredConstructor().newInstance();
+                transaction.replace("content", fragment);
+                transaction.commit();
+                toolbar.setTitle(newValue.title);
+                drawer.closeDrawer();
+            } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
-    public static class Adapter extends RecyclerView.Adapter<Holder> {
+    public static class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
         @Override
         public RecyclerView.ViewRow call(ListView param) {
             return new RippleViewRow(this);
@@ -77,28 +87,30 @@ public class AppActivity extends Activity {
             holder.title.setText(object.title);
             holder.svg.setContent(object.item);
         }
-    }
+
         public static class Holder extends RecyclerView.ViewHolder {
             @FXML
             Label title;
             @FXML
             SVGPath svg;
 
-            public Holder(FXMLLoader loader){
+            public Holder(FXMLLoader loader) {
                 super(loader);
             }
         }
+    }
 
-        public class NavItem {
-            protected String title;
-            protected String item;
-            protected Class<?> fragment;
 
-            public NavItem(String title, String item, Class<?> fragment) {
-                this.title = title;
-                this.item = SVGFactory.getSVGContent(new File(item));
-                this.fragment = fragment;
-            }
+    public static class NavItem {
+        protected String title;
+        protected String item;
+        protected Class<?> fragment;
+
+        public NavItem(String title, String item, Class<?> fragment) {
+            this.title = title;
+            this.item = SVGFactory.getSVGContent(new File(item));
+            this.fragment = fragment;
         }
+    }
 }
 

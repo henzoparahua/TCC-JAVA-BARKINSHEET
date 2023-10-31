@@ -29,10 +29,13 @@ module com.helpfox.main {
     exports com.helpfox.main.core.framework;
     opens com.helpfox.main.core.framework to javafx.fxml;
     exports com.helpfox.main.core.manager;
+    opens com.helpfox.main.core.manager to javafx.fxml;
     exports com.helpfox.main.core.components.component;
     opens com.helpfox.main.core.components.component to javafx.fxml;
     exports com.helpfox.main.core.components.layout;
     opens com.helpfox.main.core.components.layout to javafx.fxml;
     exports com.helpfox.main.app;
     opens com.helpfox.main.app to javafx.fxml;
+    opens com.helpfox.main.app.fragments to javafx.fxml;
+    opens com.helpfox.main.app.tableview to javafx.base;
 }

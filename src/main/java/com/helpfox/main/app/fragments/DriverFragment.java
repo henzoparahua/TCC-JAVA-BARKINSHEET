@@ -1,9 +1,6 @@
 package com.helpfox.main.app.fragments;
 
 import com.helpfox.main.app.tableview.DriverTableModel;
-import com.helpfox.main.core.components.component.MaterialButton;
-import com.helpfox.main.core.components.component.RippleViewRow;
-import com.helpfox.main.core.components.layout.RecyclerView;
 import com.helpfox.main.core.manager.Fragment;
 import com.helpfox.main.core.manager.FragmentTransaction;
 import javafx.collections.FXCollections;
@@ -13,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -23,7 +21,6 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import static com.helpfox.main.core.View.DRIVERFRAGMENT;
-import static com.helpfox.main.core.View.DRIVERITEM;
 
 public class DriverFragment extends Fragment implements Initializable {
     @FXML
@@ -47,26 +44,28 @@ public class DriverFragment extends Fragment implements Initializable {
     @FXML
     private TableColumn<DriverTableModel, String> colDelete;
 
-    private ObservableList<DriverTableModel> driverList() {
-        return FXCollections.observableArrayList(
-                new DriverTableModel(false, "Pedro", "123456789", "123456789", "123456789", "123456789", "123456789"),
-                new DriverTableModel(false, "Joao", "123456789", "123456789", "123456789", "123456789", "123456789"),
-                new DriverTableModel(false, "Maria", "123456789", "123456789", "123456789", "123456789", "123456789"),
-                new DriverTableModel(false, "José", "123456789", "123456789", "123456789", "123456789", "123456789")
-        );
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        colSelect.setCellValueFactory(cellData -> cellData.getValue().selectedProperty());
-        colName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-        colRG.setCellValueFactory(cellData -> cellData.getValue().rgProperty());
-        colPhone.setCellValueFactory(cellData -> cellData.getValue().phoneProperty());
-        colAddVehicle.setCellValueFactory(cellData -> cellData.getValue().addVehicleProperty());
-        colEdit.setCellValueFactory(cellData -> cellData.getValue().editProperty());
-        colDelete.setCellValueFactory(cellData -> cellData.getValue().deleteProperty());
+        colSelect.setCellValueFactory(new PropertyValueFactory<>("selected"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colRG.setCellValueFactory(new PropertyValueFactory<>("rg"));
+        colPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        colAddVehicle.setCellValueFactory(new PropertyValueFactory<>("addVehicle"));
+        colEdit.setCellValueFactory(new PropertyValueFactory<>("edit"));
+        colDelete.setCellValueFactory(new PropertyValueFactory<>("delete"));
+
+        colSelect.setCellFactory(CheckBoxTableCell.forTableColumn(colSelect));
 
         tblDriver.setItems(driverList());
+    }
+
+    private ObservableList<DriverTableModel> driverList() {
+        return FXCollections.observableArrayList(
+                new DriverTableModel( "Pedro", "123456789", "123456789", "123456789", "123456789", "123456789"),
+                new DriverTableModel( "Joao", "123456789", "123456789", "123456789", "123456789", "123456789"),
+                new DriverTableModel( "Maria", "123456789", "123456789", "123456789", "123456789", "123456789"),
+                new DriverTableModel( "José", "123456789", "123456789", "123456789", "123456789", "123456789")
+        );
     }
     @Override
     public void onCreateView(FXMLLoader loader) {
@@ -85,6 +84,10 @@ public class DriverFragment extends Fragment implements Initializable {
                 title.setText(arguments.get("textLabel").toString());
             }
         }
+    }
+
+    public void getSelectedItem(MouseEvent event){
+
     }
 
     public void startTransition(MouseEvent event)

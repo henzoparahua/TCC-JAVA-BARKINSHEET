@@ -12,8 +12,8 @@ public class DriverTableModel {
     private final SimpleStringProperty edit;
     private final SimpleStringProperty delete;
 
-    public DriverTableModel(Boolean selected, String name, String rg, String phone, String addVehicle, String edit, String delete) {
-        this.selected = new SimpleBooleanProperty(selected);
+    public DriverTableModel( String name, String rg, String phone, String addVehicle, String edit, String delete) {
+        this.selected = new SimpleBooleanProperty(false);
         this.name = new SimpleStringProperty(name);
         this.rg = new SimpleStringProperty(rg);
         this.phone = new SimpleStringProperty(phone);
