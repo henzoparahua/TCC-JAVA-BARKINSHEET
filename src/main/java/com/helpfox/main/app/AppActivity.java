@@ -59,7 +59,6 @@ public class AppActivity extends Activity {
                 Fragment fragment = newValue.fragment.getDeclaredConstructor().newInstance();
                 transaction.replace("content", fragment);
                 transaction.commit();
-                toolbar.setTitle(newValue.title);
                 drawer.closeDrawer();
             } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
                 throw new RuntimeException(e);

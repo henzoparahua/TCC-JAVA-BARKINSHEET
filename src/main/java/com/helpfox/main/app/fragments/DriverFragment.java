@@ -1,7 +1,10 @@
 package com.helpfox.main.app.fragments;
 
 import com.helpfox.main.app.tableview.DriverTableModel;
+import com.helpfox.main.core.components.component.IconButtonSkin;
+import com.helpfox.main.core.components.component.ImageButton;
 import com.helpfox.main.core.components.component.MaterialButton;
+import com.helpfox.main.core.components.component.RippleSkinFactory;
 import com.helpfox.main.core.manager.Fragment;
 import com.helpfox.main.core.manager.FragmentTransaction;
 import com.helpfox.main.server.entity.Driver;
@@ -9,21 +12,26 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.skin.ButtonSkin;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.stage.Screen;
 import javafx.util.Callback;
 
 import java.io.IOException;
@@ -38,7 +46,11 @@ public class DriverFragment extends Fragment implements Initializable {
     @FXML
     StackPane content;
     @FXML
-    Label title;
+    HBox header_container;
+    @FXML
+    TextField search;
+    @FXML
+    private ImageButton btn_add_driver;
     @FXML
     private TableView<DriverTableModel> tblDriver;
     @FXML
@@ -49,9 +61,13 @@ public class DriverFragment extends Fragment implements Initializable {
     private TableColumn<DriverTableModel, String> colRG;
     @FXML
     private TableColumn<DriverTableModel, String> colPhone;
+    @FXML
+    private TableColumn<DriverTableModel, Void> colAction;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        setStyleToAddButton();
+
         colSelect.setCellValueFactory(new PropertyValueFactory<>("selected"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colRG.setCellValueFactory(new PropertyValueFactory<>("rg"));
@@ -64,6 +80,21 @@ public class DriverFragment extends Fragment implements Initializable {
         tblDriver.setItems(driverList());
     }
 
+
+    private void setStyleToAddButton() {
+        btn_add_driver.setPrefSize(48, 48);
+        btn_add_driver.setMaxSize(48, 48);
+        btn_add_driver.setCursor(Cursor.HAND);
+        btn_add_driver.setStyle("-fx-background-color: transparent;-fx-border-color: transparent;");
+        Image addButtonImage = new Image(getClass().getResourceAsStream("/img/add-button.png"));
+        ImageView addButtonImageView = new ImageView(addButtonImage);
+        addButtonImageView.setPreserveRatio(true);
+        addButtonImageView.setFitWidth(btn_add_driver.getPrefWidth());
+        addButtonImageView.setFitHeight(btn_add_driver.getPrefHeight());
+        btn_add_driver.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+        btn_add_driver.setGraphic(addButtonImageView);
+    }
+
     private ObservableList<DriverTableModel> driverList() {
         return FXCollections.observableArrayList(
                 new DriverTableModel("Pedro", "123456789", "123456789"),
@@ -74,8 +105,6 @@ public class DriverFragment extends Fragment implements Initializable {
     }
 
     private void addButtonToTable() {
-        TableColumn<DriverTableModel, Void> colAction = new TableColumn();
-
         colAction.setSortable(false);
         Callback<TableColumn<DriverTableModel, Void>, TableCell<DriverTableModel, Void>> cellFactory = new Callback<TableColumn<DriverTableModel, Void>, TableCell<DriverTableModel, Void>>() {
             @Override
@@ -139,8 +168,6 @@ public class DriverFragment extends Fragment implements Initializable {
 
         colAction.setCellFactory(cellFactory);
         colAction.styleProperty();
-
-        tblDriver.getColumns().add(colAction);
     }
 
     @Override
@@ -150,15 +177,6 @@ public class DriverFragment extends Fragment implements Initializable {
             loader.load();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-
-
-        HashMap arguments = getArguments();
-
-        if (arguments != null) {
-            if (arguments.containsKey("textLabel")) {
-                title.setText(arguments.get("textLabel").toString());
-            }
         }
     }
 
@@ -183,10 +201,6 @@ public class DriverFragment extends Fragment implements Initializable {
         params.put("y", region.getLayoutY());
         params.put("w", region.getWidth());
         params.put("h", region.getHeight());
-        params.put("text", title.getText());
-        params.put("tableview", tblDriver.getItems());
-        params.put("colName", colName.getCellObservableValue(tblDriver.getSelectionModel().getSelectedItem()).getValue());
-        params.put("colRG", colRG.getCellObservableValue(tblDriver.getSelectionModel().getSelectedItem()).getValue());
 
         fragment.setArguments(params);
 

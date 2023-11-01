@@ -17,7 +17,10 @@
     -color-dark-primary:#303F9F;
     -color-body:#F5F5F5;
 }
-
+.header{
+    -fx-font-family:'Roboto Bold';
+    -fx-font-weight: bold;
+}
 .text-input{
     -fx-highlight-fill: rgba(0,0,0,0.15);
     -fx-highlight-text-fill: black;
@@ -61,6 +64,7 @@
     -fx-background-color: -color-primary;
     -fx-text-fill: #fff;
     -fx-padding: 8 16 8 16;
+    -fx-cursor: hand;
 }
 .ripple-button:add {
     -fx-background-color: #0891DE;
