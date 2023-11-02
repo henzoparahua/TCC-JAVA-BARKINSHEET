@@ -1,10 +1,9 @@
 package com.helpfox.main.app.fragments;
 
 import com.helpfox.main.app.tableview.DriverTableModel;
-import com.helpfox.main.core.components.component.IconButtonSkin;
 import com.helpfox.main.core.components.component.ImageButton;
 import com.helpfox.main.core.components.component.MaterialButton;
-import com.helpfox.main.core.components.component.RippleSkinFactory;
+import com.helpfox.main.core.components.layout.FlexBox;
 import com.helpfox.main.core.manager.Fragment;
 import com.helpfox.main.core.manager.FragmentTransaction;
 import com.helpfox.main.server.entity.Driver;
@@ -12,7 +11,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,16 +20,12 @@ import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.skin.ButtonSkin;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Circle;
-import javafx.stage.Screen;
 import javafx.util.Callback;
 
 import java.io.IOException;
@@ -46,13 +40,13 @@ public class DriverFragment extends Fragment implements Initializable {
     @FXML
     StackPane content;
     @FXML
-    HBox header_container;
+    FlexBox header_container;
     @FXML
     TextField search;
     @FXML
     private ImageButton btn_add_driver;
     @FXML
-    private TableView<DriverTableModel> tblDriver;
+    private TableView<DriverTableModel> table_driver;
     @FXML
     private TableColumn<DriverTableModel, Boolean> colSelect;
     @FXML
@@ -77,7 +71,7 @@ public class DriverFragment extends Fragment implements Initializable {
 
         addButtonToTable();
 
-        tblDriver.setItems(driverList());
+        table_driver.setItems(driverList());
     }
 
 

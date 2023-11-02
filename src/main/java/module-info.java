@@ -7,6 +7,7 @@ module com.helpfox.main {
     //needed for HTTP
     //requires unirest.java;
     requires com.google.gson;
+    requires commons.collections4;
 
     opens com.helpfox.main.server.controller to javafx.fxml;
     exports com.helpfox.main.server.controller;
@@ -38,4 +39,5 @@ module com.helpfox.main {
     opens com.helpfox.main.app to javafx.fxml;
     opens com.helpfox.main.app.fragments to javafx.fxml;
     opens com.helpfox.main.app.tableview to javafx.base;
+    opens com.helpfox.main.core.components.component.flexbox to javafx.fxml;
 }

@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
+<?import com.helpfox.main.core.manager.Fragment?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import com.helpfox.main.core.manager.Fragment?>
 
-<?import com.helpfox.main.core.components.component.TextInputLayout?>
 <?import com.helpfox.main.core.components.component.ImageButton?>
+<?import com.helpfox.main.core.components.component.TextInputLayout?>
 <?import com.helpfox.main.core.components.layout.FlexBox?>
 <fx:root xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx/8" type="Fragment">
     <StackPane fx:id="content" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0">
         <VBox style="-fx-padding:16px">
             <FlexBox fx:id="header_container" styleClass="flex-pane" horizontalSpace="50" verticalSpace="32" direction="ROW" >
-                    <Label text="Motoristas" styleClass="header" style="-fx-font-size:24px;" FlexBox.grow="3"/>
+                <Label text="Portaria" styleClass="header" style="-fx-font-size:24px;" FlexBox.grow="3"/>
                 <TextInputLayout animated="false" prefWidth="320" FlexBox.grow="2">
                     <TextField  fx:id="search_field" promptText="Pesquisar" >
                     </TextField>
                 </TextInputLayout>
-                    <ImageButton fx:id="btn_add_driver" FlexBox.grow="1">
-                    </ImageButton>
+                <ImageButton fx:id="btn_add_gateway" FlexBox.grow="1">
+                </ImageButton>
             </FlexBox>
-            <TableView fx:id="table_driver" styleClass="mfx-table-view" editable="true" layoutX="9.0" layoutY="16.0"
+            <TableView fx:id="table_gateway" styleClass="mfx-table-view" editable="true" layoutX="9.0" layoutY="16.0"
                        onMouseClicked="#getSelectedItem" prefHeight="244.0" prefWidth="980.0">
                 <columnResizePolicy>
                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
@@ -28,9 +27,11 @@
                 <columns>
                     <TableColumn fx:id="colSelect" minWidth="40" maxWidth="40" style="-fx-alignment: CENTER;"/>
                     <TableColumn fx:id="colName" minWidth="90" maxWidth="360" text="Nome"/>
-                    <TableColumn fx:id="colRG" minWidth="100" maxWidth="120" text="RG"/>
-                    <TableColumn fx:id="colPhone" minWidth="130" maxWidth="130" text="Telefone"/>
-                    <TableColumn fx:id="colAction" minWidth="330"/>
+                    <TableColumn fx:id="colCar" minWidth="100" maxWidth="160" text="Carro"/>
+                    <TableColumn fx:id="colPlate" minWidth="90" maxWidth="130" text="Placa"/>
+                    <TableColumn fx:id="colDate" minWidth="90" text="Data"/>
+                    <TableColumn fx:id="colHour" minWidth="90" text="Hora"/>
+                    <TableColumn fx:id="colType" minWidth="90" text="Tipo"/>
                 </columns>
             </TableView>
         </VBox>

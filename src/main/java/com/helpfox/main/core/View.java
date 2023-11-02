@@ -4,6 +4,7 @@ public enum View {
     MAINACACTIVITY("main_activity"),
     APPACTIVITY("app_activity"),
     DRIVERFRAGMENT("fragments/driver_fragment"),
+    GATEWAYFRAGMENT("fragments/gateway_fragment"),
     DETAILSFRAGMENT("details_fragment"),
     NAVITEM("nav_item"),
     DRIVERITEM("driver_item");
